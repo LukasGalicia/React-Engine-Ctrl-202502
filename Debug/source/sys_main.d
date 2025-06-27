@@ -29,6 +29,7 @@ source/sys_main.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReac
 source/sys_main.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/reg_het.h
 source/sys_main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/string.h
 source/sys_main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/xlocale/_string.h
+source/sys_main.obj: ../source/projlib/HX711_FREERTOS.h
 
 ../source/sys_main.c:
 
@@ -87,4 +88,6 @@ C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/reg_het.h:
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/string.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/xlocale/_string.h:
+
+../source/projlib/HX711_FREERTOS.h:
 

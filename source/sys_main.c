@@ -52,6 +52,9 @@
 #include "gio.h"
 #include "het.h"
 
+/* DRIVER INCLUDES */
+#include "projlib/HX711_FREERTOS.h"
+
 /* USER CODE END */
 
 /* Include Files */
@@ -64,10 +67,8 @@
 void vTask_HX711_PollActs(void *pvParameters);
 /* USER TASKS END */
 
-/* USER DEFINES */
-#define PORT_HX711_DT   gioPORTA
-#define PIN_HX711_DT    0x06U       // Data Out pin is [GIOA6]
-#define PWM_HX711_SCK   0x01U       // Serial Clock pwm signal is [PWM1]
+/* USER DEFINES BEGIN */
+/* USER DEFINES END */
 
 /* USER CODE END */
 
@@ -91,8 +92,18 @@ int main(void)
 
     /* IRQ Enable */
     _enable_IRQ();
-    gioEnableNotification(PORT_HX711_DT, PIN_HX711_DT);     // Enable HX711 DT IRQ
-    pwmEnableNotification(hetREG1, PWM_HX711_SCK, pwmEND_OF_DUTY);
+
+    /* User Tasks CREATE */
+
+    /* HX711 Sensor Handler Task */
+    MPU_xTaskCreate(vTask_HX711_PollActs,           // Task Code
+                    "HX711 Handler Task",           // HL Task Name
+                    configMINIMAL_STACK_SIZE,       // Memory Stack Size
+                    NULL,                           // Task Parameters
+                    4,                              // Priority
+                    NULL);                          // Task Handler (xTaskHandle)
+
+    // pwmEnableNotification(hetREG1, PWM_HX711_SCK, pwmEND_OF_DUTY);
 
 /* USER CODE END */
 
@@ -105,7 +116,9 @@ int main(void)
 /* USER TASKS IMP, BEGIN */
 void vTask_HX711_PollActs(void *pvParameters)
 {
-    asm(" nop");
+    gioEnableNotification(PORT_HX711_DT, PIN_HX711_DT);     // Enable HX711 DT READY IRQ
+
+    for(;;);
 }
 /* USER TASKS END */
 
