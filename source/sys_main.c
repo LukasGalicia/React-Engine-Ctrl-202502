@@ -43,6 +43,15 @@
 
 
 /* USER CODE BEGIN (0) */
+
+/* OS INCLUDES */
+#include "FreeRTOS.h"
+#include "os_task.h"
+
+/* HW INCLUDES */
+#include "gio.h"
+#include "het.h"
+
 /* USER CODE END */
 
 /* Include Files */
@@ -50,6 +59,16 @@
 #include "sys_common.h"
 
 /* USER CODE BEGIN (1) */
+
+/* USER TASKS BEGIN */
+void vTask_HX711_PollActs(void *pvParameters);
+/* USER TASKS END */
+
+/* USER DEFINES */
+#define PORT_HX711_DT   gioPORTA
+#define PIN_HX711_DT    0x06U       // Data Out pin is [GIOA6]
+#define PWM_HX711_SCK   0x01U       // Serial Clock pwm signal is [PWM1]
+
 /* USER CODE END */
 
 /** @fn void main(void)
@@ -66,6 +85,15 @@
 int main(void)
 {
 /* USER CODE BEGIN (3) */
+    /* HW Driver Init */
+    gioInit();
+    hetInit();
+
+    /* IRQ Enable */
+    _enable_IRQ();
+    gioEnableNotification(PORT_HX711_DT, PIN_HX711_DT);     // Enable HX711 DT IRQ
+    pwmEnableNotification(hetREG1, PWM_HX711_SCK, pwmEND_OF_DUTY);
+
 /* USER CODE END */
 
     return 0;
@@ -73,4 +101,23 @@ int main(void)
 
 
 /* USER CODE BEGIN (4) */
+
+/* USER TASKS IMP, BEGIN */
+void vTask_HX711_PollActs(void *pvParameters)
+{
+    asm(" nop");
+}
+/* USER TASKS END */
+
+/* IRQ NOTIFICATIONS */
+void gioNotification(gioPORT_t *port, uint32 bit)
+{
+    asm(" nop");
+}
+
+void pwmNotification(hetBASE_t * hetREG,uint32 pwm, uint32 notification)
+{
+    asm(" nop");
+}
+
 /* USER CODE END */
