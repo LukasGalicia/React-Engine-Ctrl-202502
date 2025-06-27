@@ -116,6 +116,8 @@ int main(void)
 /* USER TASKS IMP, BEGIN */
 void vTask_HX711_PollActs(void *pvParameters)
 {
+    uint8_t HX711_SCK_Count = 0U;
+
     gioEnableNotification(PORT_HX711_DT, PIN_HX711_DT);     // Enable HX711 DT READY IRQ
 
     for(;;);
