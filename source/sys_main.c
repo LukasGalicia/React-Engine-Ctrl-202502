@@ -65,6 +65,7 @@
 
 /* USER TASKS BEGIN */
 void vTask_HX711_PollActs(void *pvParameters);
+TaskHandle_t xTask_HX711_Handle;
 /* USER TASKS END */
 
 /* USER DEFINES BEGIN */
@@ -103,7 +104,7 @@ int main(void)
                     2 * configMINIMAL_STACK_SIZE,   // Memory Stack Size
                     NULL,                           // Task Parameters
                     4,                              // Priority
-                    NULL);                          // Task Handler (xTaskHandle)
+                    &xTask_HX711_Handle);           // Task Handler (xTaskHandle)
 
     /* Scheduler START */
     vTaskStartScheduler();
@@ -121,13 +122,20 @@ int main(void)
 void vTask_HX711_PollActs(void *pvParameters)
 {
     /* HX711 POWER DOWN & INIT */
-    MPU_vTaskDelay((TickType_t) 5);             // 500 us delay
+    gioSetBit(PORT_HX711_SCK, PIN_HX711_SCK, 1U);   // Set SCK High
+    MPU_vTaskDelay((TickType_t) 1);                 // HX711 Power-off Delay
     // HX711 OFF
     gioEnableNotification(PORT_HX711_DT, PIN_HX711_DT);     // Enable HX711 DT READY IRQ
-    gioSetBit(PORT_HX711_SCK, PIN_HX711_SCK, 0U);   // Set SCK Low
+    gioSetBit(PORT_HX711_SCK, PIN_HX711_SCK, 0U);           // Set SCK Low
     // HX711 ON
 
-    for(;;);
+    for(;;)
+    {
+        ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+        HX711_data_count = 0U;
+        HX711_data_buff = 0x00000000U;
+        gioEnableNotification(PORT_HX711_DT, PIN_HX711_DT);
+    }
 }
 /* USER TASKS END */
 
@@ -141,14 +149,18 @@ void gioNotification(gioPORT_t *port, uint32 bit)
 
 void pwmNotification(hetBASE_t * hetREG,uint32 pwm, uint32 notification)
 {
+    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+
     HX711_data_count++;
     if(HX711_data_count <= 24)
     {
         HX711_data_buff = (HX711_data_buff << 1) | gioGetBit(PORT_HX711_DT, PIN_HX711_DT);
     }
-    else if(HX711_data_count >= 27)
+    else if(HX711_data_count == 25)
     {
         pwmStop(hetRAM1, PWM_HX711_SCK);
+        vTaskNotifyGiveFromISR(xTask_HX711_Handle, &xHigherPriorityTaskWoken);
+        portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
     }
 }
 
