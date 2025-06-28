@@ -92,19 +92,23 @@ int main(void)
 
     /* IRQ Enable */
     _enable_IRQ();
+    pwmEnableNotification(hetREG1, PWM_HX711_SCK, pwmEND_OF_DUTY);
+
+    HX711_data_buff = 0x00000000U;
 
     /* User Tasks CREATE */
-
     /* HX711 Sensor Handler Task */
     MPU_xTaskCreate(vTask_HX711_PollActs,           // Task Code
                     "HX711 Handler Task",           // HL Task Name
-                    configMINIMAL_STACK_SIZE,       // Memory Stack Size
+                    2 * configMINIMAL_STACK_SIZE,   // Memory Stack Size
                     NULL,                           // Task Parameters
                     4,                              // Priority
                     NULL);                          // Task Handler (xTaskHandle)
 
-    // pwmEnableNotification(hetREG1, PWM_HX711_SCK, pwmEND_OF_DUTY);
+    /* Scheduler START */
+    vTaskStartScheduler();
 
+    for(;;);
 /* USER CODE END */
 
     return 0;
@@ -116,9 +120,12 @@ int main(void)
 /* USER TASKS IMP, BEGIN */
 void vTask_HX711_PollActs(void *pvParameters)
 {
-    uint8_t HX711_SCK_Count = 0U;
-
+    /* HX711 POWER DOWN & INIT */
+    MPU_vTaskDelay((TickType_t) 5);             // 500 us delay
+    // HX711 OFF
     gioEnableNotification(PORT_HX711_DT, PIN_HX711_DT);     // Enable HX711 DT READY IRQ
+    gioSetBit(PORT_HX711_SCK, PIN_HX711_SCK, 0U);   // Set SCK Low
+    // HX711 ON
 
     for(;;);
 }
@@ -127,12 +134,22 @@ void vTask_HX711_PollActs(void *pvParameters)
 /* IRQ NOTIFICATIONS */
 void gioNotification(gioPORT_t *port, uint32 bit)
 {
-    asm(" nop");
+    HX711_data_count = 0;
+    gioDisableNotification(PORT_HX711_DT, PIN_HX711_DT);
+    pwmStart(hetRAM1, PWM_HX711_SCK);
 }
 
 void pwmNotification(hetBASE_t * hetREG,uint32 pwm, uint32 notification)
 {
-    asm(" nop");
+    HX711_data_count++;
+    if(HX711_data_count <= 24)
+    {
+        HX711_data_buff = (HX711_data_buff << 1) | gioGetBit(PORT_HX711_DT, PIN_HX711_DT);
+    }
+    else if(HX711_data_count >= 27)
+    {
+        pwmStop(hetRAM1, PWM_HX711_SCK);
+    }
 }
 
 /* USER CODE END */

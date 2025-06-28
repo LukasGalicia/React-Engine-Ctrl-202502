@@ -9,4 +9,3 @@
 
 /* Variable Initialization for HX711 */
 
-volatile uint32_t HX711_data_buff = 0x00000000U;

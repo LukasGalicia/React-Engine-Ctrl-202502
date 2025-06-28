@@ -1092,7 +1092,7 @@ void hetInit(void)
                   | (uint32)((uint32)0U << 19U)
                   | (uint32)((uint32)0U << 18U)
                   | (uint32)((uint32)0U << 17U)
-                  | (uint32)((uint32)0U << 16U)
+                  | (uint32)((uint32)1U << 16U)
                   | (uint32)((uint32)0U << 15U)
                   | (uint32)((uint32)0U << 14U)
                   | (uint32)((uint32)0U << 13U)
@@ -1352,7 +1352,7 @@ void hetInit(void)
     */
     hetREG1->PRY = (uint32) 0x00000000U
                  | (uint32) 0x00000000U
-                 | (uint32) 0x00000000U
+                 | (uint32) 0x00000008U
                  | (uint32) 0x00000000U
                  | (uint32) 0x00000000U
                  | (uint32) 0x00000000U
