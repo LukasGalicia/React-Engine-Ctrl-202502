@@ -31,4 +31,8 @@
 volatile uint8_t HX711_data_count;
 volatile uint32_t HX711_data_buff;
 
+/* HX711 Macros */
+#define DECODE_TWOS_COMPLEMENT( twos_comp_data ) (((twos_comp_data) & 0x800000) ? \
+        ((int32_t)((twos_comp_data) | 0xFF000000)) : ((int32_t)(twos_comp_data)))
+
 #endif /* SOURCE_PROJLIB_HX711_FREERTOS_H_ */

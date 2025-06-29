@@ -121,6 +121,8 @@ int main(void)
 /* USER TASKS IMP, BEGIN */
 void vTask_HX711_PollActs(void *pvParameters)
 {
+    int32_t HX711_dataRead;
+
     /* HX711 POWER DOWN & INIT */
     gioSetBit(PORT_HX711_SCK, PIN_HX711_SCK, 1U);   // Set SCK High
     MPU_vTaskDelay((TickType_t) 1);                 // HX711 Power-off Delay
@@ -131,10 +133,13 @@ void vTask_HX711_PollActs(void *pvParameters)
 
     for(;;)
     {
-        ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
-        HX711_data_count = 0U;
-        HX711_data_buff = 0x00000000U;
-        gioEnableNotification(PORT_HX711_DT, PIN_HX711_DT);
+        ulTaskNotifyTake(pdTRUE, portMAX_DELAY);    // Wait for notification
+
+        HX711_dataRead = DECODE_TWOS_COMPLEMENT(HX711_data_buff);   // Decode Sensor data to int
+
+        HX711_data_count = 0U;              // Reset data bit counter
+        HX711_data_buff = 0x00000000U;      // Reset data buffer
+        gioEnableNotification(PORT_HX711_DT, PIN_HX711_DT);     // Reset DT pin interrupt
     }
 }
 /* USER TASKS END */
@@ -142,7 +147,7 @@ void vTask_HX711_PollActs(void *pvParameters)
 /* IRQ NOTIFICATIONS */
 void gioNotification(gioPORT_t *port, uint32 bit)
 {
-    HX711_data_count = 0;
+    HX711_data_count = 0U;
     gioDisableNotification(PORT_HX711_DT, PIN_HX711_DT);
     pwmStart(hetRAM1, PWM_HX711_SCK);
 }
@@ -151,7 +156,7 @@ void pwmNotification(hetBASE_t * hetREG,uint32 pwm, uint32 notification)
 {
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 
-    HX711_data_count++;
+    ++HX711_data_count;
     if(HX711_data_count <= 24)
     {
         HX711_data_buff = (HX711_data_buff << 1) | gioGetBit(PORT_HX711_DT, PIN_HX711_DT);
