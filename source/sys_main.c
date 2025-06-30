@@ -64,7 +64,7 @@
 /* USER CODE BEGIN (1) */
 
 /* USER TASKS BEGIN */
-void vTask_HX711_PollActs(void *pvParameters);
+void vTask_HX711_Poll(void *pvParameters);
 TaskHandle_t xTask_HX711_Handle;
 /* USER TASKS END */
 
@@ -87,6 +87,10 @@ TaskHandle_t xTask_HX711_Handle;
 int main(void)
 {
 /* USER CODE BEGIN (3) */
+    /*
+     *  Working on branch NoHET
+     */
+
     /* HW Driver Init */
     gioInit();
     hetInit();
@@ -99,7 +103,7 @@ int main(void)
 
     /* User Tasks CREATE */
     /* HX711 Sensor Handler Task */
-    MPU_xTaskCreate(vTask_HX711_PollActs,           // Task Code
+    MPU_xTaskCreate(vTask_HX711_Poll,               // Task Code
                     "HX711 Handler Task",           // HL Task Name
                     2 * configMINIMAL_STACK_SIZE,   // Memory Stack Size
                     NULL,                           // Task Parameters
@@ -119,7 +123,7 @@ int main(void)
 /* USER CODE BEGIN (4) */
 
 /* USER TASKS IMP, BEGIN */
-void vTask_HX711_PollActs(void *pvParameters)
+void vTask_HX711_Poll(void *pvParameters)
 {
     int32_t HX711_dataRead;
 
@@ -147,26 +151,22 @@ void vTask_HX711_PollActs(void *pvParameters)
 /* IRQ NOTIFICATIONS */
 void gioNotification(gioPORT_t *port, uint32 bit)
 {
-    HX711_data_count = 0U;
-    gioDisableNotification(PORT_HX711_DT, PIN_HX711_DT);
-    pwmStart(hetRAM1, PWM_HX711_SCK);
-}
-
-void pwmNotification(hetBASE_t * hetREG,uint32 pwm, uint32 notification)
-{
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 
-    ++HX711_data_count;
-    if(HX711_data_count <= 24)
+    /* HX711 DATA ACQ BEGIN */
+    gioDisableNotification(PORT_HX711_DT, PIN_HX711_DT);    // Disable DT pin IRQ
+    while(++HX711_data_count <= HX711_RES_128R_A)           // Generate HX711 pulse train
     {
-        HX711_data_buff = (HX711_data_buff << 1) | gioGetBit(PORT_HX711_DT, PIN_HX711_DT);
+        gioToggleBit(PORT_HX711_SCK, PIN_HX711_SCK);
+        gioToggleBit(PORT_HX711_SCK, PIN_HX711_SCK);
+        if(HX711_data_count <= 24)
+            HX711_data_buff = (HX711_data_buff << 1) | gioGetBit(PORT_HX711_DT, PIN_HX711_DT);
     }
-    else if(HX711_data_count == 25)
-    {
-        pwmStop(hetRAM1, PWM_HX711_SCK);
-        vTaskNotifyGiveFromISR(xTask_HX711_Handle, &xHigherPriorityTaskWoken);
-        portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
-    }
+    HX711_data_count = 0U;                                  // Reset data counter
+    /* HX711 DATA ACQ END*/
+
+    vTaskNotifyGiveFromISR(xTask_HX711_Handle, &xHigherPriorityTaskWoken);
+    portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }
 
 /* USER CODE END */

@@ -129,13 +129,13 @@ static const hetINSTRUCTION_t het1PROGRAM[58U] =
     *         - Next instruction             = 4
     *         - Conditional next instruction = 4
     *         - Interrupt                    = 3
-    *         - Pin                          = 16
+    *         - Pin                          = 10
     */
     {
         /* Program */
         0x000095C0U,
         /* Control */
-        (0x00008006U | (uint32)((uint32)16U << 8U) | (uint32)((uint32)3U << 3U)),
+        (0x00008006U | (uint32)((uint32)10U << 8U) | (uint32)((uint32)3U << 3U)),
         /* Data */
         0x00000000U,
         /* Reserved */
@@ -809,15 +809,15 @@ static const hetINSTRUCTION_t het1PROGRAM[58U] =
     *         - Next instruction             = 44
     *         - Conditional next instruction = 4
     *         - Interrupt                    = 3
-    *         - Pin                          = 16
+    *         - Pin                          = 10
     */
     {
         /* Program */
         0x00058203U,
         /* Control */
-        (0x00008007U | (uint32)((uint32)0U << 22U) | (uint32)((uint32)16U << 8U) | (uint32)((uint32)3U << 3U)),
+        (0x00008007U | (uint32)((uint32)0U << 22U) | (uint32)((uint32)10U << 8U) | (uint32)((uint32)3U << 3U)),
         /* Data */
-        6656U,
+        80128U,
         /* Reserved */
         0x00000000U
     },
@@ -834,7 +834,7 @@ static const hetINSTRUCTION_t het1PROGRAM[58U] =
         /* Control */
         (0x00056007U),
         /* Data */
-        39936U,
+        159872U,
         /* Reserved */
         0x00000000U
     },
@@ -1352,7 +1352,7 @@ void hetInit(void)
     */
     hetREG1->PRY = (uint32) 0x00000000U
                  | (uint32) 0x00000000U
-                 | (uint32) 0x00000008U
+                 | (uint32) 0x00000000U
                  | (uint32) 0x00000000U
                  | (uint32) 0x00000000U
                  | (uint32) 0x00000000U
@@ -1404,7 +1404,7 @@ void hetInit(void)
     hetREG1->INTENAC = 0xFFFFFFFFU;
     hetREG1->INTENAS = (uint32) 0x00000000U
                      | (uint32) 0x00000000U
-                     | (uint32) 0x00000008U
+                     | (uint32) 0x00000000U
                      | (uint32) 0x00000000U
                      | (uint32) 0x00000000U
                      | (uint32) 0x00000000U
@@ -1932,37 +1932,5 @@ void het1GetConfigValue(het_config_reg_t *config_reg, config_value_type_t type)
     }
 }
 
-/* USER CODE BEGIN (5) */
-/* USER CODE END */
-
-/** @fn void het1HighLevelInterrupt(void)
-*   @brief Level 0 Interrupt for HET1
-*/
-#pragma CODE_STATE(het1HighLevelInterrupt, 32)
-#pragma INTERRUPT(het1HighLevelInterrupt, IRQ)
-
-/* SourceId : HET_SourceId_018 */
-/* DesignId : HET_DesignId_017 */
-/* Requirements : HL_SR371, HL_SR380, HL_SR381 */
-void het1HighLevelInterrupt(void)
-{
-    uint32 vec = hetREG1->OFF1;
-
-    if (vec < 18U)
-    {
-        if ((vec & 1U) != 0U)
-        {
-            pwmNotification(hetREG1,(vec >> 1U) - 1U, pwmEND_OF_PERIOD);
-        }
-        else
-        {
-            pwmNotification(hetREG1,(vec >> 1U) - 1U, pwmEND_OF_DUTY);
-        }
-    }
-    else
-    {
-        edgeNotification(hetREG1,vec - 18U);
-    }
-}
 
 

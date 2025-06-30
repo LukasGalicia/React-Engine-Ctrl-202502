@@ -520,7 +520,7 @@ typedef struct het_config_reg
 
 #define HET1_PRY_CONFIGVALUE     ((uint32)0x00000000U \
 								| (uint32)0x00000000U \
-								| (uint32)0x00000008U \
+								| (uint32)0x00000000U \
 								| (uint32)0x00000000U \
 								| (uint32)0x00000000U \
 								| (uint32)0x00000000U \
@@ -545,7 +545,7 @@ typedef struct het_config_reg
 								
 #define HET1_INTENAC_CONFIGVALUE ((uint32)0x00000000U \
 								| (uint32)0x00000000U \
-								| (uint32)0x00000008U \
+								| (uint32)0x00000000U \
 								| (uint32)0x00000000U \
 								| (uint32)0x00000000U \
 								| (uint32)0x00000000U \
@@ -570,7 +570,7 @@ typedef struct het_config_reg
 								
 #define HET1_INTENAS_CONFIGVALUE ((uint32)0x00000000U \
 								| (uint32)0x00000000U \
-								| (uint32)0x00000008U \
+								| (uint32)0x00000000U \
 								| (uint32)0x00000000U \
 								| (uint32)0x00000000U \
 								| (uint32)0x00000000U \

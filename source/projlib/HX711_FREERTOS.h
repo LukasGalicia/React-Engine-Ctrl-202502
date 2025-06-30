@@ -19,6 +19,9 @@
 // SCK pin
 #define PORT_HX711_SCK  hetPORT1
 #define PIN_HX711_SCK   0x10U       // Serial Clock pin is [NHET16]
+//Resolution Selectors
+#define HX711_RES_64R_A 27U
+#define HX711_RES_128R_A 25U
 
 /* Signal Definitions for HX711 */
 /*
