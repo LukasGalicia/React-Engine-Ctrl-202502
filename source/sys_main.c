@@ -88,7 +88,7 @@ int main(void)
 {
 /* USER CODE BEGIN (3) */
     /*
-     *  Working on branch NoHET
+     *  Working on branch main
      */
 
     /* HW Driver Init */
@@ -137,18 +137,20 @@ void vTask_HX711_Poll(void *pvParameters)
 
     for(;;)
     {
-        ulTaskNotifyTake(pdTRUE, portMAX_DELAY);    // Wait for notification
-
-        HX711_dataRead = DECODE_TWOS_COMPLEMENT(HX711_data_buff);   // Decode Sensor data to int
-
+        ulTaskNotifyTake(pdTRUE, portMAX_DELAY);                    // Wait for DT IRQ
+        /* DT IRQ HAS ARRIVED */
+        HX711_dataRead = DECODE_TWOS_COMPLEMENT(HX711_data_buff);   // Decode Sensor data to signed int
         HX711_data_count = 0U;              // Reset data bit counter
         HX711_data_buff = 0x00000000U;      // Reset data buffer
-        gioEnableNotification(PORT_HX711_DT, PIN_HX711_DT);     // Reset DT pin interrupt
+        gioEnableNotification(PORT_HX711_DT, PIN_HX711_DT);         // Reset DT pin interrupt
     }
 }
 /* USER TASKS END */
 
 /* IRQ NOTIFICATIONS */
+/*
+ *  HX711 acquisition happens in Gio IRQ
+ */
 void gioNotification(gioPORT_t *port, uint32 bit)
 {
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
@@ -162,7 +164,6 @@ void gioNotification(gioPORT_t *port, uint32 bit)
         if(HX711_data_count <= 24)
             HX711_data_buff = (HX711_data_buff << 1) | gioGetBit(PORT_HX711_DT, PIN_HX711_DT);
     }
-    HX711_data_count = 0U;                                  // Reset data counter
     /* HX711 DATA ACQ END*/
 
     vTaskNotifyGiveFromISR(xTask_HX711_Handle, &xHigherPriorityTaskWoken);
