@@ -23,16 +23,19 @@
 #define HX711_RES_64R_A 27U
 #define HX711_RES_128R_A 25U
 
+/* Variable Definition for HX711 */
+volatile uint32_t HX711_data_buff;
+volatile uint8_t HX711_data_count;
+
+/* Data Type Definition for HX711 */
+#define HX711Data_t int32_t
+
 /* Signal Definitions for HX711 */
 /*
  * HX711 SCK PWM is Operating at 50kHz
  * SCK UP time is 4us
  * */
 #define PWM_HX711_SCK   pwm1       // Serial Clock PWM signal is [PWM1]
-
-/* Variable Definition for HX711 */
-volatile uint8_t HX711_data_count;
-volatile uint32_t HX711_data_buff;
 
 /* HX711 Macros */
 #define DECODE_TWOS_COMPLEMENT( twos_comp_data ) (((twos_comp_data) & 0x800000) ? \

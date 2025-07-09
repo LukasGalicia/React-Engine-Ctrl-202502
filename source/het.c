@@ -163,13 +163,13 @@ static const hetINSTRUCTION_t het1PROGRAM[58U] =
     *         - Next instruction             = 6
     *         - Conditional next instruction = 6
     *         - Interrupt                    = 5
-    *         - Pin                          = 12
+    *         - Pin                          = 24
     */
     {
         /* Program */
         0x0000D5C0U,
         /* Control */
-        (0x0000C006U | (uint32)((uint32)12U << 8U) | (uint32)((uint32)3U << 3U)),
+        (0x0000C006U | (uint32)((uint32)24U << 8U) | (uint32)((uint32)3U << 3U)),
         /* Data */
         0x00000000U,
         /* Reserved */
@@ -843,15 +843,15 @@ static const hetINSTRUCTION_t het1PROGRAM[58U] =
     *         - Next instruction             = 46
     *         - Conditional next instruction = 6
     *         - Interrupt                    = 5
-    *         - Pin                          = 12
+    *         - Pin                          = 24
     */
     {
         /* Program */
         0x0005C205U,
         /* Control */
-        (0x0000C007U | (uint32)((uint32)0U << 22U) | (uint32)((uint32)12U << 8U) | (uint32)((uint32)3U << 3U)),
+        (0x0000C007U | (uint32)((uint32)0U << 22U) | (uint32)((uint32)24U << 8U) | (uint32)((uint32)3U << 3U)),
         /* Data */
-        80128U,
+        160128U,
         /* Reserved */
         0x00000000U
     },
@@ -868,7 +868,7 @@ static const hetINSTRUCTION_t het1PROGRAM[58U] =
         /* Control */
         (0x0005A007U),
         /* Data */
-        159872U,
+        3199872U,
         /* Reserved */
         0x00000000U
     },
@@ -1118,7 +1118,7 @@ void hetInit(void)
                  | (uint32) 0x00000000U
                  | (uint32) 0x00000000U
                  | (uint32) 0x00000000U
-                 | (uint32) 0x00000000U
+                 | (uint32) 0x01000000U
                  | (uint32) 0x00000000U
                  | (uint32) 0x00000000U
                  | (uint32) 0x00000000U

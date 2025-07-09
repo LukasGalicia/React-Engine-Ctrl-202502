@@ -20,6 +20,7 @@ source/sys_main.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReac
 source/sys_main.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/os_mpu_wrappers.h
 source/sys_main.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/os_task.h
 source/sys_main.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/os_list.h
+source/sys_main.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/os_queue.h
 source/sys_main.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/gio.h
 source/sys_main.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/reg_gio.h
 source/sys_main.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/sys_common.h
@@ -29,6 +30,8 @@ source/sys_main.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReac
 source/sys_main.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/reg_het.h
 source/sys_main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/string.h
 source/sys_main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/xlocale/_string.h
+source/sys_main.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/adc.h
+source/sys_main.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/reg_adc.h
 source/sys_main.obj: ../source/projlib/HX711_FREERTOS.h
 
 ../source/sys_main.c:
@@ -71,6 +74,8 @@ C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/os_task.h:
 
 C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/os_list.h:
 
+C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/os_queue.h:
+
 C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/gio.h:
 
 C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/reg_gio.h:
@@ -88,6 +93,10 @@ C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/reg_het.h:
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/string.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/xlocale/_string.h:
+
+C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/adc.h:
+
+C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/reg_adc.h:
 
 ../source/projlib/HX711_FREERTOS.h:
 

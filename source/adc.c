@@ -255,7 +255,7 @@ static const uint32 s_adcSelect[1U][3U] =
     0x00000000U |
     0x00000000U |
     0x00000000U |
-    0x00000000U |
+    0x00200000U |
     0x00000000U |
     0x00000000U,
     0x00000000U |
@@ -288,7 +288,7 @@ static const uint32 s_adcSelect[1U][3U] =
 static const uint32 s_adcFiFoSize[1U][3U] =
 {
     {16U,
-    16U,
+    1U,
     16U}
 };
 
