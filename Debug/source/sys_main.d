@@ -33,6 +33,7 @@ source/sys_main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/incl
 source/sys_main.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/adc.h
 source/sys_main.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/reg_adc.h
 source/sys_main.obj: ../source/projlib/HX711_FREERTOS.h
+source/sys_main.obj: ../source/projlib/BLDC_ctrlLib.h
 
 ../source/sys_main.c:
 
@@ -99,4 +100,6 @@ C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/adc.h:
 C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/reg_adc.h:
 
 ../source/projlib/HX711_FREERTOS.h:
+
+../source/projlib/BLDC_ctrlLib.h:
 

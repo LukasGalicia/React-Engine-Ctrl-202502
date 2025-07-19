@@ -27,6 +27,7 @@
 "./source/sys_startup.obj"
 "./source/sys_vim.obj"
 "./source/system.obj"
+"./source/projlib/BLDC_ctrlLib.obj"
 "./source/projlib/HX711_FREERTOS.obj"
 "../source/sys_link.cmd"
 -llibc.a

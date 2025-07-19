@@ -56,6 +56,7 @@
 
 /* DRIVER INCLUDES */
 #include "projlib/HX711_FREERTOS.h"
+#include "projlib/BLDC_ctrlLib.h"
 
 /* USER CODE END */
 
@@ -76,11 +77,10 @@ TaskHandle_t xTask_MotorCtrl_Handle;
 /* USER TASKS END */
 
 /* USER QUEUES BEGIN */
-QueueHandle_t xQueue_HX711_DataQueue;
+QueueHandle_t xQueue_HX711_DataQueue;   // HX711 sensor Data queue
 /* USER QUEUES END */
 
 /* USER DEFINES BEGIN */
-#define BLDC_PWM    2U
 /* USER DEFINES END */
 
 /* USER CODE END */
@@ -112,7 +112,8 @@ int main(void)
     _enable_IRQ();
 
     /* User Queues CREATE */
-    while((xQueue_HX711_DataQueue = xQueueCreate(1, sizeof(HX711Data_t))) == NULL);
+    xQueue_HX711_DataQueue = xQueueCreate(1, sizeof(HX711Data_t));  xQueueReset(xQueue_HX711_DataQueue);
+    xQueue_HX711_RawQueue = xQueueCreate(1, sizeof(HX711Buff_t));   xQueueReset(xQueue_HX711_RawQueue);
 
     /* User Tasks CREATE */
     /* BLDC Controller Task */
@@ -139,14 +140,13 @@ int main(void)
 void vTask_HX711_Poll(void *pvParameters)
 {
     HX711Data_t HX711_dataRead;
+    HX711Buff_t HX711_raw;
 
     /* HX711 POWER DOWN & INIT */
-    HX711_data_buff = 0x00000000U;                  // Initialize buffer
     gioSetBit(PORT_HX711_SCK, PIN_HX711_SCK, 1U);   // Set SCK High
     MPU_vTaskDelay((TickType_t) 1);                 // HX711 Power-off Delay
     // HX711 OFF
 
-    xQueueReset(xQueue_HX711_DataQueue);
     gioEnableNotification(PORT_HX711_DT, PIN_HX711_DT);     // Enable HX711 DT READY IRQ
     gioSetBit(PORT_HX711_SCK, PIN_HX711_SCK, 0U);           // Set SCK Low
     // HX711 ON
@@ -154,16 +154,11 @@ void vTask_HX711_Poll(void *pvParameters)
 
     for(;;)
     {
-        ulTaskNotifyTake(pdTRUE, portMAX_DELAY);                // Wait for DT IRQ
+        xQueueReceive(xQueue_HX711_RawQueue, &HX711_raw, portMAX_DELAY);    // Wait for raw data
         /* DT IRQ HAS ARRIVED */
 
-        HX711_dataRead = DECODE_TWOS_COMPLEMENT(HX711_data_buff);                       // Decode Sensor data to signed int
-        if(xQueueSend(xQueue_HX711_DataQueue, &HX711_dataRead, 0) == errQUEUE_FULL)     // Send final sensor data reading
-        {
-            asm(" nop");
-        }
-        HX711_data_count = 0U;              // Reset data bit counter
-        HX711_data_buff = 0x00000000U;      // Reset data buffer
+        HX711_dataRead = DECODE_TWOS_COMPLEMENT(HX711_raw);         // Decode Sensor data to signed int
+        xQueueSend(xQueue_HX711_DataQueue, &HX711_dataRead, 0);     // Send final sensor data reading
 
         gioEnableNotification(PORT_HX711_DT, PIN_HX711_DT);         // Reset DT pin interrupt
     }
@@ -191,10 +186,10 @@ void vTask_MotorCtrl(void *pvParameters)
         adcStartConversion(adcREG1, adcGROUP1);
         while(adcIsConversionComplete(adcREG1, adcGROUP1) == 0);
         adcGetData(adcREG1, adcGROUP1, &ADC_CtrlData);
-        ADCMotorThrtt = ((((float) ADC_CtrlData.value) / 4095.0) * 5.0) + 5.0;
+        ADCMotorThrtt = ((float) ADC_CtrlData.value) / 4095.0;
 
         // Set Motor Throttle
-        pwmSetDuty(hetRAM1, BLDC_PWM, (uint32_t) ADCMotorThrtt);
+        enhPWMSetDuty(hetRAM1, BLDC_PWM, ((uint32_t) (ADCMotorThrtt * 5000.0) + 5000.0));
     }
 }
 /* USER TASKS END */
@@ -205,21 +200,15 @@ void vTask_MotorCtrl(void *pvParameters)
  */
 void gioNotification(gioPORT_t *port, uint32 bit)
 {
-    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+    BaseType_t xHigherPriorityTaskWoken;
 
-    gioDisableNotification(PORT_HX711_DT, PIN_HX711_DT);    // Disable DT pin IRQ
-
-    /* HX711 DATA ACQ BEGIN */
-    while(++HX711_data_count <= HX711_RES_128R_A)           // Generate HX711 pulse train
+    switch(bit)
     {
-        gioToggleBit(PORT_HX711_SCK, PIN_HX711_SCK);
-        gioToggleBit(PORT_HX711_SCK, PIN_HX711_SCK);
-        if(HX711_data_count <= 24)
-            HX711_data_buff = (HX711_data_buff << 1) | gioGetBit(PORT_HX711_DT, PIN_HX711_DT);
+    case PIN_HX711_DT:
+        HX711_poll_from_GioNotif(&xHigherPriorityTaskWoken);
+        break;
     }
-    /* HX711 DATA ACQ END*/
 
-    vTaskNotifyGiveFromISR(xTask_HX711_Poll_Handle, &xHigherPriorityTaskWoken);
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }
 
