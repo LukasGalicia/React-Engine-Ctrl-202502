@@ -14,6 +14,13 @@
 /* Signal definitions for BLDC control */
 #define BLDC_PWM    2U
 
+typedef enum
+{
+    Kprop,
+    Kint,
+    Kdev
+} PIDGains;
+
 /* Library Function Prototypes */
 void enhPWMSetDuty(hetRAMBASE_t * hetRAM, uint32 pwm, uint32 pwmDuty);      // Enhanced PWM to .01%
 

@@ -66,6 +66,11 @@
 
 /* USER CODE BEGIN (1) */
 
+/* USER DEFINES BEGIN */
+#define GAUGE_MAX_THRTT 210000.0
+#define GAUGE_MIN_THRTT 174950.0
+/* USER DEFINES END */
+
 /* USER TASKS BEGIN */
 /* HX711 Polling */
 void vTask_HX711_Poll(void *pvParameters);
@@ -79,9 +84,6 @@ TaskHandle_t xTask_MotorCtrl_Handle;
 /* USER QUEUES BEGIN */
 QueueHandle_t xQueue_HX711_DataQueue;   // HX711 sensor Data queue
 /* USER QUEUES END */
-
-/* USER DEFINES BEGIN */
-/* USER DEFINES END */
 
 /* USER CODE END */
 
@@ -100,7 +102,7 @@ int main(void)
 {
 /* USER CODE BEGIN (3) */
     /*
-     *  Working on branch main
+     *  Working on branch BLDC_PID
      */
 
     /* HW Driver Init */
@@ -168,7 +170,16 @@ void vTask_MotorCtrl(void *pvParameters)
 {
     adcData_t ADC_CtrlData;
     HX711Data_t HX711_CtrlData;
-    float ADCMotorThrtt;            // Floating value for Pot-Set Throttle
+    float ADCMotorThrtt;                            // Floating value for Pot-Set Throttle
+    float MotCtrlRef, MotCtrlErr, MotCtrlSignl;     // Motor control signals
+
+    /* Preliminary PID */
+    float BLDC_PID[3] =
+    {
+     0.65,      // Proportional gain
+     0.0,    // Integral gain
+     0.0        // Derivative gain
+    };
 
     pwmStart(hetRAM1, BLDC_PWM);    // Start Motor Signal
 
@@ -182,14 +193,23 @@ void vTask_MotorCtrl(void *pvParameters)
 
     for(;;)
     {
-        xQueueReceive(xQueue_HX711_DataQueue, &HX711_CtrlData, portMAX_DELAY);
+        xQueueReceive(xQueue_HX711_DataQueue, &HX711_CtrlData, portMAX_DELAY);          // Get Sensor read
+
+        /* ADC BEGIN */
         adcStartConversion(adcREG1, adcGROUP1);
         while(adcIsConversionComplete(adcREG1, adcGROUP1) == 0);
         adcGetData(adcREG1, adcGROUP1, &ADC_CtrlData);
+        /* ADC END */
+
         ADCMotorThrtt = ((float) ADC_CtrlData.value) / 4095.0;
+        MotCtrlRef = ((GAUGE_MAX_THRTT - GAUGE_MIN_THRTT) * ADCMotorThrtt) + GAUGE_MIN_THRTT;
+        MotCtrlErr = MotCtrlRef - HX711_CtrlData;
+
+        // PROPORTIONAL ONLY
+        MotCtrlSignl = (MotCtrlErr / (GAUGE_MAX_THRTT - GAUGE_MIN_THRTT)) * BLDC_PID[Kprop];
 
         // Set Motor Throttle
-        enhPWMSetDuty(hetRAM1, BLDC_PWM, ((uint32_t) (ADCMotorThrtt * 5000.0) + 5000.0));
+        enhPWMSetDuty(hetRAM1, BLDC_PWM, ((uint32_t) (MotCtrlSignl * 5000.0) + 5000.0));
     }
 }
 /* USER TASKS END */
