@@ -1,10 +1,10 @@
 # FIXED
 
 source/adc.obj: ../source/adc.c
-source/adc.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/adc.h
-source/adc.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/reg_adc.h
-source/adc.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/sys_common.h
-source/adc.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/hal_stdtypes.h
+source/adc.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/adc.h
+source/adc.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/reg_adc.h
+source/adc.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/sys_common.h
+source/adc.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/hal_stdtypes.h
 source/adc.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdint.h
 source/adc.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/_ti_config.h
 source/adc.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/linkage.h
@@ -16,18 +16,18 @@ source/adc.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/m
 source/adc.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/machine/_stdint.h
 source/adc.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/sys/_stdint.h
 source/adc.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdbool.h
-source/adc.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/sys_vim.h
-source/adc.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/reg_vim.h
+source/adc.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/sys_vim.h
+source/adc.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/reg_vim.h
 
 ../source/adc.c:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/adc.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/adc.h:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/reg_adc.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/reg_adc.h:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/sys_common.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/sys_common.h:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/hal_stdtypes.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/hal_stdtypes.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdint.h:
 
@@ -51,7 +51,7 @@ C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/sys/_stdint.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdbool.h:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/sys_vim.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/sys_vim.h:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/reg_vim.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/reg_vim.h:
 

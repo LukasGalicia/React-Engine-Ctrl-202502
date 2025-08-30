@@ -1,10 +1,10 @@
 # FIXED
 
 source/gio.obj: ../source/gio.c
-source/gio.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/gio.h
-source/gio.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/reg_gio.h
-source/gio.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/sys_common.h
-source/gio.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/hal_stdtypes.h
+source/gio.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/gio.h
+source/gio.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/reg_gio.h
+source/gio.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/sys_common.h
+source/gio.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/hal_stdtypes.h
 source/gio.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdint.h
 source/gio.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/_ti_config.h
 source/gio.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/linkage.h
@@ -16,18 +16,18 @@ source/gio.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/m
 source/gio.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/machine/_stdint.h
 source/gio.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/sys/_stdint.h
 source/gio.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdbool.h
-source/gio.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/sys_vim.h
-source/gio.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/reg_vim.h
+source/gio.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/sys_vim.h
+source/gio.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/reg_vim.h
 
 ../source/gio.c:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/gio.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/gio.h:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/reg_gio.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/reg_gio.h:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/sys_common.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/sys_common.h:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/hal_stdtypes.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/hal_stdtypes.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdint.h:
 
@@ -51,7 +51,7 @@ C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/sys/_stdint.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdbool.h:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/sys_vim.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/sys_vim.h:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/reg_vim.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/reg_vim.h:
 

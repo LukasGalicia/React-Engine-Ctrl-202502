@@ -67,11 +67,15 @@
 /* USER CODE BEGIN (1) */
 
 /* USER DEFINES BEGIN */
-#define GAUGE_MAX_THRTT 210000.0
-#define GAUGE_MIN_THRTT 174950.0
+#define GAUGE_MAX_THRTT -50644.0
+#define GAUGE_MIN_THRTT -102260.0
 /* USER DEFINES END */
 
 /* USER TASKS BEGIN */
+/* TASK MASTER */
+void vTaskMASTER(void *pvParameters);
+TaskHandle_t xTaskMASTER;
+
 /* HX711 Polling */
 void vTask_HX711_Poll(void *pvParameters);
 TaskHandle_t xTask_HX711_Poll_Handle;
@@ -118,13 +122,13 @@ int main(void)
     xQueue_HX711_RawQueue = xQueueCreate(1, sizeof(HX711Buff_t));   xQueueReset(xQueue_HX711_RawQueue);
 
     /* User Tasks CREATE */
-    /* BLDC Controller Task */
-    MPU_xTaskCreate(vTask_MotorCtrl,                // Task Code
-                    "BLDC Control Task",            // HL Task Name
+    /* Default TASK MASTER */
+    MPU_xTaskCreate(vTaskMASTER,                    // Task Function
+                    "Master task",                  // PC Task Name
                     3 * configMINIMAL_STACK_SIZE,   // Memory Stack Size
                     NULL,                           // Task Parameters
-                    3,                              // Priority
-                    &xTask_MotorCtrl_Handle);       // Task Handler (xTaskHandle)
+                    5,                              // Priority
+                    &xTaskMASTER);                  // Task Handler (xTaskHandle)
 
     /* Scheduler START */
     vTaskStartScheduler();
@@ -139,6 +143,37 @@ int main(void)
 /* USER CODE BEGIN (4) */
 
 /* USER TASKS IMP, BEGIN */
+void vTaskMASTER(void *pvParameters)
+{
+    /*
+     * Master task initializes all other tasks
+     * */
+
+    /* BLDC Controller Task CREATE */
+    MPU_xTaskCreate(vTask_MotorCtrl,                // Task Code
+                    "BLDC Control Task",            // HL Task Name
+                    3 * configMINIMAL_STACK_SIZE,   // Memory Stack Size
+                    NULL,                           // Task Parameters
+                    1,                              // Priority
+                    &xTask_MotorCtrl_Handle);       // Task Handler (xTaskHandle)
+
+    // BLDC Controller Task must notify
+    MPU_ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+
+    /* HX711 Sensor Handler Task CREATE */
+    MPU_xTaskCreate(vTask_HX711_Poll,               // Task Code
+                    "HX711 Handler Task",           // HL Task Name
+                    3 * configMINIMAL_STACK_SIZE,   // Memory Stack Size
+                    NULL,                           // Task Parameters
+                    2,                              // Priority
+                    &xTask_HX711_Poll_Handle);      // Task Handler (xTaskHandle)
+
+    MPU_vTaskSuspend(NULL);     // Task Master END
+
+    for(;;);
+}
+
+
 void vTask_HX711_Poll(void *pvParameters)
 {
     HX711Data_t HX711_dataRead;
@@ -182,14 +217,7 @@ void vTask_MotorCtrl(void *pvParameters)
     };
 
     pwmStart(hetRAM1, BLDC_PWM);    // Start Motor Signal
-
-    /* HX711 Sensor Handler Task CREATE */
-    MPU_xTaskCreate(vTask_HX711_Poll,               // Task Code
-                    "HX711 Handler Task",           // HL Task Name
-                    3 * configMINIMAL_STACK_SIZE,   // Memory Stack Size
-                    NULL,                           // Task Parameters
-                    4,                              // Priority
-                    &xTask_HX711_Poll_Handle);      // Task Handler (xTaskHandle)
+    xTaskNotifyGive(xTaskMASTER);   // Notify Task Master
 
     for(;;)
     {
@@ -201,12 +229,16 @@ void vTask_MotorCtrl(void *pvParameters)
         adcGetData(adcREG1, adcGROUP1, &ADC_CtrlData);
         /* ADC END */
 
+        // Referenced Control
         ADCMotorThrtt = ((float) ADC_CtrlData.value) / 4095.0;
         MotCtrlRef = ((GAUGE_MAX_THRTT - GAUGE_MIN_THRTT) * ADCMotorThrtt) + GAUGE_MIN_THRTT;
         MotCtrlErr = MotCtrlRef - HX711_CtrlData;
 
-        // PROPORTIONAL ONLY
-        MotCtrlSignl = (MotCtrlErr / (GAUGE_MAX_THRTT - GAUGE_MIN_THRTT)) * BLDC_PID[Kprop];
+        MotCtrlSignl = (MotCtrlErr / (GAUGE_MAX_THRTT - GAUGE_MIN_THRTT)) * BLDC_PID[Kprop];        // P. Compensator
+
+        // TEST CONTROL ONLY
+//        ADCMotorThrtt = ((float) ADC_CtrlData.value) / 4095.0;
+//        MotCtrlSignl = ADCMotorThrtt;
 
         // Set Motor Throttle
         enhPWMSetDuty(hetRAM1, BLDC_PWM, ((uint32_t) (MotCtrlSignl * 5000.0) + 5000.0));

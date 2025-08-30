@@ -1,10 +1,10 @@
 # FIXED
 
 source/pinmux.obj: ../source/pinmux.c
-source/pinmux.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/pinmux.h
-source/pinmux.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/reg_pinmux.h
-source/pinmux.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/sys_common.h
-source/pinmux.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/hal_stdtypes.h
+source/pinmux.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/pinmux.h
+source/pinmux.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/reg_pinmux.h
+source/pinmux.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/sys_common.h
+source/pinmux.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/hal_stdtypes.h
 source/pinmux.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdint.h
 source/pinmux.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/_ti_config.h
 source/pinmux.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/linkage.h
@@ -19,13 +19,13 @@ source/pinmux.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/includ
 
 ../source/pinmux.c:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/pinmux.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/pinmux.h:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/reg_pinmux.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/reg_pinmux.h:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/sys_common.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/sys_common.h:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/hal_stdtypes.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/hal_stdtypes.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdint.h:
 

@@ -1,10 +1,10 @@
 # FIXED
 
 source/sys_pcr.obj: ../source/sys_pcr.c
-source/sys_pcr.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/sys_pcr.h
-source/sys_pcr.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/reg_pcr.h
-source/sys_pcr.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/sys_common.h
-source/sys_pcr.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/hal_stdtypes.h
+source/sys_pcr.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/sys_pcr.h
+source/sys_pcr.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/reg_pcr.h
+source/sys_pcr.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/sys_common.h
+source/sys_pcr.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/hal_stdtypes.h
 source/sys_pcr.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdint.h
 source/sys_pcr.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/_ti_config.h
 source/sys_pcr.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/linkage.h
@@ -19,13 +19,13 @@ source/sys_pcr.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/inclu
 
 ../source/sys_pcr.c:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/sys_pcr.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/sys_pcr.h:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/reg_pcr.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/reg_pcr.h:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/sys_common.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/sys_common.h:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/hal_stdtypes.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/hal_stdtypes.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdint.h:
 

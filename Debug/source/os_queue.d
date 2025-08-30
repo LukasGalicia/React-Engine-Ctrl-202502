@@ -7,7 +7,7 @@ source/os_queue.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/incl
 source/os_queue.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/sys/cdefs.h
 source/os_queue.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/string.h
 source/os_queue.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/xlocale/_string.h
-source/os_queue.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/FreeRTOS.h
+source/os_queue.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/FreeRTOS.h
 source/os_queue.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stddef.h
 source/os_queue.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdint.h
 source/os_queue.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/_stdint40.h
@@ -16,14 +16,14 @@ source/os_queue.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/incl
 source/os_queue.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/machine/_types.h
 source/os_queue.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/machine/_stdint.h
 source/os_queue.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/sys/_stdint.h
-source/os_queue.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/FreeRTOSConfig.h
-source/os_queue.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/os_projdefs.h
-source/os_queue.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/os_portable.h
-source/os_queue.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/os_portmacro.h
-source/os_queue.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/os_mpu_wrappers.h
-source/os_queue.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/os_task.h
-source/os_queue.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/os_list.h
-source/os_queue.obj: C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/os_queue.h
+source/os_queue.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/FreeRTOSConfig.h
+source/os_queue.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/os_projdefs.h
+source/os_queue.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/os_portable.h
+source/os_queue.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/os_portmacro.h
+source/os_queue.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/os_mpu_wrappers.h
+source/os_queue.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/os_task.h
+source/os_queue.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/os_list.h
+source/os_queue.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/os_queue.h
 
 ../source/os_queue.c:
 
@@ -39,7 +39,7 @@ C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/string.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/xlocale/_string.h:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/FreeRTOS.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/FreeRTOS.h:
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stddef.h:
 
@@ -57,19 +57,19 @@ C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/machine/_stdint.h
 
 C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/sys/_stdint.h:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/FreeRTOSConfig.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/FreeRTOSConfig.h:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/os_projdefs.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/os_projdefs.h:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/os_portable.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/os_portable.h:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/os_portmacro.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/os_portmacro.h:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/os_mpu_wrappers.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/os_mpu_wrappers.h:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/os_task.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/os_task.h:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/os_list.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/os_list.h:
 
-C:/Users/lukas/Documents/CCS\ Workspace/ProjFin_ctrlMotReacc/include/os_queue.h:
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/os_queue.h:
 
