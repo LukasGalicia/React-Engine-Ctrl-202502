@@ -41,6 +41,8 @@ source/notification.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/
 source/notification.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/htu.h
 source/notification.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/reg_htu.h
 source/notification.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/gio.h
+source/notification.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/sci.h
+source/notification.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/reg_sci.h
 
 ../source/notification.c:
 
@@ -123,4 +125,8 @@ C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/htu.h:
 C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/reg_htu.h:
 
 C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/gio.h:
+
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/sci.h:
+
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/reg_sci.h:
 

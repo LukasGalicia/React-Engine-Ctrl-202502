@@ -52,6 +52,7 @@
 #include "sys_selftest.h"
 #include "adc.h"
 #include "gio.h"
+#include "sci.h"
 #include "het.h"
 
 /* USER CODE BEGIN (0) */
@@ -117,6 +118,16 @@ void gioNotification(gioPORT_t *port, uint32 bit)
 /* USER CODE BEGIN (20) */
 /* USER CODE END */
 
+#pragma WEAK(sciNotification)
+void sciNotification(sciBASE_t *sci, uint32 flags)     
+{
+/*  enter user code between the USER CODE BEGIN and USER CODE END. */
+/* USER CODE BEGIN (29) */
+/* USER CODE END */
+}
+
+/* USER CODE BEGIN (30) */
+/* USER CODE END */
 
 #pragma WEAK(pwmNotification)
 void pwmNotification(hetBASE_t * hetREG,uint32 pwm, uint32 notification)

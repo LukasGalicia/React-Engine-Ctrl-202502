@@ -53,6 +53,7 @@
 #include "gio.h"
 #include "het.h"
 #include "adc.h"
+#include "sci.h"
 
 /* DRIVER INCLUDES */
 #include "projlib/HX711_FREERTOS.h"
@@ -66,9 +67,14 @@
 
 /* USER CODE BEGIN (1) */
 
+/* C COMMON INCLUDES */
+#include <stdio.h>
+#include <stdlib.h>
+
 /* USER DEFINES BEGIN */
 #define GAUGE_MAX_THRTT -50644.0
 #define GAUGE_MIN_THRTT -102260.0
+#define HX711_USER_RES  HX711_RES_128R_A
 /* USER DEFINES END */
 
 /* USER TASKS BEGIN */
@@ -83,10 +89,13 @@ TaskHandle_t xTask_HX711_Poll_Handle;
 /* BLDC Control */
 void vTask_MotorCtrl(void *pvParameters);
 TaskHandle_t xTask_MotorCtrl_Handle;
+
+/* Serial Panel Comm*/
+void vTask_Srial_Comms(void *pvParameters);
+TaskHandle_t xTask_Srial_Comms;
 /* USER TASKS END */
 
 /* USER QUEUES BEGIN */
-QueueHandle_t xQueue_HX711_DataQueue;   // HX711 sensor Data queue
 /* USER QUEUES END */
 
 /* USER CODE END */
@@ -113,13 +122,12 @@ int main(void)
     gioInit();
     hetInit();
     adcInit();
-
-    /* IRQ Enable */
-    _enable_IRQ();
+    sciInit();
 
     /* User Queues CREATE */
-    xQueue_HX711_DataQueue = xQueueCreate(1, sizeof(HX711Data_t));  xQueueReset(xQueue_HX711_DataQueue);
-    xQueue_HX711_RawQueue = xQueueCreate(1, sizeof(HX711Buff_t));   xQueueReset(xQueue_HX711_RawQueue);
+    xQueue_HX711_Data = xQueueCreate(1, sizeof(HX711Data_t));       xQueueReset(xQueue_HX711_Data);
+    xQueue_HX711_Raw = xQueueCreate(1, sizeof(HX711Buff_t));        xQueueReset(xQueue_HX711_Raw);
+    xQueue_SrialComm_HX711 = xQueueCreate(1, sizeof(HX711Data_t));  xQueueReset(xQueue_SrialComm_HX711);
 
     /* User Tasks CREATE */
     /* Default TASK MASTER */
@@ -127,7 +135,7 @@ int main(void)
                     "Master task",                  // PC Task Name
                     3 * configMINIMAL_STACK_SIZE,   // Memory Stack Size
                     NULL,                           // Task Parameters
-                    5,                              // Priority
+                    1,                              // Priority
                     &xTaskMASTER);                  // Task Handler (xTaskHandle)
 
     /* Scheduler START */
@@ -154,10 +162,21 @@ void vTaskMASTER(void *pvParameters)
                     "BLDC Control Task",            // HL Task Name
                     3 * configMINIMAL_STACK_SIZE,   // Memory Stack Size
                     NULL,                           // Task Parameters
-                    1,                              // Priority
+                    3,                              // Priority
                     &xTask_MotorCtrl_Handle);       // Task Handler (xTaskHandle)
 
     // BLDC Controller Task must notify
+    MPU_ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+
+    /* Control Panel serial comm Task CREATE */
+    MPU_xTaskCreate(vTask_Srial_Comms,              // Task Code
+                    "Comm 2 Ctrl Panel Task",       // HL Task Name
+                    3 * configMINIMAL_STACK_SIZE,   // Memory Stack Size
+                    NULL,                           // Task Parameters
+                    2,                              // Priority
+                    &xTask_Srial_Comms);            // Task Handler (xTaskHandle)
+
+    // Serial Comm Task must notify
     MPU_ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
 
     /* HX711 Sensor Handler Task CREATE */
@@ -165,12 +184,10 @@ void vTaskMASTER(void *pvParameters)
                     "HX711 Handler Task",           // HL Task Name
                     3 * configMINIMAL_STACK_SIZE,   // Memory Stack Size
                     NULL,                           // Task Parameters
-                    2,                              // Priority
+                    4,                              // Priority
                     &xTask_HX711_Poll_Handle);      // Task Handler (xTaskHandle)
 
     MPU_vTaskSuspend(NULL);     // Task Master END
-
-    for(;;);
 }
 
 
@@ -191,11 +208,12 @@ void vTask_HX711_Poll(void *pvParameters)
 
     for(;;)
     {
-        xQueueReceive(xQueue_HX711_RawQueue, &HX711_raw, portMAX_DELAY);    // Wait for raw data
+        xQueueReceive(xQueue_HX711_Raw, &HX711_raw, portMAX_DELAY);     // Wait for raw data
         /* DT IRQ HAS ARRIVED */
 
         HX711_dataRead = DECODE_TWOS_COMPLEMENT(HX711_raw);         // Decode Sensor data to signed int
-        xQueueSend(xQueue_HX711_DataQueue, &HX711_dataRead, 0);     // Send final sensor data reading
+        xQueueSend(xQueue_HX711_Data, &HX711_dataRead, 0);          // Send final sensor data reading
+        xQueueSend(xQueue_SrialComm_HX711, &HX711_dataRead, 0);     // Send sensor data to telemetry
 
         gioEnableNotification(PORT_HX711_DT, PIN_HX711_DT);         // Reset DT pin interrupt
     }
@@ -221,7 +239,7 @@ void vTask_MotorCtrl(void *pvParameters)
 
     for(;;)
     {
-        xQueueReceive(xQueue_HX711_DataQueue, &HX711_CtrlData, portMAX_DELAY);          // Get Sensor read
+        xQueueReceive(xQueue_HX711_Data, &HX711_CtrlData, portMAX_DELAY);       // Get Sensor read
 
         /* ADC BEGIN */
         adcStartConversion(adcREG1, adcGROUP1);
@@ -244,6 +262,29 @@ void vTask_MotorCtrl(void *pvParameters)
         enhPWMSetDuty(hetRAM1, BLDC_PWM, ((uint32_t) (MotCtrlSignl * 5000.0) + 5000.0));
     }
 }
+
+void vTask_Srial_Comms(void *pvParameters)
+{
+    int printsize;
+    char *comm_data_buff;
+    commCtrlData RxTxDataBuffer;
+
+    comm_data_buff = (char *) malloc(COMM_BUFFER_SIZE * sizeof(char));       // Allocate buffer size
+
+    xTaskNotifyGive(xTaskMASTER);
+
+    for(;;)
+    {
+        // Serial comm task must receive all telemetry data
+        xQueueReceive(xQueue_SrialComm_HX711, &(RxTxDataBuffer.HX711_serialdata), portMAX_DELAY);
+
+        // Format buffer
+        printsize = sprintf(comm_data_buff, "/*%d*/", RxTxDataBuffer.HX711_serialdata);
+
+        // SEND DATA
+        sciSend(scilinREG, printsize, (uint8_t *) comm_data_buff);
+    }
+}
 /* USER TASKS END */
 
 /* IRQ NOTIFICATIONS */
@@ -257,7 +298,7 @@ void gioNotification(gioPORT_t *port, uint32 bit)
     switch(bit)
     {
     case PIN_HX711_DT:
-        HX711_poll_from_GioNotif(&xHigherPriorityTaskWoken);
+        HX711_poll_from_GioNotif(&xHigherPriorityTaskWoken, HX711_USER_RES);
         break;
     }
 

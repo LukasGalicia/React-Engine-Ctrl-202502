@@ -22,7 +22,7 @@
  * - Make sure the DT pin interrupt is re-enabled elsewhere after processing.
  * - Ensure `xQueue_HX711_RawQueue` is initialized before calling this function.
  */
-void HX711_poll_from_GioNotif(BaseType_t *pxHigherPriorityTaskWoken)
+void HX711_poll_from_GioNotif(BaseType_t *pxHigherPriorityTaskWoken, uint16_t user_res)
 {
     /* Variables for HX711 polling */
     HX711Buff_t HX711_data_buff;
@@ -34,7 +34,7 @@ void HX711_poll_from_GioNotif(BaseType_t *pxHigherPriorityTaskWoken)
     HX711_data_count = 0U;              // Reset data bit counter
 
     /* HX711 DATA ACQ BEGIN */
-    while(++HX711_data_count <= HX711_RES_128R_A)           // Generate HX711 pulse train
+    while(++HX711_data_count <= user_res)           // Generate HX711 pulse train
     {
         gioToggleBit(PORT_HX711_SCK, PIN_HX711_SCK);
         gioToggleBit(PORT_HX711_SCK, PIN_HX711_SCK);
@@ -43,5 +43,5 @@ void HX711_poll_from_GioNotif(BaseType_t *pxHigherPriorityTaskWoken)
     }
     /* HX711 DATA ACQ END*/
 
-    xQueueSendFromISR(xQueue_HX711_RawQueue, &HX711_data_buff, pxHigherPriorityTaskWoken);      // Send HX711 acquired raw data
+    xQueueSendFromISR(xQueue_HX711_Raw, &HX711_data_buff, pxHigherPriorityTaskWoken);      // Send HX711 acquired raw data
 }

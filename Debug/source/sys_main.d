@@ -32,8 +32,13 @@ source/sys_main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/incl
 source/sys_main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/xlocale/_string.h
 source/sys_main.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/adc.h
 source/sys_main.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/reg_adc.h
+source/sys_main.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/sci.h
+source/sys_main.obj: C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/reg_sci.h
 source/sys_main.obj: ../source/projlib/HX711_FREERTOS.h
 source/sys_main.obj: ../source/projlib/BLDC_ctrlLib.h
+source/sys_main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdio.h
+source/sys_main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdarg.h
+source/sys_main.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdlib.h
 
 ../source/sys_main.c:
 
@@ -99,7 +104,17 @@ C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/adc.h:
 
 C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/reg_adc.h:
 
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/sci.h:
+
+C:/Users/lukas/Documents/CCS/ProjFin_ctrlMotReacc/include/reg_sci.h:
+
 ../source/projlib/HX711_FREERTOS.h:
 
 ../source/projlib/BLDC_ctrlLib.h:
+
+C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdio.h:
+
+C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdarg.h:
+
+C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdlib.h:
 

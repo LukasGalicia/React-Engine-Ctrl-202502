@@ -33,6 +33,7 @@ C_SRCS += \
 ../source/os_tasks.c \
 ../source/os_timer.c \
 ../source/pinmux.c \
+../source/sci.c \
 ../source/sys_main.c \
 ../source/sys_pcr.c \
 ../source/sys_phantom.c \
@@ -58,6 +59,7 @@ C_DEPS += \
 ./source/os_tasks.d \
 ./source/os_timer.d \
 ./source/pinmux.d \
+./source/sci.d \
 ./source/sys_main.d \
 ./source/sys_pcr.d \
 ./source/sys_phantom.d \
@@ -85,6 +87,7 @@ OBJS += \
 ./source/os_tasks.obj \
 ./source/os_timer.obj \
 ./source/pinmux.obj \
+./source/sci.obj \
 ./source/sys_core.obj \
 ./source/sys_intvecs.obj \
 ./source/sys_main.obj \
@@ -124,6 +127,7 @@ OBJS__QUOTED += \
 "source\os_tasks.obj" \
 "source\os_timer.obj" \
 "source\pinmux.obj" \
+"source\sci.obj" \
 "source\sys_core.obj" \
 "source\sys_intvecs.obj" \
 "source\sys_main.obj" \
@@ -153,6 +157,7 @@ C_DEPS__QUOTED += \
 "source\os_tasks.d" \
 "source\os_timer.d" \
 "source\pinmux.d" \
+"source\sci.d" \
 "source\sys_main.d" \
 "source\sys_pcr.d" \
 "source\sys_phantom.d" \
@@ -186,6 +191,7 @@ C_SRCS__QUOTED += \
 "../source/os_tasks.c" \
 "../source/os_timer.c" \
 "../source/pinmux.c" \
+"../source/sci.c" \
 "../source/sys_main.c" \
 "../source/sys_pcr.c" \
 "../source/sys_phantom.c" \

@@ -33,13 +33,24 @@
 #define HX711Buff_t uint32_t
 
 /* Queue mgmt using FreeRTOS */
-QueueHandle_t xQueue_HX711_RawQueue;    // HX711 sensor Raw Data queue
+QueueHandle_t xQueue_HX711_Raw;         // HX711 sensor Raw Data queue
+QueueHandle_t xQueue_HX711_Data;        // HX711 sensor Data queue
+QueueHandle_t xQueue_SrialComm_HX711;   // HX711 Telemetry Queue
+
+/* Telemetry communication */
+#define COMM_BUFFER_SIZE 10         // Comms. 2 Ctrl. Panel buffer size
+
+struct serialdata
+{
+    HX711Data_t HX711_serialdata;
+};
+typedef struct serialdata commCtrlData;
 
 /* HX711 Macros */
 #define DECODE_TWOS_COMPLEMENT( twos_comp_data ) (((twos_comp_data) & 0x800000) ? \
         ((int32_t)((twos_comp_data) | 0xFF000000)) : ((int32_t)(twos_comp_data)))
 
 /* Function prototypes for HX711 */
-void HX711_poll_from_GioNotif(BaseType_t *pxHigherPriorityTaskWoken);
+void HX711_poll_from_GioNotif(BaseType_t *pxHigherPriorityTaskWoken, uint16_t user_res);
 
 #endif /* SOURCE_PROJLIB_HX711_FREERTOS_H_ */

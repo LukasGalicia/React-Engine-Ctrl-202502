@@ -16,6 +16,7 @@
 "./source/os_tasks.obj"
 "./source/os_timer.obj"
 "./source/pinmux.obj"
+"./source/sci.obj"
 "./source/sys_core.obj"
 "./source/sys_intvecs.obj"
 "./source/sys_main.obj"
