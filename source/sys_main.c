@@ -248,15 +248,15 @@ void vTask_MotorCtrl(void *pvParameters)
         /* ADC END */
 
         // Referenced Control
-        ADCMotorThrtt = ((float) ADC_CtrlData.value) / 4095.0;
-        MotCtrlRef = ((GAUGE_MAX_THRTT - GAUGE_MIN_THRTT) * ADCMotorThrtt) + GAUGE_MIN_THRTT;
-        MotCtrlErr = MotCtrlRef - HX711_CtrlData;
-
-        MotCtrlSignl = (MotCtrlErr / (GAUGE_MAX_THRTT - GAUGE_MIN_THRTT)) * BLDC_PID[Kprop];        // P. Compensator
+//        ADCMotorThrtt = ((float) ADC_CtrlData.value) / 4095.0;
+//        MotCtrlRef = ((GAUGE_MAX_THRTT - GAUGE_MIN_THRTT) * ADCMotorThrtt) + GAUGE_MIN_THRTT;
+//        MotCtrlErr = MotCtrlRef - HX711_CtrlData;
+//
+//        MotCtrlSignl = (MotCtrlErr / (GAUGE_MAX_THRTT - GAUGE_MIN_THRTT)) * BLDC_PID[Kprop];        // P. Compensator
 
         // TEST CONTROL ONLY
-//        ADCMotorThrtt = ((float) ADC_CtrlData.value) / 4095.0;
-//        MotCtrlSignl = ADCMotorThrtt;
+        ADCMotorThrtt = ((float) ADC_CtrlData.value) / 4095.0;
+        MotCtrlSignl = ADCMotorThrtt;
 
         // Set Motor Throttle
         enhPWMSetDuty(hetRAM1, BLDC_PWM, ((uint32_t) (MotCtrlSignl * 5000.0) + 5000.0));
