@@ -1,0 +1,59 @@
+$************** ANSYS(R) SCADE Suite(R) - SCADETOC - Version Student 2024 R1 (build 20231108T130114) **************
+** Generation date: 2025-09-04T07:15:08
+** Command: scade -code "C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\ARINC_COMM.etp" -root ARINC_INT_ENCDR -conf Simulation
+*************************************************************$
+*** Generated Files Information (GENFIL): KCG- Generated files
+  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\mapping.xml, line 0, character 0
+ ~mapping.xml
+  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\kcg_metrics.txt, line 0, character 0
+ ~kcg_metrics.txt
+  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\ARINC_INT_ENCDR.c, line 0, character 0
+ ~ARINC_INT_ENCDR.c
+  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\Int_data_bmask.c, line 0, character 0
+ ~Int_data_bmask.c
+  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\ARINC_INT_ENCDR.h, line 0, character 0
+ ~ARINC_INT_ENCDR.h
+  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\Int_data_bmask.h, line 0, character 0
+ ~Int_data_bmask.h
+  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\kcg_types.h, line 0, character 0
+ ~kcg_types.h
+  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\kcg_consts.h, line 0, character 0
+ ~kcg_consts.h
+  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\kcg_sensors.h, line 0, character 0
+ ~kcg_sensors.h
+  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\kcg_types.c, line 0, character 0
+ ~kcg_types.c
+  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\kcg_consts.c, line 0, character 0
+ ~kcg_consts.c
+  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\config.txt, line 0, character 0
+ ~config.txt
+*** Generated Files Information (GENFIL): Code Generator Generated files
+  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\user_macros.h, line 0, character 0
+ ~user_macros.h
+  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\kcg_imported_types.h, line 0, character 0
+ ~kcg_imported_types.h
+  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\sc2c.log, line 0, character 0
+ ~sc2c.log
+  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\sc2c_integration_files.txt, line 0, character 0
+ ~sc2c_integration_files.txt
+*** Generated Files Information (GENFIL): Type Utils Generated files
+  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\ARINC_COMM_type.h, line 0, character 0
+ ~ARINC_COMM_type.h
+  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\ARINC_COMM_type.c, line 0, character 0
+ ~ARINC_COMM_type.c
+*** Generated Files Information (GENFIL): Mapping Utils Generated files
+  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\ARINC_COMM_mapping.h, line 0, character 0
+ ~ARINC_COMM_mapping.h
+  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\ARINC_COMM_mapping.c, line 0, character 0
+ ~ARINC_COMM_mapping.c
+*** Generated Files Information (GENFIL): Simulator Generated files
+  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\ARINC_COMM_interface.h, line 0, character 0
+ ~ARINC_COMM_interface.h
+  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\ARINC_COMM_interface.c, line 0, character 0
+ ~ARINC_COMM_interface.c
+  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\ARINC_COMM_dll.c, line 0, character 0
+ ~ARINC_COMM_dll.c
+$************** ANSYS(R) SCADE Suite(R) - SCADETOC - Version Student 2024 R1 (build 20231108T130114) **************
+** Generation date: 2025-09-04T07:15:10
+** sc2c.log
+*************************************************************$

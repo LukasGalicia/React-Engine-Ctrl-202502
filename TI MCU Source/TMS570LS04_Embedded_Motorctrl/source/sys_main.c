@@ -79,8 +79,8 @@
 
 enum board_modes
 {
-    BOARD_BACKUP,
-    BOARD_MAIN
+    BOARD_BACKUP,       // Backup is 0U
+    BOARD_MAIN          // Main is 1U
 };
 typedef enum board_modes _ECU_MODE;
 
@@ -168,7 +168,14 @@ int main(void)
 void vTaskMASTER(void *pvParameters)
 {
     /* CONTROLLER INITIALIZATION */
-    BOARDMODE = (_ECU_MODE) gioGetBit(gioPORTA, 4U);
+    BOARDMODE = (_ECU_MODE) gioGetBit(gioPORTA, 4U);        // Determine if board is MAIN or BACKUP
+
+    if(BOARDMODE == BOARD_BACKUP)
+    {
+        /** SPI3 slave mode and clock configuration */
+        spiREG3->GCR1 = (spiREG3->GCR1 & 0xFFFFFFFCU) | ((uint32)((uint32)0U << 1U)  /* CLOKMOD */
+                      | 0U);  /* MASTER -> slave mode */
+    }
 
     /*
      * Master task initializes all other tasks

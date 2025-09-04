@@ -1,0 +1,29 @@
+
+[STUDIO\TOOLS\CONFIGURATIONS\Code Generator]
+
+"C:\\Users\\lukas\\Documents\\Repo\\202502_REACT_ENG_CTRL\\SCADE\\ARINC_COMM\\ARINC_COMM.etp"="KCG" 
+
+[STUDIO\TOOLS\CONFIGURATIONS\Metrics and Rules Checker]
+
+"C:\\Users\\lukas\\Documents\\Repo\\202502_REACT_ENG_CTRL\\SCADE\\ARINC_COMM\\ARINC_COMM.etp"="MetricRule" 
+
+[STUDIO\TOOLS\CONFIGURATIONS\Reporter]
+
+"C:\\Users\\lukas\\Documents\\Repo\\202502_REACT_ENG_CTRL\\SCADE\\ARINC_COMM\\ARINC_COMM.etp"="HTML" 
+
+[STUDIO\Workspace]
+
+"ActiveProject"="C:\\Users\\lukas\\Documents\\Repo\\202502_REACT_ENG_CTRL\\SCADE\\ARINC_COMM\\ARINC_COMM.etp" 
+
+[SCADE\Editor\Shortcut]
+
+"groupNb"="0" 
+
+[SCADE\Editor\Tool]
+
+"UsePolyline"="false" 
+"TransitionKind"="strong" 
+
+[SCADE\Generator\Tool]
+
+"PragmaTarget"="" 
