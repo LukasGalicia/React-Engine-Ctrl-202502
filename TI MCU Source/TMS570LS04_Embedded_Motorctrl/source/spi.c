@@ -100,7 +100,7 @@ void spiInit(void)
     spiREG3->FMT0 = (uint32)((uint32)0U << 24U)  /* wdelay */
                   | (uint32)((uint32)0U << 23U)  /* parity Polarity */
                   | (uint32)((uint32)0U << 22U)  /* parity enable */
-                  | (uint32)((uint32)0U << 21U)  /* wait on enable */
+                  | (uint32)((uint32)1U << 21U)  /* wait on enable */
                   | (uint32)((uint32)0U << 20U)  /* shift direction */
                   | (uint32)((uint32)0U << 17U)  /* clock polarity */
                   | (uint32)((uint32)0U << 16U)  /* clock phase */

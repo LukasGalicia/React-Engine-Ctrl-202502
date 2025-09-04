@@ -7,28 +7,19 @@
 #define UNUSED(x) (void)(x)
 /* context */
 
-inC_ARINC_INT_ENCDR inputs_ctx;
-static inC_ARINC_INT_ENCDR inputs_ctx_execute;
-outC_ARINC_INT_ENCDR outputs_ctx;
+inC_ARINC_INT_DCDR inputs_ctx;
+static inC_ARINC_INT_DCDR inputs_ctx_execute;
+outC_ARINC_INT_DCDR outputs_ctx;
 
 static void _SCSIM_RestoreInterface(void) {
-    init_kcg_uint8(&inputs_ctx.LABEL);
-    init_kcg_uint8(&inputs_ctx_execute.LABEL);
-    init_kcg_uint8(&inputs_ctx.SDI);
-    init_kcg_uint8(&inputs_ctx_execute.SDI);
-    init_kcg_int32(&inputs_ctx.DATA);
-    init_kcg_int32(&inputs_ctx_execute.DATA);
-    init_kcg_uint8(&inputs_ctx.SSM);
-    init_kcg_uint8(&inputs_ctx_execute.SSM);
+    init_kcg_uint32(&inputs_ctx.ARINCmsg);
+    init_kcg_uint32(&inputs_ctx_execute.ARINCmsg);
     memset((void*)&outputs_ctx, 0, sizeof(outputs_ctx));
 }
 
 static void _SCSIM_ExecuteInterface(void) {
     pSimulator->m_pfnAcquireValueMutex(pSimulator);
-    inputs_ctx_execute.LABEL = inputs_ctx.LABEL;
-    inputs_ctx_execute.SDI = inputs_ctx.SDI;
-    inputs_ctx_execute.DATA = inputs_ctx.DATA;
-    inputs_ctx_execute.SSM = inputs_ctx.SSM;
+    inputs_ctx_execute.ARINCmsg = inputs_ctx.ARINCmsg;
     pSimulator->m_pfnReleaseValueMutex(pSimulator);
 }
 
@@ -38,7 +29,7 @@ extern "C" {
 
 const int  rt_version = Srtv62;
 
-const char* _SCSIM_CheckSum = "4a6ce9e361247fe5efd1e4aa93cb5438";
+const char* _SCSIM_CheckSum = "1a422c2b7c0ca3bca928a52dda8d2015";
 const char* _SCSIM_SmuTypesCheckSum = "612a6f2dec6abe526bcaa0632c507adf";
 
 /* simulation */
@@ -50,7 +41,7 @@ int SimInit(void) {
     BeforeSimInit();
 #endif
 #ifndef KCG_USER_DEFINED_INIT
-    ARINC_INT_ENCDR_init(&outputs_ctx);
+    ARINC_INT_DCDR_init(&outputs_ctx);
     nRet = 1;
 #else
     nRet = 0;
@@ -68,7 +59,7 @@ int SimReset(void) {
     BeforeSimInit();
 #endif
 #ifndef KCG_NO_EXTERN_CALL_TO_RESET
-    ARINC_INT_ENCDR_reset(&outputs_ctx);
+    ARINC_INT_DCDR_reset(&outputs_ctx);
     nRet = 1;
 #else
     nRet = 0;
@@ -80,21 +71,21 @@ int SimReset(void) {
 }
 
 #ifdef __cplusplus
-    #ifdef pSimoutC_ARINC_INT_ENCDRCIVTable_defined
-        extern struct SimCustomInitVTable *pSimoutC_ARINC_INT_ENCDRCIVTable;
+    #ifdef pSimoutC_ARINC_INT_DCDRCIVTable_defined
+        extern struct SimCustomInitVTable *pSimoutC_ARINC_INT_DCDRCIVTable;
     #else 
-        struct SimCustomInitVTable *pSimoutC_ARINC_INT_ENCDRCIVTable = NULL;
+        struct SimCustomInitVTable *pSimoutC_ARINC_INT_DCDRCIVTable = NULL;
     #endif
 #else
-    struct SimCustomInitVTable *pSimoutC_ARINC_INT_ENCDRCIVTable;
+    struct SimCustomInitVTable *pSimoutC_ARINC_INT_DCDRCIVTable;
 #endif
 
 int SimCustomInit(void) {
     int nRet = 0;
-    if (pSimoutC_ARINC_INT_ENCDRCIVTable != NULL && 
-        pSimoutC_ARINC_INT_ENCDRCIVTable->m_pfnCustomInit != NULL) {
+    if (pSimoutC_ARINC_INT_DCDRCIVTable != NULL && 
+        pSimoutC_ARINC_INT_DCDRCIVTable->m_pfnCustomInit != NULL) {
         /* VTable function provided => call it */
-        nRet = pSimoutC_ARINC_INT_ENCDRCIVTable->m_pfnCustomInit ((void*)&outputs_ctx);
+        nRet = pSimoutC_ARINC_INT_DCDRCIVTable->m_pfnCustomInit ((void*)&outputs_ctx);
     }
     else {
         /* VTable misssing => error */
@@ -113,7 +104,7 @@ int SimStep(void) {
         BeforeSimStep();
 #endif
     _SCSIM_ExecuteInterface();
-    ARINC_INT_ENCDR(&inputs_ctx_execute, &outputs_ctx);
+    ARINC_INT_DCDR(&inputs_ctx_execute, &outputs_ctx);
 #ifdef EXTENDED_SIM
     AfterSimStep();
 #endif
@@ -145,8 +136,8 @@ void SsmConnectExternalInputs(int bConnect) {
 
 int SsmGetDumpSize(void) {
     int nSize = 0;
-    nSize += sizeof(inC_ARINC_INT_ENCDR);
-    nSize += sizeof(outC_ARINC_INT_ENCDR);
+    nSize += sizeof(inC_ARINC_INT_DCDR);
+    nSize += sizeof(outC_ARINC_INT_DCDR);
 #ifdef EXTENDED_SIM
     nSize += ExtendedGetDumpSize();
 #endif
@@ -155,10 +146,10 @@ int SsmGetDumpSize(void) {
 
 void SsmGatherDumpData(char * pData) {
     char* pCurrent = pData;
-    memcpy(pCurrent, &inputs_ctx, sizeof(inC_ARINC_INT_ENCDR));
-    pCurrent += sizeof(inC_ARINC_INT_ENCDR);
-    memcpy(pCurrent, &outputs_ctx, sizeof(outC_ARINC_INT_ENCDR));
-    pCurrent += sizeof(outC_ARINC_INT_ENCDR);
+    memcpy(pCurrent, &inputs_ctx, sizeof(inC_ARINC_INT_DCDR));
+    pCurrent += sizeof(inC_ARINC_INT_DCDR);
+    memcpy(pCurrent, &outputs_ctx, sizeof(outC_ARINC_INT_DCDR));
+    pCurrent += sizeof(outC_ARINC_INT_DCDR);
 #ifdef EXTENDED_SIM
     ExtendedGatherDumpData(pCurrent);
 #endif
@@ -166,10 +157,10 @@ void SsmGatherDumpData(char * pData) {
 
 void SsmRestoreDumpData(const char * pData) {
     const char* pCurrent = pData;
-    memcpy(&inputs_ctx, pCurrent, sizeof(inC_ARINC_INT_ENCDR));
-    pCurrent += sizeof(inC_ARINC_INT_ENCDR);
-    memcpy(&outputs_ctx, pCurrent, sizeof(outC_ARINC_INT_ENCDR));
-    pCurrent += sizeof(outC_ARINC_INT_ENCDR);
+    memcpy(&inputs_ctx, pCurrent, sizeof(inC_ARINC_INT_DCDR));
+    pCurrent += sizeof(inC_ARINC_INT_DCDR);
+    memcpy(&outputs_ctx, pCurrent, sizeof(outC_ARINC_INT_DCDR));
+    pCurrent += sizeof(outC_ARINC_INT_DCDR);
 #ifdef EXTENDED_SIM
     ExtendedRestoreDumpData(pCurrent);
 #endif

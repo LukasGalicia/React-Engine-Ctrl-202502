@@ -1,26 +1,24 @@
 [scade_version: Student 2024 R1]
 [scade_project: C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/ARINC_COMM.etp]
 [Code Generator]
-6d27a756f00d0bcca80be5dff867f034 C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/ARINC_INT_ENCDR.c
-55441708dc1ff18722b23c1ea82c0a50 C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/ARINC_INT_ENCDR.h
-3a54634b90cbe8205381470dd65a7947 C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/scade_model_without_unused.scade
-d8c4817c04ce02d5aefbb6af4c0e8bd3 C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/Int_data_bmask.c
-49ab9cf1d1de2f311b962874e1ea2347 C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/Int_data_bmask.h
+5d9a1272208d978fc6354e29ecea5105 C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/ARINC_INT_DCDR.c
+568f0cf31cdd66cdf7afd878f44d2315 C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/ARINC_INT_DCDR.h
+8c6a3113f87064f023e6221b940088a4 C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/scade_model_without_unused.scade
 c3446f91d0655dc932d0122afa79434f C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/cmd_cg.log
-8bf223171e47d5b8bcde915d960cb8ff C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/config.txt
-cce99ef9dfe7dd708b563cbf4180890c C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/kcg_consts.c
-765656aa8c58d07fb57f9bfa7d2d32cc C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/kcg_consts.h
-6e0d2de9fe372ca290af86536a119fbf C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/kcg_files.txt
+1432cad00fb1d736650a6549e6dd00b0 C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/config.txt
+7561765c646b01dbf3c564a131ea271a C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/kcg_consts.c
+3b53085b7370e19e58899601c4db4bd5 C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/kcg_consts.h
+fafb5a7001d7e843429fd345ef22e2fc C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/kcg_files.txt
 c570e85441febaa6f6d5e23e14e58b55 C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/kcg_imported_types.h
-e32249bea62b53a185ae03d498cc898c C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/kcg_metrics.txt
-aa557f21d2564eaad16cbd6f7d267fea C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/kcg_sensors.h
-892637378569a233b61e13475b9ceefc C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/kcg_types.c
-439af8870ec571bd0c8d883fea8fd9cd C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/kcg_types.h
-918c8a21db524e426b1112c17bb0c86a C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/mapping.xml
+1b1824b8d736741cba25efb18181682d C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/kcg_metrics.txt
+b04ab8beda6ce1dd5bdda7918ee87ae7 C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/kcg_sensors.h
+8232f1ef0cdedb65466acce073c7cc42 C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/kcg_types.c
+37fb768a44d478a5f22c5cb22beae43d C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/kcg_types.h
+07365fdc9308a1093edd9c76189126a6 C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/mapping.xml
 e23907115fc212ba1319b5fd9b23f340 C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/user_macros.h
 [Mapping Utils]
-918c8a21db524e426b1112c17bb0c86a C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/mapping.xml
-10d070d7ff0b346b1ea59294e3a6c071 C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/ARINC_COMM_mapping.c
+07365fdc9308a1093edd9c76189126a6 C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/mapping.xml
+a86cf9bb85236f71f9a99282be5c7b7f C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/ARINC_COMM_mapping.c
 8f1450fe423c87281fa855302d97e454 C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/ARINC_COMM_mapping.h
 0f379c5ba395c92cdffef354dd86bfe5 C:/Program Files/ANSYS Inc/v241/SCADE Student/SCADE/lib/C/SmuConfig.c
 5b9e0d7ea9b52c17fdae3092ded3ba5e C:/Program Files/ANSYS Inc/v241/SCADE Student/SCADE/lib/C/SmuLib.c
@@ -28,13 +26,13 @@ e23907115fc212ba1319b5fd9b23f340 C:/Users/lukas/Documents/Repo/202502_REACT_ENG_
 f8e54064707a32ec62840ae6f743d17e C:/Program Files/ANSYS Inc/v241/SCADE Student/SCADE/lib/C/SmuVTable.c
 4c9ff997bb932be2504d925b973987b9 C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/ARINC_COMM.etp
 [Simulator Wrapper]
-918c8a21db524e426b1112c17bb0c86a C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/mapping.xml
-46b45059ed085eb5c7b4db69ab53a653 C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/ARINC_COMM_dll.c
-67a4b214852de7dbc80a0acb7fa000b8 C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/ARINC_COMM_interface.c
-352db37de8645319bea27a69ecd707a9 C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/ARINC_COMM_interface.h
+07365fdc9308a1093edd9c76189126a6 C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/mapping.xml
+5e9b50c12b2adf3f3b8b95a8e4611bba C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/ARINC_COMM_dll.c
+9e96e7a921b4352b756199e86507dd16 C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/ARINC_COMM_interface.c
+7cec9fa7661486ce0514ddedacdbcc1a C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/ARINC_COMM_interface.h
 4c9ff997bb932be2504d925b973987b9 C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/ARINC_COMM.etp
 [Type Utils]
-918c8a21db524e426b1112c17bb0c86a C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/mapping.xml
+07365fdc9308a1093edd9c76189126a6 C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/mapping.xml
 b9c6a1f6236edb7f7a35628f8ae17a3e C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/ARINC_COMM_type.c
 41b6232d0e80b93ef4f9eb0580f680e9 C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/ARINC_COMM_type.h
 0f379c5ba395c92cdffef354dd86bfe5 C:/Program Files/ANSYS Inc/v241/SCADE Student/SCADE/lib/C/SmuConfig.c

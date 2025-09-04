@@ -1,3 +1,3 @@
 -target_dir "C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation" -target C -name_length 200 -significance_length 31 -user_config "./user_macros.h" -probes -debug 
--root ARINC_INT_ENCDR
+-root ARINC_INT_DCDR
 "C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/scade_model_without_unused.scade"

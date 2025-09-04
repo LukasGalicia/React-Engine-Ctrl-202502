@@ -59,6 +59,9 @@
 /* DRIVER INCLUDES */
 #include "projlib/HX711_FREERTOS.h"
 #include "projlib/BLDC_ctrlLib.h"
+#include "projlib/CROSSCHANNEL.h"
+#include "embedded_SCADE/ARINC_INT_ENCDR.h"
+#include "embedded_SCADE/ARINC_INT_DCDR.h"
 
 /* USER CODE END */
 
@@ -111,6 +114,16 @@ TaskHandle_t xTask_Srial_Comms;
 /* GLOBALS BEGIN */
 /* GLOBALS END */
 
+/** @fn     void SCADEInit(void)
+ *  @brief  SCADE Models initialization
+ *
+ */
+void SCADEInit( void )
+{
+    ARINC_INT_ENCDR_init(&CCmsg_FRAME_OUTBOUND);
+    ARINC_INT_DCDR_init(&CCmsg_DATA_INBOUND);
+}
+
 /* USER CODE END */
 
 /** @fn void main(void)
@@ -137,6 +150,9 @@ int main(void)
     adcInit();
     spiInit();
     sciInit();
+
+    /* Initialize SCADE code */
+    SCADEInit();
 
     /* User Queues CREATE */
     xQueue_HX711_Data = xQueueCreate(1, sizeof(HX711Data_t));       xQueueReset(xQueue_HX711_Data);
@@ -167,20 +183,42 @@ int main(void)
 /* USER TASKS IMP, BEGIN */
 void vTaskMASTER(void *pvParameters)
 {
-    /* CONTROLLER INITIALIZATION */
-    BOARDMODE = (_ECU_MODE) gioGetBit(gioPORTA, 4U);        // Determine if board is MAIN or BACKUP
+    uint8_t CommLABEL, CommSDI, CommSSM;
+    int32_t CommDATA;
+    char CmdMsgBuff[65];
 
-    if(BOARDMODE == BOARD_BACKUP)
+    /* SYSTEM Init BEGIN */
+    BOARDMODE = (gioGetBit(gioPORTA, 4U) == 0U) ? BOARD_BACKUP : BOARD_MAIN;    // Determine if board is MAIN or BACKUP
+
+    if(BOARDMODE == BOARD_BACKUP)                                               // Switch backup MCU's SPI to Slave mode
     {
         /** SPI3 slave mode and clock configuration */
         spiREG3->GCR1 = (spiREG3->GCR1 & 0xFFFFFFFCU) | ((uint32)((uint32)0U << 1U)  /* CLOKMOD */
                       | 0U);  /* MASTER -> slave mode */
     }
 
-    /*
-     * Master task initializes all other tasks
-     * */
+    // Master - Backup acknowledge routine
+    if(BOARDMODE == BOARD_MAIN)
+    {
+        sciSend(scilinREG, sprintf(CmdMsgBuff, "Main is waiting for backup acknowledge...\n\r"), (uint8 *) CmdMsgBuff);
+        CrossChReceive(&CommLABEL, &CommSDI, &CommDATA, &CommSSM);
+        if(CommLABEL == ARINC_LABEL_BackupAcknowledge)
+            sciSend(scilinREG, sprintf(CmdMsgBuff, "Backup has acknowledged!\n\r"), (uint8 *) CmdMsgBuff);
+        else
+            while(1);       // BACKUP ACKNOWLEDGE ERROR
+    }
+    else
+    {
+        CommLABEL = ARINC_LABEL_BackupAcknowledge;
+        CommSDI = ARINC_SDI_Backup;
+        CommDATA = ARINC_DATA_DEFAULT;
+        CommSSM = ARINC_SSM_FnTest;
+        CrossChTransmit(CommLABEL, CommSDI, CommDATA, CommSSM);
+    }
+    /* SYSTEM Init END */
 
+
+    /* OS Init BEGIN */
     /* BLDC Controller Task CREATE */
     MPU_xTaskCreate(vTask_MotorCtrl,                // Task Code
                     "BLDC Control Task",            // HL Task Name
@@ -210,6 +248,7 @@ void vTaskMASTER(void *pvParameters)
                     NULL,                           // Task Parameters
                     4,                              // Priority
                     &xTask_HX711_Poll_Handle);      // Task Handler (xTaskHandle)
+    /* OS Init END */
 
     MPU_vTaskSuspend(NULL);     // Task Master END
 }
