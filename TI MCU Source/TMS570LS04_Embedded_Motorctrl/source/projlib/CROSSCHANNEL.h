@@ -22,7 +22,9 @@
 
 /* ARINC MESSAGE FORMATS */
 // LABEL Formats
-#define ARINC_LABEL_BackupAcknowledge 0xBAU
+#define ARINC_LABEL_BackupAcknowledge   0xBAU
+#define ARINC_LABEL_MainHX711ready      0xA7U
+#define ARINC_LABEL_BackupHX711ready    0xB7U
 
 // SDI Formats
 #define ARINC_SDI_Backup    0x00U
@@ -50,5 +52,7 @@ outC_ARINC_INT_DCDR     CCmsg_DATA_INBOUND;
 /* Cross-channel Comm fn prototypes */
 void CrossChReceive(uint8_t *MsgLABEL, uint8_t *MsgSDI, int32_t *MsgDATA, uint8_t *MsgSSM);
 void CrossChTransmit(uint8_t MsgLABEL, uint8_t MsgSDI, int32_t MsgDATA, uint8_t MsgSSM);
+void CrossChTransmitandReceive(uint8_t *InLABEL, uint8_t *InSDI, int32_t *InDATA, uint8_t *InSSM,
+                               uint8_t OutLABEL, uint8_t OutSDI, int32_t OutDATA, uint8_t OutSSM);
 
 #endif /* SOURCE_PROJLIB_CROSSCHANNEL_H_ */

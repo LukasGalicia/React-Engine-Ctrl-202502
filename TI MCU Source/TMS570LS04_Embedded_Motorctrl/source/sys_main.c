@@ -76,8 +76,11 @@
 #include <stdlib.h>
 
 /* USER DEFINES BEGIN */
-#define GAUGE_MAX_THRTT -50644.0
-#define GAUGE_MIN_THRTT -102260.0
+#define GAUGE_1_MAX_THRTT   233975.5
+#define GAUGE_1_MIN_THRTT   156838.2
+#define GAUGE_2_MAX_THRTT  -32419.5
+#define GAUGE_2_MIN_THRTT  -108097.8
+
 #define HX711_USER_RES  HX711_RES_128R_A
 
 enum board_modes
@@ -163,7 +166,7 @@ int main(void)
     /* Default TASK MASTER */
     MPU_xTaskCreate(vTaskMASTER,                    // Task Function
                     "Master task",                  // PC Task Name
-                    3 * configMINIMAL_STACK_SIZE,   // Memory Stack Size
+                    4 * configMINIMAL_STACK_SIZE,   // Memory Stack Size
                     NULL,                           // Task Parameters
                     1,                              // Priority
                     &xTaskMASTER);                  // Task Handler (xTaskHandle)
@@ -200,10 +203,10 @@ void vTaskMASTER(void *pvParameters)
     // Master - Backup acknowledge routine
     if(BOARDMODE == BOARD_MAIN)
     {
-        sciSend(scilinREG, sprintf(CmdMsgBuff, "Main is waiting for backup acknowledge...\n\r"), (uint8 *) CmdMsgBuff);
+        sciSend(scilinREG, sprintf(CmdMsgBuff, "Main is waiting for backup acknowledge...\r\n"), (uint8 *) CmdMsgBuff);
         CrossChReceive(&CommLABEL, &CommSDI, &CommDATA, &CommSSM);
         if(CommLABEL == ARINC_LABEL_BackupAcknowledge)
-            sciSend(scilinREG, sprintf(CmdMsgBuff, "Backup has acknowledged!\n\r"), (uint8 *) CmdMsgBuff);
+            sciSend(scilinREG, sprintf(CmdMsgBuff, "Backup has acknowledged!\r\n"), (uint8 *) CmdMsgBuff);
         else
             while(1);       // BACKUP ACKNOWLEDGE ERROR
     }
@@ -215,8 +218,9 @@ void vTaskMASTER(void *pvParameters)
         CommSSM = ARINC_SSM_FnTest;
         CrossChTransmit(CommLABEL, CommSDI, CommDATA, CommSSM);
     }
-    /* SYSTEM Init END */
 
+    sciSend(scilinREG, sprintf(CmdMsgBuff, "Starting OS\r\n"), (uint8 *) CmdMsgBuff);
+    /* SYSTEM Init END */
 
     /* OS Init BEGIN */
     /* BLDC Controller Task CREATE */
@@ -230,16 +234,25 @@ void vTaskMASTER(void *pvParameters)
     // BLDC Controller Task must notify
     MPU_ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
 
-    /* Control Panel serial comm Task CREATE */
-    MPU_xTaskCreate(vTask_Srial_Comms,              // Task Code
-                    "Comm 2 Ctrl Panel Task",       // HL Task Name
-                    3 * configMINIMAL_STACK_SIZE,   // Memory Stack Size
-                    NULL,                           // Task Parameters
-                    2,                              // Priority
-                    &xTask_Srial_Comms);            // Task Handler (xTaskHandle)
+    if(BOARDMODE == BOARD_MAIN)     // Only main board transmits serial data
+    {
+        /* Control Panel serial comm Task CREATE */
+        MPU_xTaskCreate(vTask_Srial_Comms,              // Task Code
+                        "Comm 2 Ctrl Panel Task",       // HL Task Name
+                        3 * configMINIMAL_STACK_SIZE,   // Memory Stack Size
+                        NULL,                           // Task Parameters
+                        2,                              // Priority
+                        &xTask_Srial_Comms);            // Task Handler (xTaskHandle)
 
-    // Serial Comm Task must notify
-    MPU_ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+        // Serial Comm Task must notify
+        MPU_ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+    }
+
+    /**
+     *  Devices must be synced to begin reading their respecive sensors.
+     */
+
+    sciSend(scilinREG, sprintf(CmdMsgBuff, "Syncing devices...\r\n"), (uint8 *) CmdMsgBuff);
 
     /* HX711 Sensor Handler Task CREATE */
     MPU_xTaskCreate(vTask_HX711_Poll,               // Task Code
@@ -248,6 +261,29 @@ void vTaskMASTER(void *pvParameters)
                     NULL,                           // Task Parameters
                     4,                              // Priority
                     &xTask_HX711_Poll_Handle);      // Task Handler (xTaskHandle)
+
+    // HX7111 Task must notify
+    MPU_ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+
+    if(BOARDMODE == BOARD_MAIN)
+    {
+        CrossChTransmit(ARINC_LABEL_MainHX711ready, ARINC_SDI_Main, ARINC_DATA_DEFAULT, ARINC_SSM_NormOp);
+        CrossChReceive(&CommLABEL, &CommSDI, &CommDATA, &CommSSM);
+        if(CommLABEL == ARINC_LABEL_BackupHX711ready)
+            sciSend(scilinREG, sprintf(CmdMsgBuff, "Devices Synced!...\r\n"), (uint8 *) CmdMsgBuff);
+        else
+            while(1);       // Backup OS init failed
+    }
+    else
+    {
+        CrossChReceive(&CommLABEL, &CommSDI, &CommDATA, &CommSSM);
+        if(CommLABEL == ARINC_LABEL_MainHX711ready)
+            CrossChTransmit(ARINC_LABEL_BackupHX711ready, ARINC_SDI_Backup, ARINC_DATA_DEFAULT, ARINC_SSM_NormOp);
+        else
+            while(1);       // Main OS init failed
+    }
+    CrossChTransmitandReceive(&CommLABEL, &CommSDI, &CommDATA, &CommSSM, 0x11, 0b00, 0x1234, ARINC_SSM_NormOp);
+    xTaskNotifyGive(xTask_HX711_Poll_Handle);
     /* OS Init END */
 
     MPU_vTaskSuspend(NULL);     // Task Master END
@@ -265,6 +301,11 @@ void vTask_HX711_Poll(void *pvParameters)
     // HX711 OFF
 
     gioEnableNotification(PORT_HX711_DT, PIN_HX711_DT);     // Enable HX711 DT READY IRQ
+
+    // Task master CC sync notifs
+    xTaskNotifyGive(xTaskMASTER);
+    ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+
     gioSetBit(PORT_HX711_SCK, PIN_HX711_SCK, 0U);           // Set SCK Low
     // HX711 ON
     // This line marks the start of normal AS operation
@@ -319,7 +360,7 @@ void vTask_MotorCtrl(void *pvParameters)
 
         // TEST CONTROL ONLY
         ADCMotorThrtt = ((float) ADC_CtrlData.value) / 4095.0;
-        MotCtrlSignl = ADCMotorThrtt;
+        MotCtrlSignl = ((gioGetBit(gioPORTA, 4U) == 1U) ? 0.0 : 0.85);
 
         // Set Motor Throttle
         enhPWMSetDuty(hetRAM1, BLDC_PWM, ((uint32_t) (MotCtrlSignl * 5000.0) + 5000.0));

@@ -40,3 +40,25 @@ void CrossChReceive(uint8_t *MsgLABEL, uint8_t *MsgSDI, int32_t *MsgDATA, uint8_
     *MsgDATA = CCmsg_DATA_INBOUND.DATA;
     *MsgSSM = CCmsg_DATA_INBOUND.SSM;
 }
+
+void CrossChTransmitandReceive(uint8_t *InLABEL, uint8_t *InSDI, int32_t *InDATA, uint8_t *InSSM,
+                               uint8_t OutLABEL, uint8_t OutSDI, int32_t OutDATA, uint8_t OutSSM)
+{
+    // ARINC encode assigns
+    CCmsg_DATA_OUTBOUND.LABEL = OutLABEL;
+    CCmsg_DATA_OUTBOUND.SDI = OutSDI;
+    CCmsg_DATA_OUTBOUND.DATA = OutDATA;
+    CCmsg_DATA_OUTBOUND.SSM = OutSSM;
+
+    ARINC_INT_ENCDR(&CCmsg_DATA_OUTBOUND, &CCmsg_FRAME_OUTBOUND);               // Encode ARINC message
+    spiTransmitAndReceiveData(spiREG3, &CCSpiDataFmt, SPI_blocksize,            // Send & get SPI data
+                              (uint16_t *) &(CCmsg_FRAME_OUTBOUND.ARINCmsg),
+                              (uint16_t *) &(CCmsg_FRAME_INBOUND.ARINCmsg));
+    ARINC_INT_DCDR(&CCmsg_FRAME_INBOUND, &CCmsg_DATA_INBOUND);                  // Decode ARINC message
+
+    // ARINC decoded assigns
+    *InLABEL = CCmsg_DATA_INBOUND.LABEL;
+    *InSDI = CCmsg_DATA_INBOUND.SDI;
+    *InDATA = CCmsg_DATA_INBOUND.DATA;
+    *InSSM = CCmsg_DATA_INBOUND.SSM;
+}
