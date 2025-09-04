@@ -1,6 +1,6 @@
 /* $ ANSYS SCADE Suite (R) Code Generator version Student 2022 R1 (build 20211130) 
 ** Command: scadecg.exe -config C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/config.txt
-** Generation date: 2025-09-04T08:03:19
+** Generation date: 2025-09-04T14:08:50
 *************************************************************$ */
 #ifndef _KCG_TYPES_H_
 #define _KCG_TYPES_H_
@@ -164,21 +164,9 @@ typedef signed char kcg_int8;
 #define kcg_lnot_uint8(kcg_C1) ((kcg_C1) ^ 0xff)
 #endif /* kcg_lnot_uint8 */
 
-//#ifndef kcg_assign
-//#include "kcg_assign.h"
-//#endif /* kcg_assign */
-//
-//#ifndef kcg_assign_struct
-//#define kcg_assign_struct kcg_assign
-//#endif /* kcg_assign_struct */
-//
-//#ifndef kcg_assign_array
-//#define kcg_assign_array kcg_assign
-//#endif /* kcg_assign_array */
-
 #endif /* _KCG_TYPES_H_ */
 /* $ ANSYS SCADE Suite (R) Code Generator version Student 2022 R1 (build 20211130) 
 ** kcg_types.h
-** Generation date: 2025-09-04T08:03:19
+** Generation date: 2025-09-04T14:08:50
 *************************************************************$ */
 

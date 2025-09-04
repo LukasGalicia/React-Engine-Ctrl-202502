@@ -14,12 +14,15 @@ outC_ARINC_INT_DCDR outputs_ctx;
 static void _SCSIM_RestoreInterface(void) {
     init_kcg_uint32(&inputs_ctx.ARINCmsg);
     init_kcg_uint32(&inputs_ctx_execute.ARINCmsg);
+    init_kcg_bool(&inputs_ctx.ExpBCD);
+    init_kcg_bool(&inputs_ctx_execute.ExpBCD);
     memset((void*)&outputs_ctx, 0, sizeof(outputs_ctx));
 }
 
 static void _SCSIM_ExecuteInterface(void) {
     pSimulator->m_pfnAcquireValueMutex(pSimulator);
     inputs_ctx_execute.ARINCmsg = inputs_ctx.ARINCmsg;
+    inputs_ctx_execute.ExpBCD = inputs_ctx.ExpBCD;
     pSimulator->m_pfnReleaseValueMutex(pSimulator);
 }
 
@@ -29,7 +32,7 @@ extern "C" {
 
 const int  rt_version = Srtv62;
 
-const char* _SCSIM_CheckSum = "1a422c2b7c0ca3bca928a52dda8d2015";
+const char* _SCSIM_CheckSum = "f99e1133259521f4434b277d6214b210";
 const char* _SCSIM_SmuTypesCheckSum = "612a6f2dec6abe526bcaa0632c507adf";
 
 /* simulation */

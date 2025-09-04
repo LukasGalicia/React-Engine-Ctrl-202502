@@ -33,16 +33,18 @@
 #define HX711Buff_t uint32_t
 
 /* Queue mgmt using FreeRTOS */
-QueueHandle_t xQueue_HX711_Raw;         // HX711 sensor Raw Data queue
-QueueHandle_t xQueue_HX711_Data;        // HX711 sensor Data queue
-QueueHandle_t xQueue_SrialComm_HX711;   // HX711 Telemetry Queue
+QueueHandle_t xQueue_HX711_Raw;             // HX711 sensor Raw Data queue
+QueueHandle_t xQueue_HX711_Data;            // HX711 sensor Data queue
+QueueHandle_t xQueue_SrialComm_HX711;       // HX711 Telemetry Queue
+QueueHandle_t xQueue_CrossChComm_HX711;     // HX711 Telemetry Queue
 
 /* Telemetry communication */
-#define COMM_BUFFER_SIZE 10         // Comms. 2 Ctrl. Panel buffer size
+#define COMM_BUFFER_SIZE 20         // Comms. 2 Ctrl. Panel buffer size
 
 struct serialdata
 {
-    HX711Data_t HX711_serialdata;
+    HX711Data_t HX711_localdata;
+    HX711Data_t HX711_CCdata;
 };
 typedef struct serialdata commCtrlData;
 

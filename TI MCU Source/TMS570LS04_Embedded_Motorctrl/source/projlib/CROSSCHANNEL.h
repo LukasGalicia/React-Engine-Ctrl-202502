@@ -25,6 +25,8 @@
 #define ARINC_LABEL_BackupAcknowledge   0xBAU
 #define ARINC_LABEL_MainHX711ready      0xA7U
 #define ARINC_LABEL_BackupHX711ready    0xB7U
+#define ARINC_LABEL_MainHX711_data      0xA6U
+#define ARINC_LABEL_BackupHX711_data    0xB6U
 
 // SDI Formats
 #define ARINC_SDI_Backup    0x00U
@@ -36,6 +38,8 @@
 // SSM Formats
 #define ARINC_SSM_FnTest    0b10U
 #define ARINC_SSM_NormOp    0b11U
+#define ARINC_SSM_ValuePos  0b00U
+#define ARINC_SSM_ValueNeg  0b11U
 
 /* Standard SCADEif structs */
 // ARINC Encoder
@@ -50,9 +54,9 @@ outC_ARINC_INT_DCDR     CCmsg_DATA_INBOUND;
 #define SPI_blocksize   2U
 
 /* Cross-channel Comm fn prototypes */
-void CrossChReceive(uint8_t *MsgLABEL, uint8_t *MsgSDI, int32_t *MsgDATA, uint8_t *MsgSSM);
+void CrossChReceive(uint8_t *MsgLABEL, uint8_t *MsgSDI, int32_t *MsgDATA, uint8_t *MsgSSM, bool negValExp);
 void CrossChTransmit(uint8_t MsgLABEL, uint8_t MsgSDI, int32_t MsgDATA, uint8_t MsgSSM);
-void CrossChTransmitandReceive(uint8_t *InLABEL, uint8_t *InSDI, int32_t *InDATA, uint8_t *InSSM,
+void CrossChTransmitandReceive(uint8_t *InLABEL, uint8_t *InSDI, int32_t *InDATA, uint8_t *InSSM, bool negValExp,
                                uint8_t OutLABEL, uint8_t OutSDI, int32_t OutDATA, uint8_t OutSSM);
 
 #endif /* SOURCE_PROJLIB_CROSSCHANNEL_H_ */

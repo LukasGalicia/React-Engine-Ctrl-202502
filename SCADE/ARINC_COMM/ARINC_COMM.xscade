@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/7" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3">
+	<declarations>
+		<Constant name="SSM_VALUE_Pos">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="uint8"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="0b00"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/504/6835/2D74/68b9edea55e6"/>
+			</pragmas>
+		</Constant>
+		<Constant name="SSM_VALUE_Neg">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="uint8"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="0b11"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/522/6835/2D74/68b9ee1a5a4b"/>
+			</pragmas>
+		</Constant>
+	</declarations>
+</File>

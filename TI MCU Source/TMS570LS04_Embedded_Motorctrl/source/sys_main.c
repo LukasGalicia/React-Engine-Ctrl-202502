@@ -76,10 +76,10 @@
 #include <stdlib.h>
 
 /* USER DEFINES BEGIN */
-#define GAUGE_1_MAX_THRTT   233975.5
-#define GAUGE_1_MIN_THRTT   156838.2
-#define GAUGE_2_MAX_THRTT  -32419.5
-#define GAUGE_2_MIN_THRTT  -108097.8
+#define GAUGE_1_MAX_THRTT   233975
+#define GAUGE_1_MIN_THRTT   156838
+#define GAUGE_2_MAX_THRTT  -32419
+#define GAUGE_2_MIN_THRTT  -108097
 
 #define HX711_USER_RES  HX711_RES_128R_A
 
@@ -105,6 +105,10 @@ TaskHandle_t xTask_HX711_Poll_Handle;
 /* BLDC Control */
 void vTask_MotorCtrl(void *pvParameters);
 TaskHandle_t xTask_MotorCtrl_Handle;
+
+/* Cross Channel Comm */
+void vTask_CrossCh_Comm(void *pvParameters);
+TaskHandle_t xTask_CrossCh_Comm;
 
 /* Serial Panel Comm*/
 void vTask_Srial_Comms(void *pvParameters);
@@ -138,6 +142,8 @@ void SCADEInit( void )
 */
 
 /* USER CODE BEGIN (2) */
+HX711Data_t Local_Min_Gauge = 156838;
+HX711Data_t Local_Max_Gauge = 233975;
 /* USER CODE END */
 
 int main(void)
@@ -158,15 +164,16 @@ int main(void)
     SCADEInit();
 
     /* User Queues CREATE */
-    xQueue_HX711_Data = xQueueCreate(1, sizeof(HX711Data_t));       xQueueReset(xQueue_HX711_Data);
-    xQueue_HX711_Raw = xQueueCreate(1, sizeof(HX711Buff_t));        xQueueReset(xQueue_HX711_Raw);
-    xQueue_SrialComm_HX711 = xQueueCreate(1, sizeof(HX711Data_t));  xQueueReset(xQueue_SrialComm_HX711);
+    xQueue_HX711_Data = xQueueCreate(1, sizeof(HX711Data_t));           xQueueReset(xQueue_HX711_Data);
+    xQueue_HX711_Raw = xQueueCreate(1, sizeof(HX711Buff_t));            xQueueReset(xQueue_HX711_Raw);
+    xQueue_SrialComm_HX711 = xQueueCreate(1, 2 * sizeof(HX711Data_t));  xQueueReset(xQueue_SrialComm_HX711);
+    xQueue_CrossChComm_HX711 = xQueueCreate(1, sizeof(HX711Data_t));    xQueueReset(xQueue_CrossChComm_HX711);
 
     /* User Tasks CREATE */
     /* Default TASK MASTER */
     MPU_xTaskCreate(vTaskMASTER,                    // Task Function
                     "Master task",                  // PC Task Name
-                    4 * configMINIMAL_STACK_SIZE,   // Memory Stack Size
+                    2 * configMINIMAL_STACK_SIZE,   // Memory Stack Size
                     NULL,                           // Task Parameters
                     1,                              // Priority
                     &xTaskMASTER);                  // Task Handler (xTaskHandle)
@@ -204,7 +211,7 @@ void vTaskMASTER(void *pvParameters)
     if(BOARDMODE == BOARD_MAIN)
     {
         sciSend(scilinREG, sprintf(CmdMsgBuff, "Main is waiting for backup acknowledge...\r\n"), (uint8 *) CmdMsgBuff);
-        CrossChReceive(&CommLABEL, &CommSDI, &CommDATA, &CommSSM);
+        CrossChReceive(&CommLABEL, &CommSDI, &CommDATA, &CommSSM, false);
         if(CommLABEL == ARINC_LABEL_BackupAcknowledge)
             sciSend(scilinREG, sprintf(CmdMsgBuff, "Backup has acknowledged!\r\n"), (uint8 *) CmdMsgBuff);
         else
@@ -226,20 +233,31 @@ void vTaskMASTER(void *pvParameters)
     /* BLDC Controller Task CREATE */
     MPU_xTaskCreate(vTask_MotorCtrl,                // Task Code
                     "BLDC Control Task",            // HL Task Name
-                    3 * configMINIMAL_STACK_SIZE,   // Memory Stack Size
+                    configMINIMAL_STACK_SIZE,       // Memory Stack Size
                     NULL,                           // Task Parameters
-                    3,                              // Priority
+                    4,                              // Priority
                     &xTask_MotorCtrl_Handle);       // Task Handler (xTaskHandle)
 
     // BLDC Controller Task must notify
     MPU_ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
 
+    /* Cross Channel Comm Task CREATE */
+    MPU_xTaskCreate(vTask_CrossCh_Comm,             // Task Code
+                    "Cross channel Comms Task",     // HL Task Name
+                    configMINIMAL_STACK_SIZE,       // Memory Stack Size
+                    NULL,                           // Task Parameters
+                    3,                              // Priority
+                    &xTask_CrossCh_Comm);           // Task Handler (xTaskHandle)
+
+    // Cross Channel Comm Task must notify
+    MPU_ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+
     if(BOARDMODE == BOARD_MAIN)     // Only main board transmits serial data
     {
-        /* Control Panel serial comm Task CREATE */
+        /* Control panel serial comm Task CREATE */
         MPU_xTaskCreate(vTask_Srial_Comms,              // Task Code
                         "Comm 2 Ctrl Panel Task",       // HL Task Name
-                        3 * configMINIMAL_STACK_SIZE,   // Memory Stack Size
+                        2 * configMINIMAL_STACK_SIZE,   // Memory Stack Size
                         NULL,                           // Task Parameters
                         2,                              // Priority
                         &xTask_Srial_Comms);            // Task Handler (xTaskHandle)
@@ -259,7 +277,7 @@ void vTaskMASTER(void *pvParameters)
                     "HX711 Handler Task",           // HL Task Name
                     3 * configMINIMAL_STACK_SIZE,   // Memory Stack Size
                     NULL,                           // Task Parameters
-                    4,                              // Priority
+                    5,                              // Priority
                     &xTask_HX711_Poll_Handle);      // Task Handler (xTaskHandle)
 
     // HX7111 Task must notify
@@ -268,7 +286,7 @@ void vTaskMASTER(void *pvParameters)
     if(BOARDMODE == BOARD_MAIN)
     {
         CrossChTransmit(ARINC_LABEL_MainHX711ready, ARINC_SDI_Main, ARINC_DATA_DEFAULT, ARINC_SSM_NormOp);
-        CrossChReceive(&CommLABEL, &CommSDI, &CommDATA, &CommSSM);
+        CrossChReceive(&CommLABEL, &CommSDI, &CommDATA, &CommSSM, false);
         if(CommLABEL == ARINC_LABEL_BackupHX711ready)
             sciSend(scilinREG, sprintf(CmdMsgBuff, "Devices Synced!...\r\n"), (uint8 *) CmdMsgBuff);
         else
@@ -276,13 +294,13 @@ void vTaskMASTER(void *pvParameters)
     }
     else
     {
-        CrossChReceive(&CommLABEL, &CommSDI, &CommDATA, &CommSSM);
+        CrossChReceive(&CommLABEL, &CommSDI, &CommDATA, &CommSSM, false);
         if(CommLABEL == ARINC_LABEL_MainHX711ready)
             CrossChTransmit(ARINC_LABEL_BackupHX711ready, ARINC_SDI_Backup, ARINC_DATA_DEFAULT, ARINC_SSM_NormOp);
         else
             while(1);       // Main OS init failed
     }
-    CrossChTransmitandReceive(&CommLABEL, &CommSDI, &CommDATA, &CommSSM, 0x11, 0b00, 0x1234, ARINC_SSM_NormOp);
+    CrossChTransmitandReceive(&CommLABEL, &CommSDI, &CommDATA, &CommSSM, 0, 0, 0, ARINC_SSM_NormOp, false);
     xTaskNotifyGive(xTask_HX711_Poll_Handle);
     /* OS Init END */
 
@@ -315,9 +333,11 @@ void vTask_HX711_Poll(void *pvParameters)
         xQueueReceive(xQueue_HX711_Raw, &HX711_raw, portMAX_DELAY);     // Wait for raw data
         /* DT IRQ HAS ARRIVED */
 
-        HX711_dataRead = DECODE_TWOS_COMPLEMENT(HX711_raw);         // Decode Sensor data to signed int
-        xQueueSend(xQueue_HX711_Data, &HX711_dataRead, 0);          // Send final sensor data reading
-        xQueueSend(xQueue_SrialComm_HX711, &HX711_dataRead, 0);     // Send sensor data to telemetry
+        HX711_dataRead = DECODE_TWOS_COMPLEMENT(HX711_raw) - Local_Min_Gauge;    // Decode Sensor data to signed int & trim
+        xQueueSend(xQueue_HX711_Data, &HX711_dataRead, 0);          // Send sensor data to motor control
+        xQueueSend(xQueue_CrossChComm_HX711, &HX711_dataRead, 0);   // Send sensor data to cross channel
+        if(BOARDMODE == BOARD_MAIN)
+            xQueueSend(xQueue_SrialComm_HX711, &HX711_dataRead, 0);     // Send sensor data to telemetry
 
         gioEnableNotification(PORT_HX711_DT, PIN_HX711_DT);         // Reset DT pin interrupt
     }
@@ -360,10 +380,39 @@ void vTask_MotorCtrl(void *pvParameters)
 
         // TEST CONTROL ONLY
         ADCMotorThrtt = ((float) ADC_CtrlData.value) / 4095.0;
-        MotCtrlSignl = ((gioGetBit(gioPORTA, 4U) == 1U) ? 0.0 : 0.85);
+        MotCtrlSignl = ADCMotorThrtt;
 
         // Set Motor Throttle
         enhPWMSetDuty(hetRAM1, BLDC_PWM, ((uint32_t) (MotCtrlSignl * 5000.0) + 5000.0));
+    }
+}
+
+void vTask_CrossCh_Comm(void *pvParameters)
+{
+    HX711Data_t HX711_BoardData, HX711_CCData;
+    uint8_t CommLABEL, CommSDI, CommSSM;
+
+    xTaskNotifyGive(xTaskMASTER);
+
+    for(;;)
+    {
+        xQueueReceive(xQueue_CrossChComm_HX711, &HX711_BoardData, portMAX_DELAY);       // Wait for local sensor data
+
+        // Exchange sensor data across cross channel
+        if(BOARDMODE == BOARD_MAIN)
+            CrossChTransmitandReceive(&CommLABEL, &CommSDI, &HX711_CCData, &CommSSM,
+                                      ARINC_LABEL_MainHX711_data, ARINC_SDI_Main, HX711_BoardData,
+                                      (HX711_BoardData > 0) ? ARINC_SSM_ValuePos : ARINC_SSM_ValueNeg,
+                                              true);
+        else
+            CrossChTransmitandReceive(&CommLABEL, &CommSDI, &HX711_CCData, &CommSSM,
+                                      ARINC_LABEL_BackupHX711_data, ARINC_SDI_Backup, HX711_BoardData,
+                                      (HX711_BoardData > 0) ? ARINC_SSM_ValuePos : ARINC_SSM_ValueNeg,
+                                              true);
+
+        // Send cross channel telemetry data
+        if(BOARDMODE == BOARD_MAIN)
+            xQueueSend(xQueue_SrialComm_HX711, &HX711_CCData, 0);
     }
 }
 
@@ -380,10 +429,11 @@ void vTask_Srial_Comms(void *pvParameters)
     for(;;)
     {
         // Serial comm task must receive all telemetry data
-        xQueueReceive(xQueue_SrialComm_HX711, &(RxTxDataBuffer.HX711_serialdata), portMAX_DELAY);
+        xQueueReceive(xQueue_SrialComm_HX711, &(RxTxDataBuffer.HX711_localdata), portMAX_DELAY);
+        xQueueReceive(xQueue_SrialComm_HX711, &(RxTxDataBuffer.HX711_CCdata), portMAX_DELAY);
 
         // Format buffer
-        printsize = sprintf(comm_data_buff, "/*%d*/", RxTxDataBuffer.HX711_serialdata);
+        printsize = sprintf(comm_data_buff, "/*%d,%d*/", RxTxDataBuffer.HX711_localdata, RxTxDataBuffer.HX711_CCdata);
 
         // SEND DATA
         sciSend(scilinREG, printsize, (uint8_t *) comm_data_buff);
