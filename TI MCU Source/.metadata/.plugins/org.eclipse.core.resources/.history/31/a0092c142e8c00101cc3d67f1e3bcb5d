@@ -189,8 +189,8 @@ void vTaskMASTER(void *pvParameters)
     if(BOARDMODE == BOARD_MAIN)
     {
         sciSend(scilinREG, sprintf(CmdMsgBuff, "Main is waiting for backup acknowledge...\r\n"), (uint8 *) CmdMsgBuff);
-        CrossChReceiveInt(&CommsData, &CommDATA, false);
-        if(CommsData.LABEL == ARINC_LABEL_BackupAcknowledge)
+        CrossChReceive(&CommLABEL, &CommSDI, &CommDATA, &CommSSM, false);
+        if(CommLABEL == ARINC_LABEL_BackupAcknowledge)
             sciSend(scilinREG, sprintf(CmdMsgBuff, "Backup has acknowledged!\r\n"), (uint8 *) CmdMsgBuff);
         else
             while(1);       // BACKUP ACKNOWLEDGE ERROR
@@ -267,16 +267,16 @@ void vTaskMASTER(void *pvParameters)
         CommsData.SDI = ARINC_SDI_Main;
         CommsData.SSM = ARINC_SSM_NormOp;
         CrossChTransmitInt(CommsData, ARINC_DATA_DEFAULT);
-        CrossChReceiveInt(&CommsData, &CommDATA, false);
-        if(CommsData.LABEL == ARINC_LABEL_BackupHX711ready)
+        CrossChReceive(&CommLABEL, &CommSDI, &CommDATA, &CommSSM, false);
+        if(CommLABEL == ARINC_LABEL_BackupHX711ready)
             sciSend(scilinREG, sprintf(CmdMsgBuff, "Devices Synced!...\r\n"), (uint8 *) CmdMsgBuff);
         else
             while(1);       // Backup OS init failed
     }
     else
     {
-        CrossChReceiveInt(&CommsData, &CommDATA, false);
-        if(CommsData.LABEL == ARINC_LABEL_MainHX711ready)
+        CrossChReceive(&CommLABEL, &CommSDI, &CommDATA, &CommSSM, false);
+        if(CommLABEL == ARINC_LABEL_MainHX711ready)
         {
             CommsData.LABEL = ARINC_LABEL_BackupHX711ready;
             CommsData.SDI = ARINC_SDI_Backup;

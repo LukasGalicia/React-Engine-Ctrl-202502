@@ -29,7 +29,7 @@ void CrossChTransmitInt(ARINC_Frame_Mdata MsgMdata, int32_t MsgDATA)
     spiTransmitData(spiREG3, &CCSpiDataFmt, SPI_blocksize, (uint16_t *) &(CCmsg_INT_FRAME_OUTBOUND.ARINCmsg));  // Send SPI data
 }
 
-void CrossChReceiveInt(ARINC_Frame_Mdata *MsgMdata, int32_t *MsgDATA, bool negValExp)
+void CrossChReceive(uint8_t *MsgLABEL, uint8_t *MsgSDI, int32_t *MsgDATA, uint8_t *MsgSSM, bool negValExp)
 {
     CCmsg_INT_FRAME_INBOUND.ExpBCD = negValExp;     // Is negative value expected?
 
@@ -37,10 +37,10 @@ void CrossChReceiveInt(ARINC_Frame_Mdata *MsgMdata, int32_t *MsgDATA, bool negVa
     ARINC_INT_DCDR(&CCmsg_INT_FRAME_INBOUND, &CCmsg_INT_DATA_INBOUND);                                              // Decode ARINC message
 
     // ARINC decoded assigns
-    MsgMdata->LABEL = CCmsg_INT_DATA_INBOUND.LABEL;
-    MsgMdata->SDI = CCmsg_INT_DATA_INBOUND.SDI;
-    MsgMdata->SSM = CCmsg_INT_DATA_INBOUND.SSM;
+    *MsgLABEL = CCmsg_INT_DATA_INBOUND.LABEL;
+    *MsgSDI = CCmsg_INT_DATA_INBOUND.SDI;
     *MsgDATA = CCmsg_INT_DATA_INBOUND.DATA;
+    *MsgSSM = CCmsg_INT_DATA_INBOUND.SSM;
 }
 
 void CrossChTransmitandReceive(uint8_t *InLABEL, uint8_t *InSDI, int32_t *InDATA, uint8_t *InSSM, bool negValExp,
