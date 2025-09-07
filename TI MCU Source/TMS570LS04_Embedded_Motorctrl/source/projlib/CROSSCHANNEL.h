@@ -76,7 +76,7 @@ outC_ARINC_FLT_DCDR     CCmsg_FLT_DATA_INBOUND;
 /* Cross-channel Comm fn prototypes */
 void CrossChReceiveInt(ARINC_Frame_Mdata *MsgMdata, int32_t *MsgDATA, bool negValExp);
 void CrossChTransmitInt(ARINC_Frame_Mdata MsgMdata, int32_t MsgDATA);
-void CrossChTransmitandReceive(uint8_t *InLABEL, uint8_t *InSDI, int32_t *InDATA, uint8_t *InSSM, bool negValExp,
-                               uint8_t OutLABEL, uint8_t OutSDI, int32_t OutDATA, uint8_t OutSSM);
+void CrossChTransmitandReceiveINT(ARINC_Frame_Mdata *inFrameData, int32_t *inDATA,
+                                  ARINC_Frame_Mdata outFrameData, int32_t outDATA, bool negValExp);
 
 #endif /* SOURCE_PROJLIB_CROSSCHANNEL_H_ */

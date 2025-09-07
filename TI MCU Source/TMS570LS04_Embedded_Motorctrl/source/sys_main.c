@@ -123,8 +123,8 @@ TaskHandle_t xTask_HX711_Poll_Handle;
 */
 
 /* USER CODE BEGIN (2) */
-HX711Data_t Local_Min_Gauge = 156838;
-HX711Data_t Local_Max_Gauge = 233975;
+HX711Data_t Local_Min_Gauge = GAUGE_1_MIN_THRTT;
+HX711Data_t Local_Max_Gauge = GAUGE_1_MAX_THRTT;
 /* USER CODE END */
 
 int main(void)
@@ -170,11 +170,14 @@ int main(void)
 /* USER TASKS IMP, BEGIN */
 void vTaskMASTER(void *pvParameters)
 {
-    ARINC_Frame_Mdata CommsData;
-
-    uint8_t CommLABEL, CommSDI, CommSSM;
-    int32_t CommDATA;
+    ARINC_Frame_Mdata CommsDataIn, CommsDataOut;
+    int32_t CommDATA, CommDATAIn;
     char CmdMsgBuff[65];
+
+    if(BOARDMODE == BOARD_BACKUP)
+        CommsDataOut.SDI = ARINC_SDI_Main;
+    else
+        CommsDataOut.SDI = ARINC_SDI_Backup;
 
     /* SYSTEM Init BEGIN */
     BOARDMODE = (gioGetBit(gioPORTA, 4U) == 0U) ? BOARD_BACKUP : BOARD_MAIN;    // Determine if board is MAIN or BACKUP
@@ -189,19 +192,17 @@ void vTaskMASTER(void *pvParameters)
     if(BOARDMODE == BOARD_MAIN)
     {
         sciSend(scilinREG, sprintf(CmdMsgBuff, "Main is waiting for backup acknowledge...\r\n"), (uint8 *) CmdMsgBuff);
-        CrossChReceiveInt(&CommsData, &CommDATA, false);
-        if(CommsData.LABEL == ARINC_LABEL_BackupAcknowledge)
+        CrossChReceiveInt(&CommsDataIn, &CommDATAIn, false);
+        if(CommsDataIn.LABEL == ARINC_LABEL_BackupAcknowledge)
             sciSend(scilinREG, sprintf(CmdMsgBuff, "Backup has acknowledged!\r\n"), (uint8 *) CmdMsgBuff);
         else
             while(1);       // BACKUP ACKNOWLEDGE ERROR
     }
     else
     {
-        CommsData.LABEL = ARINC_LABEL_BackupAcknowledge;
-        CommsData.SDI = ARINC_SDI_Backup;
-        CommsData.SSM = ARINC_SSM_FnTest;
-        CommDATA = ARINC_DATA_DEFAULT;
-        CrossChTransmitInt(CommsData, CommDATA);
+        CommsDataOut.LABEL = ARINC_LABEL_BackupAcknowledge;
+        CommsDataOut.SSM = ARINC_SSM_FnTest;
+        CrossChTransmitInt(CommsDataOut, ARINC_DATA_DEFAULT);
     }
 
     sciSend(scilinREG, sprintf(CmdMsgBuff, "Starting OS\r\n"), (uint8 *) CmdMsgBuff);
@@ -263,30 +264,28 @@ void vTaskMASTER(void *pvParameters)
 
     if(BOARDMODE == BOARD_MAIN)
     {
-        CommsData.LABEL = ARINC_LABEL_MainHX711ready;
-        CommsData.SDI = ARINC_SDI_Main;
-        CommsData.SSM = ARINC_SSM_NormOp;
-        CrossChTransmitInt(CommsData, ARINC_DATA_DEFAULT);
-        CrossChReceiveInt(&CommsData, &CommDATA, false);
-        if(CommsData.LABEL == ARINC_LABEL_BackupHX711ready)
+        CommsDataOut.LABEL = ARINC_LABEL_MainHX711ready;
+        CommsDataOut.SSM = ARINC_SSM_NormOp;
+        CrossChTransmitInt(CommsDataOut, ARINC_DATA_DEFAULT);
+        CrossChReceiveInt(&CommsDataIn, &CommDATA, false);
+        if(CommsDataIn.LABEL == ARINC_LABEL_BackupHX711ready)
             sciSend(scilinREG, sprintf(CmdMsgBuff, "Devices Synced!...\r\n"), (uint8 *) CmdMsgBuff);
         else
             while(1);       // Backup OS init failed
     }
     else
     {
-        CrossChReceiveInt(&CommsData, &CommDATA, false);
-        if(CommsData.LABEL == ARINC_LABEL_MainHX711ready)
+        CrossChReceiveInt(&CommsDataIn, &CommDATAIn, false);
+        if(CommsDataIn.LABEL == ARINC_LABEL_MainHX711ready)
         {
-            CommsData.LABEL = ARINC_LABEL_BackupHX711ready;
-            CommsData.SDI = ARINC_SDI_Backup;
-            CommsData.SSM = ARINC_SSM_NormOp;
-            CrossChTransmitInt(CommsData, ARINC_DATA_DEFAULT);
+            CommsDataOut.LABEL = ARINC_LABEL_BackupHX711ready;
+            CommsDataOut.SSM = ARINC_SSM_NormOp;
+            CrossChTransmitInt(CommsDataOut, ARINC_DATA_DEFAULT);
         }
         else
             while(1);       // Main OS init failed
     }
-    CrossChTransmitandReceive(&CommLABEL, &CommSDI, &CommDATA, &CommSSM, 0, 0, 0, ARINC_SSM_NormOp, false);
+    CrossChTransmitandReceiveINT(&CommsDataIn, &CommDATAIn, CommsDataOut, ARINC_DATA_DEFAULT, false);
     xTaskNotifyGive(xTask_HX711_Poll_Handle);
     /* OS Init END */
 
@@ -340,8 +339,12 @@ void vTask_MotorCtrl(void *pvParameters)
 void vTask_CrossCh_Comm(void *pvParameters)
 {
     HX711Data_t HX711_BoardData, HX711_CCData;
+    ARINC_Frame_Mdata CC_Comm_Mdata_IN,CC_Comm_Mdata_OUT;
 
-    uint8_t CommLABEL, CommSDI, CommSSM;
+    if(BOARDMODE == BOARD_MAIN)
+        CC_Comm_Mdata_OUT.SDI = ARINC_SDI_Main;
+    else
+        CC_Comm_Mdata_OUT.SDI = ARINC_SDI_Backup;
 
     xTaskNotifyGive(xTaskMASTER);
 
@@ -350,16 +353,12 @@ void vTask_CrossCh_Comm(void *pvParameters)
         xQueueReceive(xQueue_CrossChComm_HX711, &HX711_BoardData, portMAX_DELAY);       // Wait for local sensor data
 
         // Exchange sensor data across cross channel
+        CC_Comm_Mdata_OUT.SSM = (HX711_BoardData > 0) ? ARINC_SSM_ValuePos : ARINC_SSM_ValueNeg;
         if(BOARDMODE == BOARD_MAIN)
-            CrossChTransmitandReceive(&CommLABEL, &CommSDI, &HX711_CCData, &CommSSM,
-                                      ARINC_LABEL_MainHX711_data, ARINC_SDI_Main, HX711_BoardData,
-                                      (HX711_BoardData > 0) ? ARINC_SSM_ValuePos : ARINC_SSM_ValueNeg,
-                                              true);
+            CC_Comm_Mdata_OUT.LABEL = ARINC_LABEL_MainHX711_data;
         else
-            CrossChTransmitandReceive(&CommLABEL, &CommSDI, &HX711_CCData, &CommSSM,
-                                      ARINC_LABEL_BackupHX711_data, ARINC_SDI_Backup, HX711_BoardData,
-                                      (HX711_BoardData > 0) ? ARINC_SSM_ValuePos : ARINC_SSM_ValueNeg,
-                                              true);
+            CC_Comm_Mdata_OUT.LABEL = ARINC_LABEL_BackupHX711_data;
+        CrossChTransmitandReceiveINT(&CC_Comm_Mdata_IN, &HX711_CCData, CC_Comm_Mdata_OUT, HX711_BoardData, true);
 
         // Send cross channel telemetry data
         if(BOARDMODE == BOARD_MAIN)

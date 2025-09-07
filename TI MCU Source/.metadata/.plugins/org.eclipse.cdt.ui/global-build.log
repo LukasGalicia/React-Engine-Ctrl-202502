@@ -3681,3 +3681,131 @@ gmake[1]: 'TMS570LS04_Embedded_Motorctrl.out' is up to date.
 gmake[1]: 'TMS570LS04_Embedded_Motorctrl.out' is up to date.
 
 **** Build Finished ****
+
+**** Build of configuration Debug for project TMS570LS04_Embedded_Motorctrl ****
+
+"C:\\ti\\ccs1281\\ccs\\utils\\bin\\gmake" -k -j 5 all -O 
+ 
+Building file: "../source/sys_main.c"
+Invoking: Arm Compiler
+"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7R4 --code_state=32 --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl" --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl/source/embedded_SCADE" --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl/source/projlib" --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl/include" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --enum_type=packed --abi=eabi --preproc_with_compile --preproc_dependency="source/sys_main.d_raw" --obj_directory="source"  "../source/sys_main.c"
+ 
+>> Compilation failure
+source/subdir_rules.mk:9: recipe for target 'source/sys_main.obj' failed
+"../source/sys_main.c", line 164: warning #112-D: statement is unreachable
+"../source/sys_main.c", line 290: warning #551-D: variable "CommDATAOut" is used before its value is set
+"../source/sys_main.c", line 173: warning #179-D: variable "CommsData" was declared but never referenced
+"../source/sys_main.c", line 175: warning #179-D: variable "CommLABEL" was declared but never referenced
+"../source/sys_main.c", line 175: warning #179-D: variable "CommSDI" was declared but never referenced
+"../source/sys_main.c", line 175: warning #179-D: variable "CommSSM" was declared but never referenced
+"../source/sys_main.c", line 302: warning #179-D: variable "MotCtrlRef" was declared but never referenced
+"../source/sys_main.c", line 302: warning #179-D: variable "MotCtrlErr" was declared but never referenced
+"../source/sys_main.c", line 305: warning #179-D: variable "BLDC_PID" was declared but never referenced
+"../source/sys_main.c", line 353: error #66: expected a ";"
+"../source/sys_main.c", line 346: warning #179-D: variable "CommLABEL" was declared but never referenced
+"../source/sys_main.c", line 346: warning #179-D: variable "CommSDI" was declared but never referenced
+"../source/sys_main.c", line 346: warning #179-D: variable "CommSSM" was declared but never referenced
+1 error detected in the compilation of "../source/sys_main.c".
+gmake: *** [source/sys_main.obj] Error 1
+Building file: "../source/projlib/CROSSCHANNEL.c"
+Invoking: Arm Compiler
+"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7R4 --code_state=32 --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl" --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl/source/embedded_SCADE" --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl/source/projlib" --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl/include" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --enum_type=packed --abi=eabi --preproc_with_compile --preproc_dependency="source/projlib/CROSSCHANNEL.d_raw" --obj_directory="source/projlib"  "../source/projlib/CROSSCHANNEL.c"
+Finished building: "../source/projlib/CROSSCHANNEL.c"
+ 
+Building file: "../source/embedded_SCADE/SCADE_global_lib.c"
+Invoking: Arm Compiler
+"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7R4 --code_state=32 --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl" --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl/source/embedded_SCADE" --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl/source/projlib" --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl/include" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --enum_type=packed --abi=eabi --preproc_with_compile --preproc_dependency="source/embedded_SCADE/SCADE_global_lib.d_raw" --obj_directory="source/embedded_SCADE"  "../source/embedded_SCADE/SCADE_global_lib.c"
+Finished building: "../source/embedded_SCADE/SCADE_global_lib.c"
+ 
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project TMS570LS04_Embedded_Motorctrl ****
+
+"C:\\ti\\ccs1281\\ccs\\utils\\bin\\gmake" -k -j 5 all -O 
+ 
+Building file: "../source/sys_main.c"
+Invoking: Arm Compiler
+"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7R4 --code_state=32 --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl" --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl/source/embedded_SCADE" --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl/source/projlib" --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl/include" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --enum_type=packed --abi=eabi --preproc_with_compile --preproc_dependency="source/sys_main.d_raw" --obj_directory="source"  "../source/sys_main.c"
+"../source/sys_main.c", line 164: warning #112-D: statement is unreachable
+"../source/sys_main.c", line 174: warning #179-D: variable "CommDATAOut" was declared but never referenced
+"../source/sys_main.c", line 300: warning #179-D: variable "MotCtrlRef" was declared but never referenced
+"../source/sys_main.c", line 300: warning #179-D: variable "MotCtrlErr" was declared but never referenced
+"../source/sys_main.c", line 303: warning #179-D: variable "BLDC_PID" was declared but never referenced
+Finished building: "../source/sys_main.c"
+ 
+Building target: "TMS570LS04_Embedded_Motorctrl.out"
+Invoking: Arm Linker
+"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7R4 --code_state=32 -g --diag_warning=225 --diag_wrap=off --display_error_number --enum_type=packed --abi=eabi -z -m"TMS570LS04_Embedded_Motorctrl.map" --heap_size=0x800 --stack_size=0x800 -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/lib" -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="TMS570LS04_Embedded_Motorctrl_linkInfo.xml" --rom_model --be32 -o "TMS570LS04_Embedded_Motorctrl.out" "./source/adc.obj" "./source/dabort.obj" "./source/errata_SSWF021_45.obj" "./source/esm.obj" "./source/gio.obj" "./source/het.obj" "./source/notification.obj" "./source/os_croutine.obj" "./source/os_event_groups.obj" "./source/os_heap.obj" "./source/os_list.obj" "./source/os_mpu_wrappers.obj" "./source/os_port.obj" "./source/os_portasm.obj" "./source/os_queue.obj" "./source/os_tasks.obj" "./source/os_timer.obj" "./source/pinmux.obj" "./source/sci.obj" "./source/spi.obj" "./source/sys_core.obj" "./source/sys_intvecs.obj" "./source/sys_main.obj" "./source/sys_mpu.obj" "./source/sys_pcr.obj" "./source/sys_phantom.obj" "./source/sys_pmu.obj" "./source/sys_selftest.obj" "./source/sys_startup.obj" "./source/sys_vim.obj" "./source/system.obj" "./source/embedded_SCADE/ARINC_FLT_DCDR/ARINC_FLT_DCDR.obj" "./source/embedded_SCADE/ARINC_FLT_ENCDR/ARINC_FLT_ENCDR.obj" "./source/embedded_SCADE/ARINC_FLT_ENCDR/RoundFloor_math_float32.obj" "./source/embedded_SCADE/ARINC_INT_DCDR/ARINC_INT_DCDR.obj" "./source/embedded_SCADE/ARINC_INT_ENCDR/ARINC_INT_ENCDR.obj" "./source/embedded_SCADE/SCADE_global_lib.obj" "./source/embedded_SCADE/kcg_consts_global.obj" "./source/embedded_SCADE/kcg_types_global.obj" "./source/projlib/BLDC_ctrlLib.obj" "./source/projlib/CROSSCHANNEL.obj" "./source/projlib/HX711_FREERTOS.obj" "../source/sys_link.cmd"  -llibc.a 
+<Linking>
+Finished building target: "TMS570LS04_Embedded_Motorctrl.out"
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project TMS570LS04_Embedded_Motorctrl ****
+
+"C:\\ti\\ccs1281\\ccs\\utils\\bin\\gmake" -k -j 5 all -O 
+ 
+Building file: "../source/sys_main.c"
+Invoking: Arm Compiler
+"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7R4 --code_state=32 --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl" --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl/source/embedded_SCADE" --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl/source/projlib" --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl/include" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --enum_type=packed --abi=eabi --preproc_with_compile --preproc_dependency="source/sys_main.d_raw" --obj_directory="source"  "../source/sys_main.c"
+"../source/sys_main.c", line 164: warning #112-D: statement is unreachable
+"../source/sys_main.c", line 300: warning #179-D: variable "MotCtrlRef" was declared but never referenced
+"../source/sys_main.c", line 300: warning #179-D: variable "MotCtrlErr" was declared but never referenced
+"../source/sys_main.c", line 303: warning #179-D: variable "BLDC_PID" was declared but never referenced
+Finished building: "../source/sys_main.c"
+ 
+Building target: "TMS570LS04_Embedded_Motorctrl.out"
+Invoking: Arm Linker
+"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7R4 --code_state=32 -g --diag_warning=225 --diag_wrap=off --display_error_number --enum_type=packed --abi=eabi -z -m"TMS570LS04_Embedded_Motorctrl.map" --heap_size=0x800 --stack_size=0x800 -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/lib" -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="TMS570LS04_Embedded_Motorctrl_linkInfo.xml" --rom_model --be32 -o "TMS570LS04_Embedded_Motorctrl.out" "./source/adc.obj" "./source/dabort.obj" "./source/errata_SSWF021_45.obj" "./source/esm.obj" "./source/gio.obj" "./source/het.obj" "./source/notification.obj" "./source/os_croutine.obj" "./source/os_event_groups.obj" "./source/os_heap.obj" "./source/os_list.obj" "./source/os_mpu_wrappers.obj" "./source/os_port.obj" "./source/os_portasm.obj" "./source/os_queue.obj" "./source/os_tasks.obj" "./source/os_timer.obj" "./source/pinmux.obj" "./source/sci.obj" "./source/spi.obj" "./source/sys_core.obj" "./source/sys_intvecs.obj" "./source/sys_main.obj" "./source/sys_mpu.obj" "./source/sys_pcr.obj" "./source/sys_phantom.obj" "./source/sys_pmu.obj" "./source/sys_selftest.obj" "./source/sys_startup.obj" "./source/sys_vim.obj" "./source/system.obj" "./source/embedded_SCADE/ARINC_FLT_DCDR/ARINC_FLT_DCDR.obj" "./source/embedded_SCADE/ARINC_FLT_ENCDR/ARINC_FLT_ENCDR.obj" "./source/embedded_SCADE/ARINC_FLT_ENCDR/RoundFloor_math_float32.obj" "./source/embedded_SCADE/ARINC_INT_DCDR/ARINC_INT_DCDR.obj" "./source/embedded_SCADE/ARINC_INT_ENCDR/ARINC_INT_ENCDR.obj" "./source/embedded_SCADE/SCADE_global_lib.obj" "./source/embedded_SCADE/kcg_consts_global.obj" "./source/embedded_SCADE/kcg_types_global.obj" "./source/projlib/BLDC_ctrlLib.obj" "./source/projlib/CROSSCHANNEL.obj" "./source/projlib/HX711_FREERTOS.obj" "../source/sys_link.cmd"  -llibc.a 
+<Linking>
+Finished building target: "TMS570LS04_Embedded_Motorctrl.out"
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project TMS570LS04_Embedded_Motorctrl ****
+
+"C:\\ti\\ccs1281\\ccs\\utils\\bin\\gmake" -k -j 5 all -O 
+ 
+Building file: "../source/sys_main.c"
+Invoking: Arm Compiler
+"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7R4 --code_state=32 --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl" --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl/source/embedded_SCADE" --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl/source/projlib" --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl/include" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --enum_type=packed --abi=eabi --preproc_with_compile --preproc_dependency="source/sys_main.d_raw" --obj_directory="source"  "../source/sys_main.c"
+"../source/sys_main.c", line 164: warning #112-D: statement is unreachable
+"../source/sys_main.c", line 300: warning #179-D: variable "MotCtrlRef" was declared but never referenced
+"../source/sys_main.c", line 300: warning #179-D: variable "MotCtrlErr" was declared but never referenced
+"../source/sys_main.c", line 303: warning #179-D: variable "BLDC_PID" was declared but never referenced
+Finished building: "../source/sys_main.c"
+ 
+Building target: "TMS570LS04_Embedded_Motorctrl.out"
+Invoking: Arm Linker
+"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7R4 --code_state=32 -g --diag_warning=225 --diag_wrap=off --display_error_number --enum_type=packed --abi=eabi -z -m"TMS570LS04_Embedded_Motorctrl.map" --heap_size=0x800 --stack_size=0x800 -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/lib" -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="TMS570LS04_Embedded_Motorctrl_linkInfo.xml" --rom_model --be32 -o "TMS570LS04_Embedded_Motorctrl.out" "./source/adc.obj" "./source/dabort.obj" "./source/errata_SSWF021_45.obj" "./source/esm.obj" "./source/gio.obj" "./source/het.obj" "./source/notification.obj" "./source/os_croutine.obj" "./source/os_event_groups.obj" "./source/os_heap.obj" "./source/os_list.obj" "./source/os_mpu_wrappers.obj" "./source/os_port.obj" "./source/os_portasm.obj" "./source/os_queue.obj" "./source/os_tasks.obj" "./source/os_timer.obj" "./source/pinmux.obj" "./source/sci.obj" "./source/spi.obj" "./source/sys_core.obj" "./source/sys_intvecs.obj" "./source/sys_main.obj" "./source/sys_mpu.obj" "./source/sys_pcr.obj" "./source/sys_phantom.obj" "./source/sys_pmu.obj" "./source/sys_selftest.obj" "./source/sys_startup.obj" "./source/sys_vim.obj" "./source/system.obj" "./source/embedded_SCADE/ARINC_FLT_DCDR/ARINC_FLT_DCDR.obj" "./source/embedded_SCADE/ARINC_FLT_ENCDR/ARINC_FLT_ENCDR.obj" "./source/embedded_SCADE/ARINC_FLT_ENCDR/RoundFloor_math_float32.obj" "./source/embedded_SCADE/ARINC_INT_DCDR/ARINC_INT_DCDR.obj" "./source/embedded_SCADE/ARINC_INT_ENCDR/ARINC_INT_ENCDR.obj" "./source/embedded_SCADE/SCADE_global_lib.obj" "./source/embedded_SCADE/kcg_consts_global.obj" "./source/embedded_SCADE/kcg_types_global.obj" "./source/projlib/BLDC_ctrlLib.obj" "./source/projlib/CROSSCHANNEL.obj" "./source/projlib/HX711_FREERTOS.obj" "../source/sys_link.cmd"  -llibc.a 
+<Linking>
+Finished building target: "TMS570LS04_Embedded_Motorctrl.out"
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project TMS570LS04_Embedded_Motorctrl ****
+
+"C:\\ti\\ccs1281\\ccs\\utils\\bin\\gmake" -k -j 5 all -O 
+ 
+Building file: "../source/sys_main.c"
+Invoking: Arm Compiler
+"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7R4 --code_state=32 --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl" --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl/source/embedded_SCADE" --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl/source/projlib" --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl/include" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --enum_type=packed --abi=eabi --preproc_with_compile --preproc_dependency="source/sys_main.d_raw" --obj_directory="source"  "../source/sys_main.c"
+"../source/sys_main.c", line 164: warning #112-D: statement is unreachable
+"../source/sys_main.c", line 300: warning #179-D: variable "MotCtrlRef" was declared but never referenced
+"../source/sys_main.c", line 300: warning #179-D: variable "MotCtrlErr" was declared but never referenced
+"../source/sys_main.c", line 303: warning #179-D: variable "BLDC_PID" was declared but never referenced
+Finished building: "../source/sys_main.c"
+ 
+Building target: "TMS570LS04_Embedded_Motorctrl.out"
+Invoking: Arm Linker
+"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7R4 --code_state=32 -g --diag_warning=225 --diag_wrap=off --display_error_number --enum_type=packed --abi=eabi -z -m"TMS570LS04_Embedded_Motorctrl.map" --heap_size=0x800 --stack_size=0x800 -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/lib" -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="TMS570LS04_Embedded_Motorctrl_linkInfo.xml" --rom_model --be32 -o "TMS570LS04_Embedded_Motorctrl.out" "./source/adc.obj" "./source/dabort.obj" "./source/errata_SSWF021_45.obj" "./source/esm.obj" "./source/gio.obj" "./source/het.obj" "./source/notification.obj" "./source/os_croutine.obj" "./source/os_event_groups.obj" "./source/os_heap.obj" "./source/os_list.obj" "./source/os_mpu_wrappers.obj" "./source/os_port.obj" "./source/os_portasm.obj" "./source/os_queue.obj" "./source/os_tasks.obj" "./source/os_timer.obj" "./source/pinmux.obj" "./source/sci.obj" "./source/spi.obj" "./source/sys_core.obj" "./source/sys_intvecs.obj" "./source/sys_main.obj" "./source/sys_mpu.obj" "./source/sys_pcr.obj" "./source/sys_phantom.obj" "./source/sys_pmu.obj" "./source/sys_selftest.obj" "./source/sys_startup.obj" "./source/sys_vim.obj" "./source/system.obj" "./source/embedded_SCADE/ARINC_FLT_DCDR/ARINC_FLT_DCDR.obj" "./source/embedded_SCADE/ARINC_FLT_ENCDR/ARINC_FLT_ENCDR.obj" "./source/embedded_SCADE/ARINC_FLT_ENCDR/RoundFloor_math_float32.obj" "./source/embedded_SCADE/ARINC_INT_DCDR/ARINC_INT_DCDR.obj" "./source/embedded_SCADE/ARINC_INT_ENCDR/ARINC_INT_ENCDR.obj" "./source/embedded_SCADE/SCADE_global_lib.obj" "./source/embedded_SCADE/kcg_consts_global.obj" "./source/embedded_SCADE/kcg_types_global.obj" "./source/projlib/BLDC_ctrlLib.obj" "./source/projlib/CROSSCHANNEL.obj" "./source/projlib/HX711_FREERTOS.obj" "../source/sys_link.cmd"  -llibc.a 
+<Linking>
+Finished building target: "TMS570LS04_Embedded_Motorctrl.out"
+ 
+
+**** Build Finished ****
