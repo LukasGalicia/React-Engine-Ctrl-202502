@@ -1,0 +1,20 @@
+/*
+ * CROSSCHANNEL.h
+ *
+ *  Created on: 4 sep 2025
+ *      Author: lukas
+ */
+
+#ifndef SOURCE_PROJLIB_CROSSCHANNEL_H_
+#define SOURCE_PROJLIB_CROSSCHANNEL_H_
+
+/* ARINC MESSAGE FORMATS */
+
+// LABEL Formats
+#define ARINC_LABEL_BackupAcknowledge 0xBAU
+
+// SDI Formats
+#define ARINC_SDI_Backup    0x00U
+#define ARINC_SDI_Main      0x01U
+
+#endif /* SOURCE_PROJLIB_CROSSCHANNEL_H_ */

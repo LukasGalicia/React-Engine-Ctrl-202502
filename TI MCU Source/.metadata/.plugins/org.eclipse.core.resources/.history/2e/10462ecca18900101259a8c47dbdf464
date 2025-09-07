@@ -1,0 +1,34 @@
+/*
+ * CROSSCHANNEL.c
+ *
+ *  Created on: 4 sep 2025
+ *      Author: lukas
+ */
+
+/* Include files */
+#include "CROSSCHANNEL.h"
+
+/* SPI Cross-channel Comms */
+spiDAT1_t CCspiDataFmt =
+{
+ false,     // CS_HOLD
+ false,     // WDEL
+ SPI_FMT_0, // DFSEL
+ SPI_CS_0   // CSNR
+};
+
+/* Cross-channel Comm functions */
+void CrossChReceive(uint8_t *MsgLABEL, uint8_t *MsgSDI, int32_t *MsgDATA, uint8_t *MsgSSM)
+{
+    uint16_t *RxBuff = (uint16_t *) malloc(2 * sizeof(uint16_t));   // SPI Rx Buffer
+
+    spiReceiveData(spiREG3, &CCspiDataFmt, SPI_blocksize, RxBuff);      // Get SPI data
+    CCmsg_FRAME_INBOUND.ARINCmsg = (uint32_t) (*RxBuff);                // Assign frame to SCADE logic
+    ARINC_INT_DCDR(&CCmsg_FRAME_INBOUND, &CCmsg_DATA_INBOUND);          // Decode ARING message
+
+    // ARINC decoded assigns
+    *MsgLABEL = CCmsg_DATA_INBOUND.LABEL;
+    *MsgSDI = CCmsg_DATA_INBOUND.SDI;
+    *MsgDATA = CCmsg_DATA_INBOUND.DATA;
+    *MsgSSM = CCmsg_DATA_INBOUND.SSM;
+}

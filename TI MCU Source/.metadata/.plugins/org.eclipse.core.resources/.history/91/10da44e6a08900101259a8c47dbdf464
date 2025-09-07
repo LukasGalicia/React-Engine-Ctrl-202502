@@ -1,0 +1,24 @@
+/*
+ * CROSSCHANNEL.c
+ *
+ *  Created on: 4 sep 2025
+ *      Author: lukas
+ */
+
+/* Include files */
+#include "CROSSCHANNEL.h"
+
+/* SPI Cross-channel Comms */
+spiDAT1_t CCspiDataFmt =
+{
+ false,     // CS_HOLD
+ false,     // WDEL
+ SPI_FMT_0, // DFSEL
+ SPI_CS_0   // CSNR
+};
+
+/* Cross-channel Comm functions */
+uint32 CrossChReceive(uint8_t MsgLABEL, uint8_t MsgSDI, int32_t MsgDATA, uint8_t MsgSSM)
+{
+    uint16_t *RxBuff = (uint16_t *) malloc(2 * sizeof(uint16_t));
+}

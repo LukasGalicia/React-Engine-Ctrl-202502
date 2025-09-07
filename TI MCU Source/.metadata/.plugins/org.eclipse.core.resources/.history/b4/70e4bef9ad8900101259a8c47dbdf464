@@ -1,0 +1,42 @@
+/*
+ * CROSSCHANNEL.c
+ *
+ *  Created on: 4 sep 2025
+ *      Author: lukas
+ */
+
+/* Include files */
+#include "CROSSCHANNEL.h"
+
+spiDAT1_t CCSpiDataFmt =
+{
+ false,
+ false,
+ SPI_FMT_0,
+ SPI_CS_0
+};
+
+/* Cross-channel Comm functions */
+void CrossChTransmit(uint8_t MsgLABEL, uint8_t MsgSDI, int32_t MsgDATA, uint8_t MsgSSM)
+{
+    // ARINC encode assigns
+    CCmsg_DATA_OUTBOUND.LABEL = MsgLABEL;
+    CCmsg_DATA_OUTBOUND.SDI = MsgSDI;
+    CCmsg_DATA_OUTBOUND.DATA = MsgDATA;
+    CCmsg_DATA_OUTBOUND.SSM = MsgSSM;
+
+    ARINC_INT_ENCDR(&CCmsg_DATA_OUTBOUND, &CCmsg_FRAME_OUTBOUND);                                           // Encode ARINC message
+    spiTransmitData(spiREG3, &CCSpiDataFmt, SPI_blocksize, (uint16_t) &(CCmsg_FRAME_OUTBOUND.ARINCmsg));    // Send SPI data
+}
+
+void CrossChReceive(uint8_t *MsgLABEL, uint8_t *MsgSDI, int32_t *MsgDATA, uint8_t *MsgSSM)
+{
+    spiReceiveData(spiREG3, &CCSpiDataFmt, SPI_blocksize, (uint16_t *) &(CCmsg_FRAME_INBOUND.ARINCmsg));    // Get SPI data
+    ARINC_INT_DCDR(&CCmsg_FRAME_INBOUND, &CCmsg_DATA_INBOUND);                                              // Decode ARINC message
+
+    // ARINC decoded assigns
+    *MsgLABEL = CCmsg_DATA_INBOUND.LABEL;
+    *MsgSDI = CCmsg_DATA_INBOUND.SDI;
+    *MsgDATA = CCmsg_DATA_INBOUND.DATA;
+    *MsgSSM = CCmsg_DATA_INBOUND.SSM;
+}

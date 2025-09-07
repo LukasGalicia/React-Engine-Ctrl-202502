@@ -1,0 +1,32 @@
+/*
+ * CROSSCHANNEL.h
+ *
+ *  Created on: 4 sep 2025
+ *      Author: lukas
+ */
+
+#ifndef SOURCE_PROJLIB_CROSSCHANNEL_H_
+#define SOURCE_PROJLIB_CROSSCHANNEL_H_
+
+/* Include files */
+#include "../embedded_SCADE/ARINC_INT_ENCDR.h"
+#include "../embedded_SCADE/ARINC_INT_DCDR.h"
+
+/* ARINC MESSAGE FORMATS */
+// LABEL Formats
+#define ARINC_LABEL_BackupAcknowledge 0xBAU
+
+// SDI Formats
+#define ARINC_SDI_Backup    0x00U
+#define ARINC_SDI_Main      0x01U
+
+/* Standard SCADE i.f. structs */
+// ARINC Encoder Structs
+inC_ARINC_INT_ENCDR     CCmsg_DATA_OUTBOUND;
+outC_ARINC_INT_ENCDR    CCmsg_FRAME_OUTBOUND;
+
+// ARINC Decoder Structs
+inC_ARINC_INT_DCDR      CCmsg_FRAME_INBOUND;
+outC_ARINC_INT_DCDR     CCmsg_DATA_INBOUND;
+
+#endif /* SOURCE_PROJLIB_CROSSCHANNEL_H_ */

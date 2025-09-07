@@ -21,11 +21,8 @@ font-size: 16pt;
 font-style: italic;
 padding-bottom: 16pt;}
 .DocumentInfo { 
-text-align: center;
 font-family: Verdana;
-font-size: 11pt;
-padding-top: 12pt;
-padding-bottom: 12pt;}
+font-size: 11pt;}
 .ListNumber2 { 
 font-family: Verdana;
 font-size: 11pt;}
@@ -60,7 +57,7 @@ font-size: 9pt;
 padding-left: 0.1cm;
 padding-right: 0.1cm;}
 .TableHeadingCell { 
-text-align: center;
+text-align: left;
 vertical-align:middle;
 color: rgb(255,255,255);
 background-color: rgb(0,0,128);
@@ -89,11 +86,9 @@ font-family: Verdana;
 font-size: 9pt;
 padding-left: 1cm;}
 .Header { 
-text-align: right;
 font-family: Tahoma;
 font-size: 9pt;
-font-weight: bold;
-padding-bottom: 12pt;}
+font-weight: bold;}
 .Footer { 
 font-family: Tahoma;
 font-size: 9pt;
@@ -214,10 +209,340 @@ height: 0.5cm;
 </HEAD>
 <BODY>
 
+<DIV class="DocumentClass">&lt;document classification&gt;</DIV><HR style="width: 14cm; text-align: center;">
+<DIV class="Title">&lt;title&gt;</DIV>
+<DIV class="Subtitle">&lt;subtitle&gt;</DIV>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<DIV class="DocumentInfo">
+<B>Summary:</B></DIV>
+<DIV style="height:35mm;"><DIV class="DocumentInfo">
+&lt;summary&gt;</DIV>
+</DIV>
+<DIV class="DocumentInfo">
+<B>Company: </B>&lt;company&gt;<BR>
+<B>Authors: </B>&lt;authors&gt;<BR>
+<B>Reference: </B>&lt;reference&gt;<BR>
+<B>Index: </B>&lt;index&gt;<BR>
+<B>Date: </B>&lt;date&gt;</DIV>
+<DIV class="DocumentInfo"></DIV><DIV class="DocumentInfo"></DIV><DIV class="DocumentInfo"></DIV><DIV class="DocumentInfo"></DIV><HR style="width: 17cm; text-align: center;">
+<DIV class="DocumentInfo">
+<B>Distribution List: </B>&lt;distribution list&gt;</DIV>
 
-<DIV class="Header">Thursday September 04 2025 13:55:38</DIV><DIV class="Title">Result of check for operator ARINC_INT_DCDR/ in model ARINC_COMM</DIV>
-<HR style="width: 14cm; text-align: center;">
-<DIV class="DocumentInfo">No error detected.</DIV><HR style="width: 14cm; text-align: center;">
+<DIV class="Title" style="margin-top: 12pt; border-top-style: dotted;page-break-before: always; padding-top: 12pt;">Table Of Contents</DIV>
+<DIV class="TOC1">1. <A HREF="#_TOC0">General Project Description</A></DIV>
+<DIV class="TOC1">2. <A HREF="#_TOC1">Software Architecture</A></DIV>
+<DIV class="TOC2">2.1. <A HREF="#_TOC2">Project Architecture</A></DIV>
+<DIV class="TOC2">2.2. <A HREF="#_TOC3">Call Graph</A></DIV>
+<DIV class="TOC1">3. <A HREF="#_TOC4">ARINC_COMM Project</A></DIV>
+<DIV class="TOC2">3.1. <A HREF="#_TOC5">Root Elements</A></DIV>
+<DIV class="TOC3">3.1.1. <A HREF="#_TOC6">Constants</A></DIV>
+<DIV class="TOC3">3.1.2. <A HREF="#_TOC7">ARINC_FLT_DCDR Operator</A></DIV>
+<DIV class="TOC4">3.1.2.1. <A HREF="#_TOC8">Interface</A></DIV>
+<DIV class="TOC4">3.1.2.2. <A HREF="#_TOC9">Locals</A></DIV>
+<DIV class="TOC4">3.1.2.3. <A HREF="#_TOC10">Operator Hierarchy</A></DIV>
+<DIV class="TOC4">3.1.2.4. <A HREF="#_TOC11">Graphical and Textual Diagrams</A></DIV>
+<DIV class="TOC3">3.1.3. <A HREF="#_TOC13">ARINC_FLT_ENCDR Operator</A></DIV>
+<DIV class="TOC4">3.1.3.1. <A HREF="#_TOC14">Interface</A></DIV>
+<DIV class="TOC4">3.1.3.2. <A HREF="#_TOC15">Locals</A></DIV>
+<DIV class="TOC4">3.1.3.3. <A HREF="#_TOC16">Operator Hierarchy</A></DIV>
+<DIV class="TOC4">3.1.3.4. <A HREF="#_TOC17">Graphical and Textual Diagrams</A></DIV>
+<DIV class="TOC3">3.1.4. <A HREF="#_TOC19">ARINC_INT_DCDR Operator</A></DIV>
+<DIV class="TOC4">3.1.4.1. <A HREF="#_TOC20">Interface</A></DIV>
+<DIV class="TOC4">3.1.4.2. <A HREF="#_TOC21">Locals</A></DIV>
+<DIV class="TOC4">3.1.4.3. <A HREF="#_TOC22">Operator Hierarchy</A></DIV>
+<DIV class="TOC4">3.1.4.4. <A HREF="#_TOC23">Graphical and Textual Diagrams</A></DIV>
+<DIV class="TOC3">3.1.5. <A HREF="#_TOC25">ARINC_INT_ENCDR Operator</A></DIV>
+<DIV class="TOC4">3.1.5.1. <A HREF="#_TOC26">Interface</A></DIV>
+<DIV class="TOC4">3.1.5.2. <A HREF="#_TOC27">Operator Hierarchy</A></DIV>
+<DIV class="TOC4">3.1.5.3. <A HREF="#_TOC28">Graphical and Textual Diagrams</A></DIV>
+
+<DIV class="Title" style="margin-top: 12pt; border-top-style: dotted;page-break-before: always; padding-top: 12pt;">List Of Figures</DIV>
+<DIV class="ListOfFigures"><A HREF="#FIGURE1">Figure 1: View of ARINC_FLT_DCDR_1 (ARINC_FLT_DCDR)</A></DIV>
+<DIV class="ListOfFigures"><A HREF="#FIGURE2">Figure 2: View of ARINC_FLT_ENCDR_1 (ARINC_FLT_ENCDR)</A></DIV>
+<DIV class="ListOfFigures"><A HREF="#FIGURE3">Figure 3: View of ARINC_INT_DCDR_1 (ARINC_INT_DCDR)</A></DIV>
+<DIV class="ListOfFigures"><A HREF="#FIGURE4">Figure 4: View of ARINC_INT_ENCDR_1 (ARINC_INT_ENCDR)</A></DIV>
+
+<DIV class="Title" style="margin-top: 12pt; border-top-style: dotted;page-break-before: always; padding-top: 12pt;">List Of Tables</DIV>
+<DIV class="ListOfTables"><A HREF="#TABLE1">Table 1: Public Constants of ARINC_COMM</A></DIV>
+<DIV class="ListOfTables"><A HREF="#TABLE2">Table 2: Inputs of ARINC_FLT_DCDR</A></DIV>
+<DIV class="ListOfTables"><A HREF="#TABLE3">Table 3: Outputs of ARINC_FLT_DCDR</A></DIV>
+<DIV class="ListOfTables"><A HREF="#TABLE4">Table 4: Locals of ARINC_FLT_DCDR</A></DIV>
+<DIV class="ListOfTables"><A HREF="#TABLE5">Table 5: Inputs of ARINC_FLT_ENCDR</A></DIV>
+<DIV class="ListOfTables"><A HREF="#TABLE6">Table 6: Outputs of ARINC_FLT_ENCDR</A></DIV>
+<DIV class="ListOfTables"><A HREF="#TABLE7">Table 7: Locals of ARINC_FLT_ENCDR</A></DIV>
+<DIV class="ListOfTables"><A HREF="#TABLE8">Table 8: Inputs of ARINC_INT_DCDR</A></DIV>
+<DIV class="ListOfTables"><A HREF="#TABLE9">Table 9: Outputs of ARINC_INT_DCDR</A></DIV>
+<DIV class="ListOfTables"><A HREF="#TABLE10">Table 10: Locals of ARINC_INT_DCDR</A></DIV>
+<DIV class="ListOfTables"><A HREF="#TABLE11">Table 11: Inputs of ARINC_INT_ENCDR</A></DIV>
+<DIV class="ListOfTables"><A HREF="#TABLE12">Table 12: Outputs of ARINC_INT_ENCDR</A></DIV>
+
+<DIV class="Heading1">1. <A NAME="_TOC0">General Project Description</A></DIV>
+<DIV class="BodyText">&lt;description&gt;</DIV>
+<DIV class="Heading1">2. <A NAME="_TOC1">Software Architecture</A></DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;">
+<DIV class="Heading2">2.1. <A NAME="_TOC2">Project Architecture</A></DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;">This section displays the package hierarchy of projects.</DIV>Project <A class="Hyperlink" HREF="#LinkM-ARINC_COMM">ARINC_COMM</A>
+</DIV>
+
+<DIV class="Heading2">2.2. <A NAME="_TOC3">Call Graph</A></DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;">This Call Graph displays the dependency tree of model operators.</DIV><DIV class="BodyText" style="padding-bottom: 12pt;">
+1. <A class="Hyperlink" HREF="#LinkS-!ed/46f0/4CD0/1D5C/68bdd28f7cd1">ARINC_FLT_DCDR</A><BR>
+2. <A class="Hyperlink" HREF="#LinkS-!ed/205/4CD0/1D5C/68bdc6be4e28">ARINC_FLT_ENCDR</A>
+<BR>
+ &nbsp; &nbsp; 2.1. math::RoundFloor<BR>
+3. <A class="Hyperlink" HREF="#LinkS-!ed/16c/6835/2D74/68b9896f9aa">ARINC_INT_DCDR</A><BR>
+4. <A class="Hyperlink" HREF="#LinkS-!ed/10/4F3B/6748/68b8f33d63f0">ARINC_INT_ENCDR</A></DIV>
+<A NAME='LinkM-ARINC_COMM'></A><DIV class="Heading1">3. <A NAME="_TOC4">ARINC_COMM Project</A></DIV>
+<DIV class="Heading2">3.1. <A NAME="_TOC5">Root Elements</A></DIV>
+
+
+<DIV class="Heading3">3.1.1. <A NAME="_TOC6">Constants</A></DIV>
+<DIV class="TableCaption">Table&nbsp;<A NAME="TABLE1">1</A>: Public Constants of ARINC_COMM</DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;"><TABLE ><TBODY>
+<TR><TH class="TableHeadingCell" style="width: 40mm;">Name</TH>
+<TH class="TableHeadingCell" style="width: 35mm;">Type</TH>
+<TH class="TableHeadingCell" style="width: 35mm;">Value</TH>
+<TH class="TableHeadingCell" style="width: 43mm;">Comments and Information</TH>
+</TR><TR><TD class="TableCell">SSM_VALUE_Neg</TD>
+<TD class="TableCell">uint8</TD>
+<TD class="TableCell">0b11</TD>
+<TD class="TableCell" style=""></TD>
+</TR><TR><TD class="TableCell">SSM_VALUE_Pos</TD>
+<TD class="TableCell">uint8</TD>
+<TD class="TableCell">0b00</TD>
+<TD class="TableCell" style=""></TD>
+</TR></TBODY></TABLE></DIV>
+
+<A NAME='LinkS-!ed/46f0/4CD0/1D5C/68bdd28f7cd1'></A><DIV class="Heading3">3.1.2. <A NAME="_TOC7">ARINC_FLT_DCDR Operator</A></DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;">
+Declared as <SPAN class="BodyText" style="font-family: Courier; font-size: 12pt; font-weight: bold; padding-bottom: 12pt;">public function</SPAN></DIV>
+
+<DIV class="Heading4">3.1.2.1.   <A NAME="_TOC8">Interface</A></DIV>
+<DIV class="TableCaption">Table&nbsp;<A NAME="TABLE2">2</A>: Inputs of ARINC_FLT_DCDR</DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;"><TABLE ><TBODY>
+<TR><TH class="TableHeadingCell" style="width: 40mm;">Name</TH>
+<TH class="TableHeadingCell" style="width: 40mm;">Type</TH>
+<TH class="TableHeadingCell" style="width: 80mm;">Comments and Information</TH>
+</TR><TR><TD class="TableCell">ARINCmsg</TD>
+<TD class="TableCell">uint32</TD>
+<TD class="TableCell" style=""></TD>
+</TR><TR><TD class="TableCell">Range_Max</TD>
+<TD class="TableCell">float32</TD>
+<TD class="TableCell" style=""></TD>
+</TR><TR><TD class="TableCell">Range_Min</TD>
+<TD class="TableCell">float32</TD>
+<TD class="TableCell" style=""></TD>
+</TR></TBODY></TABLE></DIV>
+<DIV class="TableCaption">Table&nbsp;<A NAME="TABLE3">3</A>: Outputs of ARINC_FLT_DCDR</DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;"><TABLE ><TBODY>
+<TR><TH class="TableHeadingCell" style="width: 40mm;">Name</TH>
+<TH class="TableHeadingCell" style="width: 40mm;">Type</TH>
+<TH class="TableHeadingCell" style="width: 80mm;">Comments and Information</TH>
+</TR><TR><TD class="TableCell">DATA</TD>
+<TD class="TableCell">float32</TD>
+<TD class="TableCell" style=""></TD>
+</TR><TR><TD class="TableCell">LABEL</TD>
+<TD class="TableCell">uint8</TD>
+<TD class="TableCell" style=""></TD>
+</TR><TR><TD class="TableCell">SDI</TD>
+<TD class="TableCell">uint8</TD>
+<TD class="TableCell" style=""></TD>
+</TR><TR><TD class="TableCell">SSM</TD>
+<TD class="TableCell">uint8</TD>
+<TD class="TableCell" style=""></TD>
+</TR></TBODY></TABLE></DIV>
+
+<DIV class="Heading4">3.1.2.2.   <A NAME="_TOC9">Locals</A></DIV>
+<DIV class="TableCaption">Table&nbsp;<A NAME="TABLE4">4</A>: Locals of ARINC_FLT_DCDR</DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;"><TABLE ><TBODY>
+<TR><TH class="TableHeadingCell" style="width: 40mm;">Name</TH>
+<TH class="TableHeadingCell" style="width: 40mm;">Type</TH>
+<TH class="TableHeadingCell" style="width: 80mm;">Comments and Information</TH>
+</TR><TR><TD class="TableCell">raw_data</TD>
+<TD class="TableCell">uint32</TD>
+<TD class="TableCell" style=""></TD>
+</TR></TBODY></TABLE></DIV>
+<DIV class="Heading4">3.1.2.3.   <A NAME="_TOC10">Operator Hierarchy</A></DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;">
+<U>diagram</U> : <A class="Hyperlink" HREF="#LinkS-!ed/46f1/4CD0/1D5C/68bdd28f25c0">ARINC_FLT_DCDR_1</A></DIV>
+
+<DIV class="Heading4">3.1.2.4.   <A NAME="_TOC11">Graphical and Textual Diagrams</A></DIV>
+<A NAME='LinkS-!ed/46f1/4CD0/1D5C/68bdd28f25c0'></A><DIV class="Heading5">3.1.2.4.1.   <A NAME="_TOC12">View of ARINC_FLT_DCDR_1 (ARINC_FLT_DCDR)</A></DIV>
+<DIV class="BodyText" style="text-align: center;"><IMG SRC='ARINC_COMM_img/Figure_1_diag.png'></DIV>
+<DIV class="Caption">Figure <A NAME="FIGURE1">1</A>: View of ARINC_FLT_DCDR_1 (ARINC_FLT_DCDR)</DIV>
+
+<A NAME='LinkS-!ed/205/4CD0/1D5C/68bdc6be4e28'></A><DIV class="Heading3">3.1.3. <A NAME="_TOC13">ARINC_FLT_ENCDR Operator</A></DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;">
+Declared as <SPAN class="BodyText" style="font-family: Courier; font-size: 12pt; font-weight: bold; padding-bottom: 12pt;">public function</SPAN></DIV>
+
+<DIV class="Heading4">3.1.3.1.   <A NAME="_TOC14">Interface</A></DIV>
+<DIV class="TableCaption">Table&nbsp;<A NAME="TABLE5">5</A>: Inputs of ARINC_FLT_ENCDR</DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;"><TABLE ><TBODY>
+<TR><TH class="TableHeadingCell" style="width: 40mm;">Name</TH>
+<TH class="TableHeadingCell" style="width: 40mm;">Type</TH>
+<TH class="TableHeadingCell" style="width: 80mm;">Comments and Information</TH>
+</TR><TR><TD class="TableCell">DATA</TD>
+<TD class="TableCell">float32</TD>
+<TD class="TableCell" style=""></TD>
+</TR><TR><TD class="TableCell">SDI</TD>
+<TD class="TableCell">uint8</TD>
+<TD class="TableCell" style=""></TD>
+</TR><TR><TD class="TableCell">SSM</TD>
+<TD class="TableCell">uint8</TD>
+<TD class="TableCell" style=""></TD>
+</TR><TR><TD class="TableCell">LABEL</TD>
+<TD class="TableCell">uint8</TD>
+<TD class="TableCell" style=""></TD>
+</TR><TR><TD class="TableCell">Range_Min</TD>
+<TD class="TableCell">float32</TD>
+<TD class="TableCell" style=""></TD>
+</TR><TR><TD class="TableCell">Range_Max</TD>
+<TD class="TableCell">float32</TD>
+<TD class="TableCell" style=""></TD>
+</TR></TBODY></TABLE></DIV>
+<DIV class="TableCaption">Table&nbsp;<A NAME="TABLE6">6</A>: Outputs of ARINC_FLT_ENCDR</DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;"><TABLE ><TBODY>
+<TR><TH class="TableHeadingCell" style="width: 40mm;">Name</TH>
+<TH class="TableHeadingCell" style="width: 40mm;">Type</TH>
+<TH class="TableHeadingCell" style="width: 80mm;">Comments and Information</TH>
+</TR><TR><TD class="TableCell">ARINCmsg</TD>
+<TD class="TableCell">uint32</TD>
+<TD class="TableCell" style=""></TD>
+</TR></TBODY></TABLE></DIV>
+
+<DIV class="Heading4">3.1.3.2.   <A NAME="_TOC15">Locals</A></DIV>
+<DIV class="TableCaption">Table&nbsp;<A NAME="TABLE7">7</A>: Locals of ARINC_FLT_ENCDR</DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;"><TABLE ><TBODY>
+<TR><TH class="TableHeadingCell" style="width: 40mm;">Name</TH>
+<TH class="TableHeadingCell" style="width: 40mm;">Type</TH>
+<TH class="TableHeadingCell" style="width: 80mm;">Comments and Information</TH>
+</TR><TR><TD class="TableCell">inrangedata</TD>
+<TD class="TableCell">int32</TD>
+<TD class="TableCell" style=""></TD>
+</TR></TBODY></TABLE></DIV>
+<DIV class="Heading4">3.1.3.3.   <A NAME="_TOC16">Operator Hierarchy</A></DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;">
+<U>diagram</U> : <A class="Hyperlink" HREF="#LinkS-!ed/206/4CD0/1D5C/68bdc6be5385">ARINC_FLT_ENCDR_1</A></DIV>
+
+<DIV class="Heading4">3.1.3.4.   <A NAME="_TOC17">Graphical and Textual Diagrams</A></DIV>
+<A NAME='LinkS-!ed/206/4CD0/1D5C/68bdc6be5385'></A><DIV class="Heading5">3.1.3.4.1.   <A NAME="_TOC18">View of ARINC_FLT_ENCDR_1 (ARINC_FLT_ENCDR)</A></DIV>
+<DIV class="BodyText" style="text-align: center;"><IMG SRC='ARINC_COMM_img/Figure_2_diag.png'></DIV>
+<DIV class="Caption">Figure <A NAME="FIGURE2">2</A>: View of ARINC_FLT_ENCDR_1 (ARINC_FLT_ENCDR)</DIV>
+
+<A NAME='LinkS-!ed/16c/6835/2D74/68b9896f9aa'></A><DIV class="Heading3">3.1.4. <A NAME="_TOC19">ARINC_INT_DCDR Operator</A></DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;">
+Declared as <SPAN class="BodyText" style="font-family: Courier; font-size: 12pt; font-weight: bold; padding-bottom: 12pt;">public function</SPAN></DIV>
+
+<DIV class="Heading4">3.1.4.1.   <A NAME="_TOC20">Interface</A></DIV>
+<DIV class="TableCaption">Table&nbsp;<A NAME="TABLE8">8</A>: Inputs of ARINC_INT_DCDR</DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;"><TABLE ><TBODY>
+<TR><TH class="TableHeadingCell" style="width: 40mm;">Name</TH>
+<TH class="TableHeadingCell" style="width: 40mm;">Type</TH>
+<TH class="TableHeadingCell" style="width: 80mm;">Comments and Information</TH>
+</TR><TR><TD class="TableCell">ARINCmsg</TD>
+<TD class="TableCell">uint32</TD>
+<TD class="TableCell" style=""></TD>
+</TR><TR><TD class="TableCell">ExpBCD</TD>
+<TD class="TableCell">bool</TD>
+<TD class="TableCell" style=""></TD>
+</TR></TBODY></TABLE></DIV>
+<DIV class="TableCaption">Table&nbsp;<A NAME="TABLE9">9</A>: Outputs of ARINC_INT_DCDR</DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;"><TABLE ><TBODY>
+<TR><TH class="TableHeadingCell" style="width: 40mm;">Name</TH>
+<TH class="TableHeadingCell" style="width: 40mm;">Type</TH>
+<TH class="TableHeadingCell" style="width: 80mm;">Comments and Information</TH>
+</TR><TR><TD class="TableCell">SSM</TD>
+<TD class="TableCell">uint8</TD>
+<TD class="TableCell" style=""></TD>
+</TR><TR><TD class="TableCell">DATA</TD>
+<TD class="TableCell">int32</TD>
+<TD class="TableCell" style=""></TD>
+</TR><TR><TD class="TableCell">SDI</TD>
+<TD class="TableCell">uint8</TD>
+<TD class="TableCell" style=""></TD>
+</TR><TR><TD class="TableCell">LABEL</TD>
+<TD class="TableCell">uint8</TD>
+<TD class="TableCell" style=""></TD>
+</TR></TBODY></TABLE></DIV>
+
+<DIV class="Heading4">3.1.4.2.   <A NAME="_TOC21">Locals</A></DIV>
+<DIV class="TableCaption">Table&nbsp;<A NAME="TABLE10">10</A>: Locals of ARINC_INT_DCDR</DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;"><TABLE ><TBODY>
+<TR><TH class="TableHeadingCell" style="width: 40mm;">Name</TH>
+<TH class="TableHeadingCell" style="width: 40mm;">Type</TH>
+<TH class="TableHeadingCell" style="width: 80mm;">Comments and Information</TH>
+</TR><TR><TD class="TableCell">localSSM</TD>
+<TD class="TableCell">uint8</TD>
+<TD class="TableCell" style=""></TD>
+</TR><TR><TD class="TableCell">raw_data</TD>
+<TD class="TableCell">uint32</TD>
+<TD class="TableCell" style=""></TD>
+</TR></TBODY></TABLE></DIV>
+<DIV class="Heading4">3.1.4.3.   <A NAME="_TOC22">Operator Hierarchy</A></DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;">
+<U>diagram</U> : <A class="Hyperlink" HREF="#LinkS-!ed/16d/6835/2D74/68b9896f1c9b">ARINC_INT_DCDR_1</A></DIV>
+
+<DIV class="Heading4">3.1.4.4.   <A NAME="_TOC23">Graphical and Textual Diagrams</A></DIV>
+<A NAME='LinkS-!ed/16d/6835/2D74/68b9896f1c9b'></A><DIV class="Heading5">3.1.4.4.1.   <A NAME="_TOC24">View of ARINC_INT_DCDR_1 (ARINC_INT_DCDR)</A></DIV>
+<DIV class="BodyText" style="text-align: center;"><IMG SRC='ARINC_COMM_img/Figure_3_diag.png'></DIV>
+<DIV class="Caption">Figure <A NAME="FIGURE3">3</A>: View of ARINC_INT_DCDR_1 (ARINC_INT_DCDR)</DIV>
+
+<A NAME='LinkS-!ed/10/4F3B/6748/68b8f33d63f0'></A><DIV class="Heading3">3.1.5. <A NAME="_TOC25">ARINC_INT_ENCDR Operator</A></DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;">
+Declared as <SPAN class="BodyText" style="font-family: Courier; font-size: 12pt; font-weight: bold; padding-bottom: 12pt;">public function</SPAN></DIV>
+
+<DIV class="Heading4">3.1.5.1.   <A NAME="_TOC26">Interface</A></DIV>
+<DIV class="TableCaption">Table&nbsp;<A NAME="TABLE11">11</A>: Inputs of ARINC_INT_ENCDR</DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;"><TABLE ><TBODY>
+<TR><TH class="TableHeadingCell" style="width: 40mm;">Name</TH>
+<TH class="TableHeadingCell" style="width: 40mm;">Type</TH>
+<TH class="TableHeadingCell" style="width: 80mm;">Comments and Information</TH>
+</TR><TR><TD class="TableCell">LABEL</TD>
+<TD class="TableCell">uint8</TD>
+<TD class="TableCell" style=""></TD>
+</TR><TR><TD class="TableCell">SDI</TD>
+<TD class="TableCell">uint8</TD>
+<TD class="TableCell" style=""></TD>
+</TR><TR><TD class="TableCell">DATA</TD>
+<TD class="TableCell">int32</TD>
+<TD class="TableCell" style=""></TD>
+</TR><TR><TD class="TableCell">SSM</TD>
+<TD class="TableCell">uint8</TD>
+<TD class="TableCell" style=""></TD>
+</TR></TBODY></TABLE></DIV>
+<DIV class="TableCaption">Table&nbsp;<A NAME="TABLE12">12</A>: Outputs of ARINC_INT_ENCDR</DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;"><TABLE ><TBODY>
+<TR><TH class="TableHeadingCell" style="width: 40mm;">Name</TH>
+<TH class="TableHeadingCell" style="width: 40mm;">Type</TH>
+<TH class="TableHeadingCell" style="width: 80mm;">Comments and Information</TH>
+</TR><TR><TD class="TableCell">ARINCmsg</TD>
+<TD class="TableCell">uint32</TD>
+<TD class="TableCell" style=""></TD>
+</TR></TBODY></TABLE></DIV>
+<DIV class="Heading4">3.1.5.2.   <A NAME="_TOC27">Operator Hierarchy</A></DIV>
+<DIV class="BodyText" style="padding-bottom: 12pt;">
+<U>diagram</U> : <A class="Hyperlink" HREF="#LinkS-!ed/11/4F3B/6748/68b8f33d1247">ARINC_INT_ENCDR_1</A></DIV>
+
+<DIV class="Heading4">3.1.5.3.   <A NAME="_TOC28">Graphical and Textual Diagrams</A></DIV>
+<A NAME='LinkS-!ed/11/4F3B/6748/68b8f33d1247'></A><DIV class="Heading5">3.1.5.3.1.   <A NAME="_TOC29">View of ARINC_INT_ENCDR_1 (ARINC_INT_ENCDR)</A></DIV>
+<DIV class="BodyText" style="text-align: center;"><IMG SRC='ARINC_COMM_img/Figure_4_diag.png'></DIV>
+<DIV class="Caption">Figure <A NAME="FIGURE4">4</A>: View of ARINC_INT_ENCDR_1 (ARINC_INT_ENCDR)</DIV>
 <DIV class="EndOfDocument">End of document.</DIV>
 </BODY>
 </HTML>

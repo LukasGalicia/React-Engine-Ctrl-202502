@@ -1,6 +1,6 @@
 /* $ ANSYS SCADE Suite (R) Code Generator version Student 2022 R1 (build 20211130) 
 ** Command: scadecg.exe -config C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/config.txt
-** Generation date: 2025-09-04T14:08:50
+** Generation date: 2025-09-07T13:33:30
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -107,6 +107,6 @@ void ARINC_INT_DCDR_reset(outC_ARINC_INT_DCDR *outC)
 
 /* $ ANSYS SCADE Suite (R) Code Generator version Student 2022 R1 (build 20211130) 
 ** ARINC_INT_DCDR.c
-** Generation date: 2025-09-04T14:08:50
+** Generation date: 2025-09-07T13:33:30
 *************************************************************$ */
 

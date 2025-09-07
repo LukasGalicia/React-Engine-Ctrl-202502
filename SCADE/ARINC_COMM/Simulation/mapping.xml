@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!--$ ANSYS SCADE Suite (R) Code Generator version Student 2022 R1 (build 20211130) 
 ** Command: scadecg.exe -config C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation/config.txt
-** Generation date: 2025-09-04T14:08:50
+** Generation date: 2025-09-07T13:55:47
 *************************************************************$-->
 <mapping>
   <config>
@@ -36,7 +36,7 @@
     <option name="exp" value="#off#"/>
     <option name="target_dir" value="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation"/>
     <option name="target" value="C"/>
-    <option name="root" value="ARINC_INT_DCDR"/>
+    <option name="root" value="ARINC_FLT_ENCDR"/>
     <option name="auth" value="#off#"/>
   </config>
   <model>
@@ -53,232 +53,303 @@
     <predefType id="11" name="float32"/>
     <predefType id="12" name="float64"/>
     <predefType id="13" name="size"/>
-    <constant id="14" name="SSM_VALUE_Neg" imported="false" type="7"/>
-    <operator id="15" name="ARINC_INT_DCDR" imported="false" root="true" expanded="false">
-      <input id="16" name="ARINCmsg" clock="false" type="9"/>
-      <input id="17" name="ExpBCD" clock="false" type="1"/>
-      <output id="18" name="SSM" clock="false" type="7"/>
-      <output id="19" name="DATA" clock="false" type="5"/>
-      <output id="20" name="SDI" clock="false" type="7"/>
-      <output id="21" name="LABEL" clock="false" type="7"/>
-      <local id="22" name="raw_data" clock="false" type="9"/>
-      <local id="23" name="localSSM" clock="false" type="7"/>
-      <local id="24" name="_L1" clock="false" type="9"/>
-      <local id="25" name="_L2" clock="false" type="9"/>
-      <local id="26" name="_L3" clock="false" type="9"/>
-      <local id="27" name="_L4" clock="false" type="9"/>
-      <local id="28" name="_L5" clock="false" type="7"/>
-      <local id="29" name="_L6" clock="false" type="9"/>
-      <local id="30" name="_L7" clock="false" type="9"/>
-      <local id="31" name="_L10" clock="false" type="9"/>
-      <local id="32" name="_L13" clock="false" type="3"/>
-      <local id="33" name="_L14" clock="false" type="3"/>
-      <local id="34" name="_L25" clock="false" type="3"/>
-      <local id="35" name="_L24" clock="false" type="7"/>
-      <local id="36" name="_L23" clock="false" type="9"/>
-      <local id="37" name="_L22" clock="false" type="9"/>
-      <local id="38" name="_L21" clock="false" type="9"/>
-      <local id="39" name="_L31" clock="false" type="9"/>
-      <local id="40" name="_L30" clock="false" type="9"/>
-      <local id="41" name="_L32" clock="false" type="7"/>
-      <local id="42" name="_L41" clock="false" type="5"/>
-      <local id="43" name="_L42" clock="false" type="1"/>
-      <local id="44" name="_L44" clock="false" type="9"/>
-      <local id="45" name="_L45" clock="false" type="5"/>
-      <local id="46" name="_L46" clock="false" type="9"/>
-      <local id="47" name="_L47" clock="false" type="9"/>
-      <local id="48" name="_L48" clock="false" type="9"/>
-      <local id="49" name="_L52" clock="false" type="5"/>
-      <local id="50" name="_L56" clock="false" type="1"/>
-      <local id="51" name="_L57" clock="false" type="7"/>
-      <local id="52" name="_L58" clock="false" type="7"/>
-      <local id="53" name="_L59" clock="false" type="1"/>
+    <operator id="14" name="ARINC_FLT_ENCDR" imported="false" root="true" expanded="false">
+      <input id="15" name="DATA" clock="false" type="11"/>
+      <input id="16" name="SDI" clock="false" type="7"/>
+      <input id="17" name="SSM" clock="false" type="7"/>
+      <input id="18" name="LABEL" clock="false" type="7"/>
+      <input id="19" name="Range_Min" clock="false" type="11"/>
+      <input id="20" name="Range_Max" clock="false" type="11"/>
+      <output id="21" name="ARINCmsg" clock="false" type="9"/>
+      <local id="22" name="inrangedata" clock="false" type="5"/>
+      <local id="23" name="_L22" clock="false" type="9"/>
+      <local id="24" name="_L21" clock="false" type="9"/>
+      <local id="25" name="_L20" clock="false" type="9"/>
+      <local id="26" name="_L19" clock="false" type="7"/>
+      <local id="27" name="_L18" clock="false" type="9"/>
+      <local id="28" name="_L17" clock="false" type="9"/>
+      <local id="29" name="_L16" clock="false" type="9"/>
+      <local id="30" name="_L15" clock="false" type="7"/>
+      <local id="31" name="_L14" clock="false" type="3"/>
+      <local id="32" name="_L12" clock="false" type="9"/>
+      <local id="33" name="_L11" clock="false" type="3"/>
+      <local id="34" name="_L10" clock="false" type="9"/>
+      <local id="35" name="_L9" clock="false" type="9"/>
+      <local id="36" name="_L8" clock="false" type="9"/>
+      <local id="37" name="_L7" clock="false" type="9"/>
+      <local id="38" name="_L6" clock="false" type="9"/>
+      <local id="39" name="_L5" clock="false" type="3"/>
+      <local id="40" name="_L4" clock="false" type="7"/>
+      <local id="41" name="_L3" clock="false" type="9"/>
+      <local id="42" name="_L2" clock="false" type="9"/>
+      <local id="43" name="_L1" clock="false" type="9"/>
+      <local id="44" name="_L23" clock="false" type="11"/>
+      <local id="45" name="_L24" clock="false" type="11"/>
+      <local id="46" name="_L25" clock="false" type="11"/>
+      <local id="47" name="_L26" clock="false" type="11"/>
+      <local id="48" name="_L27" clock="false" type="11"/>
+      <local id="49" name="_L28" clock="false" type="11"/>
+      <local id="50" name="_L29" clock="false" type="11"/>
+      <local id="51" name="_L33" clock="false" type="5"/>
+      <local id="52" name="_L35" clock="false" type="5"/>
+      <local id="53" name="_L37" clock="false" type="11"/>
+      <local id="54" name="_L38" clock="false" type="11"/>
+      <instance id="55" name="2" op="58" expanded="false"/>
     </operator>
+    <package id="56" name="math">
+      <operator id="57" name="RoundFloor" imported="false" root="false" expanded="false"/>
+      <mono id="58" src="57">
+        <typeVar id="59" name="T" type="11"/>
+        <input id="60" name="RF_Input" clock="false" type="11"/>
+        <output id="61" name="RF_Output" clock="false" type="5"/>
+        <local id="62" name="_L1" clock="false" type="11"/>
+        <local id="63" name="_L24" clock="false" type="1"/>
+        <local id="64" name="_L25" clock="false" type="11"/>
+        <local id="65" name="_L26" clock="false" type="5"/>
+        <local id="66" name="_L30" clock="false" type="11"/>
+        <local id="67" name="_L31" clock="false" type="11"/>
+        <local id="68" name="_L32" clock="false" type="5"/>
+        <local id="69" name="_L33" clock="false" type="5"/>
+        <local id="70" name="_L38" clock="false" type="5"/>
+        <local id="71" name="_L41" clock="false" type="11"/>
+        <local id="72" name="_L43" clock="false" type="1"/>
+      </mono>
+    </package>
   </model>
   <generated>
     <c>
-      <file id="54" name="ARINC_INT_DCDR.h">
-        <function id="55" name="ARINC_INT_DCDR_init">
-          <parameter id="56" name="outC" type="62" pointer="true"/>
+      <file id="73" name="ARINC_FLT_ENCDR.h">
+        <function id="74" name="ARINC_FLT_ENCDR_init">
+          <parameter id="75" name="outC" type="81" pointer="true"/>
         </function>
-        <function id="57" name="ARINC_INT_DCDR_reset">
-          <parameter id="58" name="outC" type="62" pointer="true"/>
+        <function id="76" name="ARINC_FLT_ENCDR_reset">
+          <parameter id="77" name="outC" type="81" pointer="true"/>
         </function>
-        <function id="59" name="ARINC_INT_DCDR">
-          <parameter id="60" name="inC" type="99" pointer="true"/>
-          <parameter id="61" name="outC" type="62" pointer="true"/>
+        <function id="78" name="ARINC_FLT_ENCDR">
+          <parameter id="79" name="inC" type="117" pointer="true"/>
+          <parameter id="80" name="outC" type="81" pointer="true"/>
         </function>
-        <struct id="62" name="outC_ARINC_INT_DCDR">
-          <field id="63" name="SSM" type="130" pointer="false"/>
-          <field id="64" name="DATA" type="128" pointer="false"/>
-          <field id="65" name="SDI" type="130" pointer="false"/>
-          <field id="66" name="LABEL" type="130" pointer="false"/>
-          <field id="67" name="raw_data" type="132" pointer="false"/>
-          <field id="68" name="localSSM" type="130" pointer="false"/>
-          <field id="69" name="_L1" type="132" pointer="false"/>
-          <field id="70" name="_L2" type="132" pointer="false"/>
-          <field id="71" name="_L3" type="132" pointer="false"/>
-          <field id="72" name="_L4" type="132" pointer="false"/>
-          <field id="73" name="_L5" type="130" pointer="false"/>
-          <field id="74" name="_L6" type="132" pointer="false"/>
-          <field id="75" name="_L7" type="132" pointer="false"/>
-          <field id="76" name="_L10" type="132" pointer="false"/>
-          <field id="77" name="_L13" type="126" pointer="false"/>
-          <field id="78" name="_L14" type="126" pointer="false"/>
-          <field id="79" name="_L25" type="126" pointer="false"/>
-          <field id="80" name="_L24" type="130" pointer="false"/>
-          <field id="81" name="_L23" type="132" pointer="false"/>
-          <field id="82" name="_L22" type="132" pointer="false"/>
-          <field id="83" name="_L21" type="132" pointer="false"/>
-          <field id="84" name="_L31" type="132" pointer="false"/>
-          <field id="85" name="_L30" type="132" pointer="false"/>
-          <field id="86" name="_L32" type="130" pointer="false"/>
-          <field id="87" name="_L41" type="128" pointer="false"/>
-          <field id="88" name="_L42" type="137" pointer="false"/>
-          <field id="89" name="_L44" type="132" pointer="false"/>
-          <field id="90" name="_L45" type="128" pointer="false"/>
-          <field id="91" name="_L46" type="132" pointer="false"/>
-          <field id="92" name="_L47" type="132" pointer="false"/>
-          <field id="93" name="_L48" type="132" pointer="false"/>
-          <field id="94" name="_L52" type="128" pointer="false"/>
-          <field id="95" name="_L56" type="137" pointer="false"/>
-          <field id="96" name="_L57" type="130" pointer="false"/>
-          <field id="97" name="_L58" type="130" pointer="false"/>
-          <field id="98" name="_L59" type="137" pointer="false"/>
+        <struct id="81" name="outC_ARINC_FLT_ENCDR">
+          <field id="82" name="ARINCmsg" type="175" pointer="false"/>
+          <field id="83" name="Context_RoundFloor_2" type="132" pointer="false"/>
+          <field id="84" name="inrangedata" type="171" pointer="false"/>
+          <field id="85" name="_L22" type="175" pointer="false"/>
+          <field id="86" name="_L21" type="175" pointer="false"/>
+          <field id="87" name="_L20" type="175" pointer="false"/>
+          <field id="88" name="_L19" type="173" pointer="false"/>
+          <field id="89" name="_L18" type="175" pointer="false"/>
+          <field id="90" name="_L17" type="175" pointer="false"/>
+          <field id="91" name="_L16" type="175" pointer="false"/>
+          <field id="92" name="_L15" type="173" pointer="false"/>
+          <field id="93" name="_L14" type="169" pointer="false"/>
+          <field id="94" name="_L12" type="175" pointer="false"/>
+          <field id="95" name="_L11" type="169" pointer="false"/>
+          <field id="96" name="_L10" type="175" pointer="false"/>
+          <field id="97" name="_L9" type="175" pointer="false"/>
+          <field id="98" name="_L8" type="175" pointer="false"/>
+          <field id="99" name="_L7" type="175" pointer="false"/>
+          <field id="100" name="_L6" type="175" pointer="false"/>
+          <field id="101" name="_L5" type="169" pointer="false"/>
+          <field id="102" name="_L4" type="173" pointer="false"/>
+          <field id="103" name="_L3" type="175" pointer="false"/>
+          <field id="104" name="_L2" type="175" pointer="false"/>
+          <field id="105" name="_L1" type="175" pointer="false"/>
+          <field id="106" name="_L23" type="179" pointer="false"/>
+          <field id="107" name="_L24" type="179" pointer="false"/>
+          <field id="108" name="_L25" type="179" pointer="false"/>
+          <field id="109" name="_L26" type="179" pointer="false"/>
+          <field id="110" name="_L27" type="179" pointer="false"/>
+          <field id="111" name="_L28" type="179" pointer="false"/>
+          <field id="112" name="_L29" type="179" pointer="false"/>
+          <field id="113" name="_L33" type="171" pointer="false"/>
+          <field id="114" name="_L35" type="171" pointer="false"/>
+          <field id="115" name="_L37" type="179" pointer="false"/>
+          <field id="116" name="_L38" type="179" pointer="false"/>
         </struct>
-        <struct id="99" name="inC_ARINC_INT_DCDR">
-          <field id="100" name="ARINCmsg" type="132" pointer="false"/>
-          <field id="101" name="ExpBCD" type="137" pointer="false"/>
+        <struct id="117" name="inC_ARINC_FLT_ENCDR">
+          <field id="118" name="DATA" type="179" pointer="false"/>
+          <field id="119" name="SDI" type="173" pointer="false"/>
+          <field id="120" name="SSM" type="173" pointer="false"/>
+          <field id="121" name="LABEL" type="173" pointer="false"/>
+          <field id="122" name="Range_Min" type="179" pointer="false"/>
+          <field id="123" name="Range_Max" type="179" pointer="false"/>
         </struct>
       </file>
-      <file id="102" name="kcg_types.h">
-        <macro id="103" name="kcg_assign_array"/>
-        <macro id="104" name="kcg_assign_struct"/>
-        <macro id="105" name="kcg_lnot_uint8"/>
-        <macro id="106" name="kcg_lnot_uint16"/>
-        <macro id="107" name="kcg_lnot_uint32"/>
-        <macro id="108" name="kcg_lnot_uint64"/>
-        <macro id="109" name="kcg_lsl_uint8"/>
-        <macro id="110" name="kcg_lsl_uint16"/>
-        <macro id="111" name="kcg_lsl_uint32"/>
-        <macro id="112" name="kcg_lsl_uint64"/>
-        <macro id="113" name="kcg_true"/>
-        <macro id="114" name="kcg_false"/>
-        <macro id="115" name="kcg_lit_int8"/>
-        <macro id="116" name="kcg_lit_int16"/>
-        <macro id="117" name="kcg_lit_int32"/>
-        <macro id="118" name="kcg_lit_int64"/>
-        <macro id="119" name="kcg_lit_uint8"/>
-        <macro id="120" name="kcg_lit_uint16"/>
-        <macro id="121" name="kcg_lit_uint32"/>
-        <macro id="122" name="kcg_lit_uint64"/>
-        <macro id="123" name="kcg_lit_size"/>
-        <macro id="124" name="kcg_lit_float64"/>
-        <macro id="125" name="kcg_lit_float32"/>
-        <predefType id="126" name="kcg_int8"/>
-        <predefType id="127" name="kcg_int16"/>
-        <predefType id="128" name="kcg_int32"/>
-        <predefType id="129" name="kcg_int64"/>
-        <predefType id="130" name="kcg_uint8"/>
-        <predefType id="131" name="kcg_uint16"/>
-        <predefType id="132" name="kcg_uint32"/>
-        <predefType id="133" name="kcg_uint64"/>
-        <predefType id="134" name="kcg_size"/>
-        <predefType id="135" name="kcg_float64"/>
-        <predefType id="136" name="kcg_float32"/>
-        <predefType id="137" name="kcg_bool"/>
-        <predefType id="138" name="kcg_char"/>
-        <macro id="139" name="KCG_MAPW_CPY"/>
+      <file id="124" name="RoundFloor_math_float32.h">
+        <function id="125" name="RoundFloor_init_math_float32">
+          <parameter id="126" name="outC" type="132" pointer="true"/>
+        </function>
+        <function id="127" name="RoundFloor_reset_math_float32">
+          <parameter id="128" name="outC" type="132" pointer="true"/>
+        </function>
+        <function id="129" name="RoundFloor_math_float32">
+          <parameter id="130" name="RF_Input_float32" type="179" pointer="false"/>
+          <parameter id="131" name="outC" type="132" pointer="true"/>
+        </function>
+        <struct id="132" name="outC_RoundFloor_math_float32">
+          <field id="133" name="RF_Output_float32" type="171" pointer="false"/>
+          <field id="134" name="_L1_float32" type="179" pointer="false"/>
+          <field id="135" name="_L24_float32" type="180" pointer="false"/>
+          <field id="136" name="_L25_float32" type="179" pointer="false"/>
+          <field id="137" name="_L26_float32" type="171" pointer="false"/>
+          <field id="138" name="_L30_float32" type="179" pointer="false"/>
+          <field id="139" name="_L31_float32" type="179" pointer="false"/>
+          <field id="140" name="_L32_float32" type="171" pointer="false"/>
+          <field id="141" name="_L33_float32" type="171" pointer="false"/>
+          <field id="142" name="_L38_float32" type="171" pointer="false"/>
+          <field id="143" name="_L41_float32" type="179" pointer="false"/>
+          <field id="144" name="_L43_float32" type="180" pointer="false"/>
+        </struct>
       </file>
-      <file id="140" name="kcg_consts.h">
-        <macro id="141" name="SSM_VALUE_Neg" type="130"/>
+      <file id="145" name="kcg_types.h">
+        <macro id="146" name="kcg_assign_array"/>
+        <macro id="147" name="kcg_assign_struct"/>
+        <macro id="148" name="kcg_lnot_uint8"/>
+        <macro id="149" name="kcg_lnot_uint16"/>
+        <macro id="150" name="kcg_lnot_uint32"/>
+        <macro id="151" name="kcg_lnot_uint64"/>
+        <macro id="152" name="kcg_lsl_uint8"/>
+        <macro id="153" name="kcg_lsl_uint16"/>
+        <macro id="154" name="kcg_lsl_uint32"/>
+        <macro id="155" name="kcg_lsl_uint64"/>
+        <macro id="156" name="kcg_true"/>
+        <macro id="157" name="kcg_false"/>
+        <macro id="158" name="kcg_lit_int8"/>
+        <macro id="159" name="kcg_lit_int16"/>
+        <macro id="160" name="kcg_lit_int32"/>
+        <macro id="161" name="kcg_lit_int64"/>
+        <macro id="162" name="kcg_lit_uint8"/>
+        <macro id="163" name="kcg_lit_uint16"/>
+        <macro id="164" name="kcg_lit_uint32"/>
+        <macro id="165" name="kcg_lit_uint64"/>
+        <macro id="166" name="kcg_lit_size"/>
+        <macro id="167" name="kcg_lit_float64"/>
+        <macro id="168" name="kcg_lit_float32"/>
+        <predefType id="169" name="kcg_int8"/>
+        <predefType id="170" name="kcg_int16"/>
+        <predefType id="171" name="kcg_int32"/>
+        <predefType id="172" name="kcg_int64"/>
+        <predefType id="173" name="kcg_uint8"/>
+        <predefType id="174" name="kcg_uint16"/>
+        <predefType id="175" name="kcg_uint32"/>
+        <predefType id="176" name="kcg_uint64"/>
+        <predefType id="177" name="kcg_size"/>
+        <predefType id="178" name="kcg_float64"/>
+        <predefType id="179" name="kcg_float32"/>
+        <predefType id="180" name="kcg_bool"/>
+        <predefType id="181" name="kcg_char"/>
+        <macro id="182" name="KCG_MAPW_CPY"/>
       </file>
-      <file id="142" name="kcg_sensors.h"/>
+      <file id="183" name="kcg_consts.h"/>
+      <file id="184" name="kcg_sensors.h"/>
     </c>
-    <map srcId="135" dstId="124" role="wrapped-lit"/>
-    <map srcId="136" dstId="125" role="wrapped-lit"/>
-    <map srcId="134" dstId="123" role="wrapped-lit"/>
-    <map srcId="133" dstId="122" role="wrapped-lit"/>
-    <map srcId="133" dstId="108" role="wrapped-lnot"/>
-    <map srcId="133" dstId="112" role="wrapped-lsl"/>
-    <map srcId="132" dstId="121" role="wrapped-lit"/>
-    <map srcId="132" dstId="107" role="wrapped-lnot"/>
-    <map srcId="132" dstId="111" role="wrapped-lsl"/>
-    <map srcId="131" dstId="120" role="wrapped-lit"/>
-    <map srcId="131" dstId="106" role="wrapped-lnot"/>
-    <map srcId="131" dstId="110" role="wrapped-lsl"/>
-    <map srcId="130" dstId="119" role="wrapped-lit"/>
-    <map srcId="130" dstId="105" role="wrapped-lnot"/>
-    <map srcId="130" dstId="109" role="wrapped-lsl"/>
-    <map srcId="129" dstId="118" role="wrapped-lit"/>
-    <map srcId="128" dstId="117" role="wrapped-lit"/>
-    <map srcId="127" dstId="116" role="wrapped-lit"/>
-    <map srcId="126" dstId="115" role="wrapped-lit"/>
+    <map srcId="178" dstId="167" role="wrapped-lit"/>
+    <map srcId="179" dstId="168" role="wrapped-lit"/>
+    <map srcId="177" dstId="166" role="wrapped-lit"/>
+    <map srcId="176" dstId="165" role="wrapped-lit"/>
+    <map srcId="176" dstId="151" role="wrapped-lnot"/>
+    <map srcId="176" dstId="155" role="wrapped-lsl"/>
+    <map srcId="175" dstId="164" role="wrapped-lit"/>
+    <map srcId="175" dstId="150" role="wrapped-lnot"/>
+    <map srcId="175" dstId="154" role="wrapped-lsl"/>
+    <map srcId="174" dstId="163" role="wrapped-lit"/>
+    <map srcId="174" dstId="149" role="wrapped-lnot"/>
+    <map srcId="174" dstId="153" role="wrapped-lsl"/>
+    <map srcId="173" dstId="162" role="wrapped-lit"/>
+    <map srcId="173" dstId="148" role="wrapped-lnot"/>
+    <map srcId="173" dstId="152" role="wrapped-lsl"/>
+    <map srcId="172" dstId="161" role="wrapped-lit"/>
+    <map srcId="171" dstId="160" role="wrapped-lit"/>
+    <map srcId="170" dstId="159" role="wrapped-lit"/>
+    <map srcId="169" dstId="158" role="wrapped-lit"/>
   </generated>
-  <map modelId="15" generatedId="56" role="context-parameter"/>
-  <map modelId="15" generatedId="55" role="init-method"/>
-  <map modelId="15" generatedId="58" role="context-parameter"/>
-  <map modelId="15" generatedId="57" role="reset-method"/>
-  <map modelId="15" generatedId="60" role="input-struct-parameter"/>
-  <map modelId="17" generatedId="101"/>
-  <map modelId="16" generatedId="100"/>
-  <map modelId="15" generatedId="99" role="input-struct-type"/>
-  <map modelId="15" generatedId="61" role="context-parameter"/>
-  <map modelId="53" generatedId="98"/>
-  <map modelId="52" generatedId="97"/>
-  <map modelId="51" generatedId="96"/>
-  <map modelId="50" generatedId="95"/>
-  <map modelId="49" generatedId="94"/>
-  <map modelId="48" generatedId="93"/>
-  <map modelId="47" generatedId="92"/>
-  <map modelId="46" generatedId="91"/>
-  <map modelId="45" generatedId="90"/>
-  <map modelId="44" generatedId="89"/>
-  <map modelId="43" generatedId="88"/>
-  <map modelId="42" generatedId="87"/>
-  <map modelId="41" generatedId="86"/>
-  <map modelId="40" generatedId="85"/>
-  <map modelId="39" generatedId="84"/>
-  <map modelId="38" generatedId="83"/>
-  <map modelId="37" generatedId="82"/>
-  <map modelId="36" generatedId="81"/>
-  <map modelId="35" generatedId="80"/>
-  <map modelId="34" generatedId="79"/>
-  <map modelId="33" generatedId="78"/>
-  <map modelId="32" generatedId="77"/>
-  <map modelId="31" generatedId="76"/>
-  <map modelId="30" generatedId="75"/>
-  <map modelId="29" generatedId="74"/>
-  <map modelId="28" generatedId="73"/>
-  <map modelId="27" generatedId="72"/>
-  <map modelId="26" generatedId="71"/>
-  <map modelId="25" generatedId="70"/>
-  <map modelId="24" generatedId="69"/>
-  <map modelId="23" generatedId="68"/>
-  <map modelId="22" generatedId="67"/>
-  <map modelId="21" generatedId="66"/>
-  <map modelId="20" generatedId="65"/>
-  <map modelId="19" generatedId="64"/>
-  <map modelId="18" generatedId="63"/>
-  <map modelId="15" generatedId="62" role="context-type"/>
-  <map modelId="15" generatedId="54" role="interface-file"/>
-  <map modelId="15" generatedId="59" role="cycle-method"/>
-  <map modelId="14" generatedId="141"/>
-  <map modelId="2" generatedId="138"/>
-  <map modelId="1" generatedId="137"/>
-  <map modelId="12" generatedId="135"/>
-  <map modelId="11" generatedId="136"/>
-  <map modelId="13" generatedId="134"/>
-  <map modelId="10" generatedId="133"/>
-  <map modelId="9" generatedId="132"/>
-  <map modelId="8" generatedId="131"/>
-  <map modelId="7" generatedId="130"/>
-  <map modelId="6" generatedId="129"/>
-  <map modelId="5" generatedId="128"/>
-  <map modelId="4" generatedId="127"/>
-  <map modelId="3" generatedId="126"/>
+  <map modelId="14" generatedId="75" role="context-parameter"/>
+  <map modelId="14" generatedId="74" role="init-method"/>
+  <map modelId="14" generatedId="77" role="context-parameter"/>
+  <map modelId="14" generatedId="76" role="reset-method"/>
+  <map modelId="14" generatedId="79" role="input-struct-parameter"/>
+  <map modelId="20" generatedId="123"/>
+  <map modelId="19" generatedId="122"/>
+  <map modelId="18" generatedId="121"/>
+  <map modelId="17" generatedId="120"/>
+  <map modelId="16" generatedId="119"/>
+  <map modelId="15" generatedId="118"/>
+  <map modelId="14" generatedId="117" role="input-struct-type"/>
+  <map modelId="14" generatedId="80" role="context-parameter"/>
+  <map modelId="54" generatedId="116"/>
+  <map modelId="53" generatedId="115"/>
+  <map modelId="52" generatedId="114"/>
+  <map modelId="51" generatedId="113"/>
+  <map modelId="50" generatedId="112"/>
+  <map modelId="49" generatedId="111"/>
+  <map modelId="48" generatedId="110"/>
+  <map modelId="47" generatedId="109"/>
+  <map modelId="46" generatedId="108"/>
+  <map modelId="45" generatedId="107"/>
+  <map modelId="44" generatedId="106"/>
+  <map modelId="43" generatedId="105"/>
+  <map modelId="42" generatedId="104"/>
+  <map modelId="41" generatedId="103"/>
+  <map modelId="40" generatedId="102"/>
+  <map modelId="39" generatedId="101"/>
+  <map modelId="38" generatedId="100"/>
+  <map modelId="37" generatedId="99"/>
+  <map modelId="36" generatedId="98"/>
+  <map modelId="35" generatedId="97"/>
+  <map modelId="34" generatedId="96"/>
+  <map modelId="33" generatedId="95"/>
+  <map modelId="32" generatedId="94"/>
+  <map modelId="31" generatedId="93"/>
+  <map modelId="30" generatedId="92"/>
+  <map modelId="29" generatedId="91"/>
+  <map modelId="28" generatedId="90"/>
+  <map modelId="27" generatedId="89"/>
+  <map modelId="26" generatedId="88"/>
+  <map modelId="25" generatedId="87"/>
+  <map modelId="24" generatedId="86"/>
+  <map modelId="23" generatedId="85"/>
+  <map modelId="22" generatedId="84"/>
+  <map modelId="55" generatedId="83"/>
+  <map modelId="21" generatedId="82"/>
+  <map modelId="14" generatedId="81" role="context-type"/>
+  <map modelId="14" generatedId="73" role="interface-file"/>
+  <map modelId="14" generatedId="78" role="cycle-method"/>
+  <map modelId="58" generatedId="126" role="context-parameter"/>
+  <map modelId="58" generatedId="125" role="init-method"/>
+  <map modelId="58" generatedId="128" role="context-parameter"/>
+  <map modelId="58" generatedId="127" role="reset-method"/>
+  <map modelId="60" generatedId="130"/>
+  <map modelId="58" generatedId="131" role="context-parameter"/>
+  <map modelId="72" generatedId="144"/>
+  <map modelId="71" generatedId="143"/>
+  <map modelId="70" generatedId="142"/>
+  <map modelId="69" generatedId="141"/>
+  <map modelId="68" generatedId="140"/>
+  <map modelId="67" generatedId="139"/>
+  <map modelId="66" generatedId="138"/>
+  <map modelId="65" generatedId="137"/>
+  <map modelId="64" generatedId="136"/>
+  <map modelId="63" generatedId="135"/>
+  <map modelId="62" generatedId="134"/>
+  <map modelId="61" generatedId="133"/>
+  <map modelId="58" generatedId="132" role="context-type"/>
+  <map modelId="58" generatedId="124" role="interface-file"/>
+  <map modelId="58" generatedId="129" role="cycle-method"/>
+  <map modelId="2" generatedId="181"/>
+  <map modelId="1" generatedId="180"/>
+  <map modelId="12" generatedId="178"/>
+  <map modelId="11" generatedId="179"/>
+  <map modelId="13" generatedId="177"/>
+  <map modelId="10" generatedId="176"/>
+  <map modelId="9" generatedId="175"/>
+  <map modelId="8" generatedId="174"/>
+  <map modelId="7" generatedId="173"/>
+  <map modelId="6" generatedId="172"/>
+  <map modelId="5" generatedId="171"/>
+  <map modelId="4" generatedId="170"/>
+  <map modelId="3" generatedId="169"/>
 </mapping>
 <!--$ ANSYS SCADE Suite (R) Code Generator version Student 2022 R1 (build 20211130) 
 ** mapping.xml
-** Generation date: 2025-09-04T14:08:50
+** Generation date: 2025-09-07T13:55:47
 *************************************************************$-->

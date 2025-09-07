@@ -1,0 +1,17 @@
+/*
+ * SCADE_global_lib.h
+ *
+ *  Created on: 7 sep 2025
+ *      Author: lukas
+ */
+
+#ifndef SOURCE_EMBEDDED_SCADE_SCADE_GLOBAL_LIB_H_
+#define SOURCE_EMBEDDED_SCADE_SCADE_GLOBAL_LIB_H_
+
+/* Include all SCADE model header files */
+#include "ARINC_INT_ENCDR/ARINC_INT_ENCDR.h"
+#include "ARINC_INT_DCDR/ARINC_INT_DCDR.h"
+#include "ARINC_FLT_ENCDR/ARINC_FLT_ENCDR.h"
+#include "ARINC_FLT_DCDR/ARINC_FLT_DCDR.h"
+
+#endif /* SOURCE_EMBEDDED_SCADE_SCADE_GLOBAL_LIB_H_ */

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;ProjFin_ctrlMotReacc&apos; to &apos;TMS570LS04_Embedded_Motorctrl&apos;" description="Rename resource &apos;ProjFin_ctrlMotReacc&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/ProjFin_ctrlMotReacc" name="TMS570LS04_Embedded_Motorctrl" stamp="1756951221820" updateReferences="true"/>
+</session>

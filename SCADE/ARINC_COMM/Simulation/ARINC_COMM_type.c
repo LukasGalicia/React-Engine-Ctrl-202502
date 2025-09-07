@@ -18,8 +18,6 @@ char strDefaultRealFormat[] = "%.5g"; /* (from .etp) */
 
 #include "kcg_consts.h"
 
-static kcg_uint8 const TU_SSM_VALUE_Neg = SSM_VALUE_Neg;
-
 /****************************************************************
  ** kcg_bool 
  ****************************************************************/
@@ -1748,10 +1746,6 @@ SimTypeUtils _Type_kcg_uint64_Utils = {
   struct SimTypeVTable *pSimUint8VTable;
 #endif
 
-static SimConstValUtils const kcg_uint8_constants[] = {
-    { "SSM_VALUE_Neg", &TU_SSM_VALUE_Neg },
-};
-
 int kcg_uint8_to_string(const void *pValue, PFN_STR_APPEND pfnStrAppend, void *pStrObj)
 {
     if (pSimUint8VTable != NULL
@@ -1773,12 +1767,6 @@ int string_to_kcg_uint8(const char *str, void *pValue, char **endptr)
     skip_whitespace(str);
     if (pSimUint8VTable != NULL) {
         nRet = string_to_VTable(str, pSimUint8VTable, pValue, endptr);
-    }
-    if (nRet == 0 && pConverter->m_pfnStringToConstant) {
-        nRet = pConverter->m_pfnStringToConstant(str, pValue, kcg_uint8_constants, sizeof(kcg_uint8_constants) / sizeof(kcg_uint8_constants[0]), sizeof(kcg_uint8), endptr);
-        if (nRet != 0) {
-            return 2;
-        }
     }
     if (nRet == 0) {
         nRet = predef_string_to_kcg_uint8(str, (kcg_uint8*)pValue, endptr);

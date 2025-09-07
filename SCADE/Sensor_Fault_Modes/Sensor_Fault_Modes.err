@@ -1,0 +1,24 @@
+*** Post-namespace Warning (WAR_508): Unused flow
+  at file C:\Users\lukas\AppData\Local\Temp\ScadeChecker\21036\checker_file.scade, line 257, character 0
+  at path LogicFaultMode/CC_avg/
+ The local variable CC_avg is never used
+*** Post-namespace Warning (WAR_508): Unused flow
+  at file C:\Users\lukas\AppData\Local\Temp\ScadeChecker\21036\checker_file.scade, line 261, character 0
+  at path LogicFaultMode/CC_abs_div/
+ The local variable CC_abs_div is never used
+*** Post-namespace Warning (WAR_508): Unused flow
+  at file C:\Users\lukas\AppData\Local\Temp\ScadeChecker\21036\checker_file.scade, line 239, character 0
+  at path LogicFaultMode/LocalRef_snl/
+ The input variable LocalRef_snl is never used
+*** Post-namespace Warning (WAR_508): Unused flow
+  at file C:\Users\lukas\AppData\Local\Temp\ScadeChecker\21036\checker_file.scade, line 243, character 0
+  at path LogicFaultMode/CrossRef_snl/
+ The input variable CrossRef_snl is never used
+*** Post-namespace Error (ERR_516): Undefined variable
+  at file C:\Users\lukas\AppData\Local\Temp\ScadeChecker\21036\checker_file.scade, line 248, character 0
+  at path LogicFaultMode/TrueFbck_snl/
+ The output variable TrueFbck_snl has no definition
+*** Post-namespace Error (ERR_516): Undefined variable
+  at file C:\Users\lukas\AppData\Local\Temp\ScadeChecker\21036\checker_file.scade, line 252, character 0
+  at path LogicFaultMode/SysFault_f/
+ The output variable SysFault_f has no definition

@@ -1,7 +1,7 @@
 EXPORTS
-    ARINC_INT_DCDR @1
-    ARINC_INT_DCDR_init @2
-    ARINC_INT_DCDR_reset @3
+    ARINC_FLT_DCDR @1
+    ARINC_FLT_DCDR_init @2
+    ARINC_FLT_DCDR_reset @3
     EnumToString @4
     ImportedToString @5
     OutputMessageCallback @6 DATA
@@ -218,7 +218,7 @@ EXPORTS
     pSimUint32VTable @217 DATA
     pSimUint64VTable @218 DATA
     pSimUint8VTable @219 DATA
-    pSimoutC_ARINC_INT_DCDRCIVTable @220 DATA
+    pSimoutC_ARINC_FLT_DCDRCIVTable @220 DATA
     pSimulator @221 DATA
     pTop @222 DATA
     predef_compare_enum @223

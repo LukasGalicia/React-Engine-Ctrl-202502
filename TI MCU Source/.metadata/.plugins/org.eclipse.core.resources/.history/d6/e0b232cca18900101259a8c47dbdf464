@@ -1,0 +1,50 @@
+/*
+ * CROSSCHANNEL.h
+ *
+ *  Created on: 4 sep 2025
+ *      Author: lukas
+ */
+
+#ifndef SOURCE_PROJLIB_CROSSCHANNEL_H_
+#define SOURCE_PROJLIB_CROSSCHANNEL_H_
+
+/* Include files */
+// Project includes
+#include "../embedded_SCADE/ARINC_INT_ENCDR.h"
+#include "../embedded_SCADE/ARINC_INT_DCDR.h"
+// Driver includes
+#include "spi.h"
+// Std C includes
+#include <stdlib.h>
+
+/* ARINC MESSAGE FORMATS */
+// LABEL Formats
+#define ARINC_LABEL_BackupAcknowledge 0xBAU
+
+// SDI Formats
+#define ARINC_SDI_Backup    0x00U
+#define ARINC_SDI_Main      0x01U
+
+// Default DATA
+#define ARINC_DATA_DEFAULT  0x000CFFFF
+
+// SSM Formats
+#define ARINC_SSM_FnTest    0b10U
+#define ARINC_SSM_NormOp    0b11U
+
+/* Standard SCADEif structs */
+// ARINC Encoder
+inC_ARINC_INT_ENCDR     CCmsg_DATA_OUTBOUND;
+outC_ARINC_INT_ENCDR    CCmsg_FRAME_OUTBOUND;
+
+// ARINC Decoder
+inC_ARINC_INT_DCDR      CCmsg_FRAME_INBOUND;
+outC_ARINC_INT_DCDR     CCmsg_DATA_INBOUND;
+
+/* Comm defines */
+#define SPI_blocksize       2U;
+
+/* Cross-channel Comm fn prototypes */
+void CrossChReceive(uint8_t *MsgLABEL, uint8_t *MsgSDI, int32_t *MsgDATA, uint8_t *MsgSSM);
+
+#endif /* SOURCE_PROJLIB_CROSSCHANNEL_H_ */

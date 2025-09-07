@@ -1,7 +1,7 @@
 
 [STUDIO\TOOLS\CONFIGURATIONS\Code Generator]
 
-"C:\\Users\\lukas\\Documents\\Repo\\202502_REACT_ENG_CTRL\\SCADE\\ARINC_COMM\\ARINC_COMM.etp"="KCG" 
+"C:\\Users\\lukas\\Documents\\Repo\\202502_REACT_ENG_CTRL\\SCADE\\ARINC_COMM\\ARINC_COMM.etp"="Simulation" 
 
 [STUDIO\TOOLS\CONFIGURATIONS\Metrics and Rules Checker]
 
@@ -27,3 +27,51 @@
 [SCADE\Generator\Tool]
 
 "PragmaTarget"="" 
+
+[SCADE\Simulator\Simulation]
+
+"Latency"="200" 
+"RefreshRate"="1" 
+
+[SCADE\Simulator\BinaryDisplay]
+
+"Display1"="ARINC_INT_DCDR/SSM/" 
+"Count"="1" 
+
+[SCADE\Simulator\OctalDisplay]
+
+"Count"="0" 
+
+[SCADE\Simulator\HexadecimalDisplay]
+
+"Display1"="ARINC_INT_ENCDR/LABEL/" 
+"Display2"="ARINC_INT_DCDR/ARINCmsg/" 
+"Display3"="ARINC_INT_ENCDR/ARINCmsg/" 
+"Display4"="ARINC_INT_DCDR/LABEL/" 
+"Display5"="ARINC_INT_ENCDR/SDI/" 
+"Display6"="ARINC_INT_ENCDR/SSM/" 
+"Display7"="ARINC_INT_DCDR/DATA/" 
+"Display8"="ARINC_INT_DCDR/SDI/" 
+"Display9"="ARINC_INT_ENCDR/DATA/" 
+"Count"="9" 
+
+[SCADE\Simulator\Watch]
+
+"Count"="0" 
+"Watch1"="ARINC_INT_ENCDR/ARINCmsg/" 
+
+[SCADE\Simulator\Graph]
+
+"Count"="0" 
+
+[SCADE\Simulator\ControlBreakpoint]
+
+"Count"="0" 
+
+[SCADE\Simulator\DataBreakpoint]
+
+"Count"="0" 
+
+[SCADE\Simulator\TclBreakpoint]
+
+"Count"="0" 

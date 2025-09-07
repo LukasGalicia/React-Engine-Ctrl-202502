@@ -30,51 +30,73 @@
     <Option name="exp" value="#off#"/>
     <Option name="target_dir" value="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/SCADE/ARINC_COMM/Simulation"/>
     <Option name="target" value="C"/>
-    <Option name="root" value="ARINC_INT_DCDR"/>
+    <Option name="root" value="ARINC_FLT_ENCDR"/>
     <Option name="auth" value="#off#"/>
-    <Constant macroDef="true" scadeName="SSM_VALUE_Neg" scadeType="uint8" targetName="SSM_VALUE_Neg" targetType="kcg_uint8"/>
-    <RootNode headerFile="ARINC_INT_DCDR.h" scadeName="ARINC_INT_DCDR" targetCycleFct="ARINC_INT_DCDR" targetInitFct="ARINC_INT_DCDR_reset" targetInitializationFct="ARINC_INT_DCDR_init">
-      <Input inCtx="true" scadeName="ARINCmsg" scadeType="uint32" targetName="ARINCmsg" targetType="kcg_uint32"/>
-      <Input inCtx="true" scadeName="ExpBCD" scadeType="bool" targetName="ExpBCD" targetType="kcg_bool"/>
-      <Output inCtx="true" scadeName="SSM" scadeType="uint8" targetName="SSM" targetType="kcg_uint8"/>
-      <Output inCtx="true" scadeName="DATA" scadeType="int32" targetName="DATA" targetType="kcg_int32"/>
-      <Output inCtx="true" scadeName="SDI" scadeType="uint8" targetName="SDI" targetType="kcg_uint8"/>
-      <Output inCtx="true" scadeName="LABEL" scadeType="uint8" targetName="LABEL" targetType="kcg_uint8"/>
-      <Local inCtx="true" scadeName="raw_data" scadeType="uint32" targetName="raw_data" targetType="kcg_uint32"/>
-      <Local inCtx="true" scadeName="localSSM" scadeType="uint8" targetName="localSSM" targetType="kcg_uint8"/>
-      <Local inCtx="true" scadeName="_L1" scadeType="uint32" targetName="_L1" targetType="kcg_uint32"/>
-      <Local inCtx="true" scadeName="_L2" scadeType="uint32" targetName="_L2" targetType="kcg_uint32"/>
-      <Local inCtx="true" scadeName="_L3" scadeType="uint32" targetName="_L3" targetType="kcg_uint32"/>
-      <Local inCtx="true" scadeName="_L4" scadeType="uint32" targetName="_L4" targetType="kcg_uint32"/>
-      <Local inCtx="true" scadeName="_L5" scadeType="uint8" targetName="_L5" targetType="kcg_uint8"/>
-      <Local inCtx="true" scadeName="_L6" scadeType="uint32" targetName="_L6" targetType="kcg_uint32"/>
-      <Local inCtx="true" scadeName="_L7" scadeType="uint32" targetName="_L7" targetType="kcg_uint32"/>
-      <Local inCtx="true" scadeName="_L10" scadeType="uint32" targetName="_L10" targetType="kcg_uint32"/>
-      <Local inCtx="true" scadeName="_L13" scadeType="int8" targetName="_L13" targetType="kcg_int8"/>
-      <Local inCtx="true" scadeName="_L14" scadeType="int8" targetName="_L14" targetType="kcg_int8"/>
-      <Local inCtx="true" scadeName="_L25" scadeType="int8" targetName="_L25" targetType="kcg_int8"/>
-      <Local inCtx="true" scadeName="_L24" scadeType="uint8" targetName="_L24" targetType="kcg_uint8"/>
-      <Local inCtx="true" scadeName="_L23" scadeType="uint32" targetName="_L23" targetType="kcg_uint32"/>
+    <RootNode headerFile="ARINC_FLT_ENCDR.h" scadeName="ARINC_FLT_ENCDR" targetCycleFct="ARINC_FLT_ENCDR" targetInitFct="ARINC_FLT_ENCDR_reset" targetInitializationFct="ARINC_FLT_ENCDR_init">
+      <Input inCtx="true" scadeName="DATA" scadeType="float32" targetName="DATA" targetType="kcg_float32"/>
+      <Input inCtx="true" scadeName="SDI" scadeType="uint8" targetName="SDI" targetType="kcg_uint8"/>
+      <Input inCtx="true" scadeName="SSM" scadeType="uint8" targetName="SSM" targetType="kcg_uint8"/>
+      <Input inCtx="true" scadeName="LABEL" scadeType="uint8" targetName="LABEL" targetType="kcg_uint8"/>
+      <Input inCtx="true" scadeName="Range_Min" scadeType="float32" targetName="Range_Min" targetType="kcg_float32"/>
+      <Input inCtx="true" scadeName="Range_Max" scadeType="float32" targetName="Range_Max" targetType="kcg_float32"/>
+      <Output inCtx="true" scadeName="ARINCmsg" scadeType="uint32" targetName="ARINCmsg" targetType="kcg_uint32"/>
+      <Local inCtx="true" scadeName="inrangedata" scadeType="int32" targetName="inrangedata" targetType="kcg_int32"/>
       <Local inCtx="true" scadeName="_L22" scadeType="uint32" targetName="_L22" targetType="kcg_uint32"/>
       <Local inCtx="true" scadeName="_L21" scadeType="uint32" targetName="_L21" targetType="kcg_uint32"/>
-      <Local inCtx="true" scadeName="_L31" scadeType="uint32" targetName="_L31" targetType="kcg_uint32"/>
-      <Local inCtx="true" scadeName="_L30" scadeType="uint32" targetName="_L30" targetType="kcg_uint32"/>
-      <Local inCtx="true" scadeName="_L32" scadeType="uint8" targetName="_L32" targetType="kcg_uint8"/>
-      <Local inCtx="true" scadeName="_L41" scadeType="int32" targetName="_L41" targetType="kcg_int32"/>
-      <Local inCtx="true" scadeName="_L42" scadeType="bool" targetName="_L42" targetType="kcg_bool"/>
-      <Local inCtx="true" scadeName="_L44" scadeType="uint32" targetName="_L44" targetType="kcg_uint32"/>
-      <Local inCtx="true" scadeName="_L45" scadeType="int32" targetName="_L45" targetType="kcg_int32"/>
-      <Local inCtx="true" scadeName="_L46" scadeType="uint32" targetName="_L46" targetType="kcg_uint32"/>
-      <Local inCtx="true" scadeName="_L47" scadeType="uint32" targetName="_L47" targetType="kcg_uint32"/>
-      <Local inCtx="true" scadeName="_L48" scadeType="uint32" targetName="_L48" targetType="kcg_uint32"/>
-      <Local inCtx="true" scadeName="_L52" scadeType="int32" targetName="_L52" targetType="kcg_int32"/>
-      <Local inCtx="true" scadeName="_L56" scadeType="bool" targetName="_L56" targetType="kcg_bool"/>
-      <Local inCtx="true" scadeName="_L57" scadeType="uint8" targetName="_L57" targetType="kcg_uint8"/>
-      <Local inCtx="true" scadeName="_L58" scadeType="uint8" targetName="_L58" targetType="kcg_uint8"/>
-      <Local inCtx="true" scadeName="_L59" scadeType="bool" targetName="_L59" targetType="kcg_bool"/>
-      <OutCtxType targetName="outC_ARINC_INT_DCDR"/>
-      <InCtxType targetName="inC_ARINC_INT_DCDR"/>
+      <Local inCtx="true" scadeName="_L20" scadeType="uint32" targetName="_L20" targetType="kcg_uint32"/>
+      <Local inCtx="true" scadeName="_L19" scadeType="uint8" targetName="_L19" targetType="kcg_uint8"/>
+      <Local inCtx="true" scadeName="_L18" scadeType="uint32" targetName="_L18" targetType="kcg_uint32"/>
+      <Local inCtx="true" scadeName="_L17" scadeType="uint32" targetName="_L17" targetType="kcg_uint32"/>
+      <Local inCtx="true" scadeName="_L16" scadeType="uint32" targetName="_L16" targetType="kcg_uint32"/>
+      <Local inCtx="true" scadeName="_L15" scadeType="uint8" targetName="_L15" targetType="kcg_uint8"/>
+      <Local inCtx="true" scadeName="_L14" scadeType="int8" targetName="_L14" targetType="kcg_int8"/>
+      <Local inCtx="true" scadeName="_L12" scadeType="uint32" targetName="_L12" targetType="kcg_uint32"/>
+      <Local inCtx="true" scadeName="_L11" scadeType="int8" targetName="_L11" targetType="kcg_int8"/>
+      <Local inCtx="true" scadeName="_L10" scadeType="uint32" targetName="_L10" targetType="kcg_uint32"/>
+      <Local inCtx="true" scadeName="_L9" scadeType="uint32" targetName="_L9" targetType="kcg_uint32"/>
+      <Local inCtx="true" scadeName="_L8" scadeType="uint32" targetName="_L8" targetType="kcg_uint32"/>
+      <Local inCtx="true" scadeName="_L7" scadeType="uint32" targetName="_L7" targetType="kcg_uint32"/>
+      <Local inCtx="true" scadeName="_L6" scadeType="uint32" targetName="_L6" targetType="kcg_uint32"/>
+      <Local inCtx="true" scadeName="_L5" scadeType="int8" targetName="_L5" targetType="kcg_int8"/>
+      <Local inCtx="true" scadeName="_L4" scadeType="uint8" targetName="_L4" targetType="kcg_uint8"/>
+      <Local inCtx="true" scadeName="_L3" scadeType="uint32" targetName="_L3" targetType="kcg_uint32"/>
+      <Local inCtx="true" scadeName="_L2" scadeType="uint32" targetName="_L2" targetType="kcg_uint32"/>
+      <Local inCtx="true" scadeName="_L1" scadeType="uint32" targetName="_L1" targetType="kcg_uint32"/>
+      <Local inCtx="true" scadeName="_L23" scadeType="float32" targetName="_L23" targetType="kcg_float32"/>
+      <Local inCtx="true" scadeName="_L24" scadeType="float32" targetName="_L24" targetType="kcg_float32"/>
+      <Local inCtx="true" scadeName="_L25" scadeType="float32" targetName="_L25" targetType="kcg_float32"/>
+      <Local inCtx="true" scadeName="_L26" scadeType="float32" targetName="_L26" targetType="kcg_float32"/>
+      <Local inCtx="true" scadeName="_L27" scadeType="float32" targetName="_L27" targetType="kcg_float32"/>
+      <Local inCtx="true" scadeName="_L28" scadeType="float32" targetName="_L28" targetType="kcg_float32"/>
+      <Local inCtx="true" scadeName="_L29" scadeType="float32" targetName="_L29" targetType="kcg_float32"/>
+      <Local inCtx="true" scadeName="_L33" scadeType="int32" targetName="_L33" targetType="kcg_int32"/>
+      <Local inCtx="true" scadeName="_L35" scadeType="int32" targetName="_L35" targetType="kcg_int32"/>
+      <Local inCtx="true" scadeName="_L37" scadeType="float32" targetName="_L37" targetType="kcg_float32"/>
+      <Local inCtx="true" scadeName="_L38" scadeType="float32" targetName="_L38" targetType="kcg_float32"/>
+      <NodeInstance instName="2" refName="RoundFloor_math_float32" scadeName="math::RoundFloor">
+        <OutCtxVar targetName="Context_RoundFloor_2"/>
+      </NodeInstance>
+      <OutCtxType targetName="outC_ARINC_FLT_ENCDR"/>
+      <InCtxType targetName="inC_ARINC_FLT_ENCDR"/>
     </RootNode>
+    <Package scadeName="math">
+      <NoExpNode headerFile="RoundFloor_math_float32.h" scadeName="RoundFloor" targetCycleFct="RoundFloor_math_float32" targetInitFct="RoundFloor_reset_math_float32" targetInitializationFct="RoundFloor_init_math_float32">
+        <Input scadeName="RF_Input" scadeType="float32" targetName="RF_Input_float32" targetType="kcg_float32"/>
+        <Output inCtx="true" scadeName="RF_Output" scadeType="int32" targetName="RF_Output_float32" targetType="kcg_int32"/>
+        <Local inCtx="true" scadeName="_L1" scadeType="float32" targetName="_L1_float32" targetType="kcg_float32"/>
+        <Local inCtx="true" scadeName="_L24" scadeType="bool" targetName="_L24_float32" targetType="kcg_bool"/>
+        <Local inCtx="true" scadeName="_L25" scadeType="float32" targetName="_L25_float32" targetType="kcg_float32"/>
+        <Local inCtx="true" scadeName="_L26" scadeType="int32" targetName="_L26_float32" targetType="kcg_int32"/>
+        <Local inCtx="true" scadeName="_L30" scadeType="float32" targetName="_L30_float32" targetType="kcg_float32"/>
+        <Local inCtx="true" scadeName="_L31" scadeType="float32" targetName="_L31_float32" targetType="kcg_float32"/>
+        <Local inCtx="true" scadeName="_L32" scadeType="int32" targetName="_L32_float32" targetType="kcg_int32"/>
+        <Local inCtx="true" scadeName="_L33" scadeType="int32" targetName="_L33_float32" targetType="kcg_int32"/>
+        <Local inCtx="true" scadeName="_L38" scadeType="int32" targetName="_L38_float32" targetType="kcg_int32"/>
+        <Local inCtx="true" scadeName="_L41" scadeType="float32" targetName="_L41_float32" targetType="kcg_float32"/>
+        <Local inCtx="true" scadeName="_L43" scadeType="bool" targetName="_L43_float32" targetType="kcg_bool"/>
+        <OutCtxType targetName="outC_RoundFloor_math_float32"/>
+      </NoExpNode>
+    </Package>
     <PredefType scadeName="int8" targetName="kcg_int8"/>
     <PredefType scadeName="int16" targetName="kcg_int16"/>
     <PredefType scadeName="int32" targetName="kcg_int32"/>

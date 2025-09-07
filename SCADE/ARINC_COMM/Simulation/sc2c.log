@@ -1,16 +1,20 @@
 $************** ANSYS(R) SCADE Suite(R) - SCADETOC - Version Student 2024 R1 (build 20231108T130114) **************
-** Generation date: 2025-09-04T14:08:49
-** Command: scade -code "C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\ARINC_COMM.etp" -root ARINC_INT_DCDR -conf Simulation
+** Generation date: 2025-09-07T13:55:46
+** Command: scade -code "C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\ARINC_COMM.etp" -root ARINC_FLT_ENCDR -conf Simulation
 *************************************************************$
 *** Generated Files Information (GENFIL): KCG- Generated files
   at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\mapping.xml, line 0, character 0
  ~mapping.xml
   at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\kcg_metrics.txt, line 0, character 0
  ~kcg_metrics.txt
-  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\ARINC_INT_DCDR.c, line 0, character 0
- ~ARINC_INT_DCDR.c
-  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\ARINC_INT_DCDR.h, line 0, character 0
- ~ARINC_INT_DCDR.h
+  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\ARINC_FLT_ENCDR.c, line 0, character 0
+ ~ARINC_FLT_ENCDR.c
+  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\RoundFloor_math_float32.c, line 0, character 0
+ ~RoundFloor_math_float32.c
+  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\ARINC_FLT_ENCDR.h, line 0, character 0
+ ~ARINC_FLT_ENCDR.h
+  at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\RoundFloor_math_float32.h, line 0, character 0
+ ~RoundFloor_math_float32.h
   at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\kcg_types.h, line 0, character 0
  ~kcg_types.h
   at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\kcg_consts.h, line 0, character 0
@@ -50,6 +54,6 @@ $************** ANSYS(R) SCADE Suite(R) - SCADETOC - Version Student 2024 R1 (bu
   at file C:\Users\lukas\Documents\Repo\202502_REACT_ENG_CTRL\SCADE\ARINC_COMM\Simulation\ARINC_COMM_dll.c, line 0, character 0
  ~ARINC_COMM_dll.c
 $************** ANSYS(R) SCADE Suite(R) - SCADETOC - Version Student 2024 R1 (build 20231108T130114) **************
-** Generation date: 2025-09-04T14:08:52
+** Generation date: 2025-09-07T13:55:48
 ** sc2c.log
 *************************************************************$

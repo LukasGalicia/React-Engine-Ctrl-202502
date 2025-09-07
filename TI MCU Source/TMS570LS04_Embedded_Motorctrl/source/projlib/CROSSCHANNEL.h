@@ -12,13 +12,29 @@
 
 /* Include files */
 // Project includes
-#include "../embedded_SCADE/ARINC_INT_ENCDR.h"
-#include "../embedded_SCADE/ARINC_INT_DCDR.h"
+#include "../embedded_SCADE/SCADE_global_lib.h"
+
 // Driver includes
 #include "spi.h"
+
 // Std C includes
 #include <stdlib.h>
 #include <stdio.h>
+
+enum board_modes
+{
+    BOARD_BACKUP,       // Backup is 0U
+    BOARD_MAIN          // Main is 1U
+};
+typedef enum board_modes _ECU_MODE;
+
+struct ARINC_Msg_Frame_Format
+{
+    uint8_t LABEL;
+    uint8_t SDI;
+    uint8_t SSM;
+};
+typedef struct ARINC_Msg_Frame_Format ARINC_Frame_Mdata;
 
 /* ARINC MESSAGE FORMATS */
 // LABEL Formats
@@ -36,26 +52,30 @@
 #define ARINC_DATA_DEFAULT  0x000CFFFF
 
 // SSM Formats
+#define ARINC_SSM_ValuePos  0b00U
 #define ARINC_SSM_FnTest    0b10U
 #define ARINC_SSM_NormOp    0b11U
-#define ARINC_SSM_ValuePos  0b00U
 #define ARINC_SSM_ValueNeg  0b11U
 
 /* Standard SCADEif structs */
-// ARINC Encoder
-inC_ARINC_INT_ENCDR     CCmsg_DATA_OUTBOUND;
-outC_ARINC_INT_ENCDR    CCmsg_FRAME_OUTBOUND;
+// ARINC Encoders
+inC_ARINC_INT_ENCDR     CCmsg_INT_DATA_OUTBOUND;
+outC_ARINC_INT_ENCDR    CCmsg_INT_FRAME_OUTBOUND;
+inC_ARINC_FLT_ENCDR     CCmsg_FLT_DATA_OUTBOUND;
+outC_ARINC_FLT_ENCDR    CCmsg_FLT_FRAME_OUTBOUND;
 
-// ARINC Decoder
-inC_ARINC_INT_DCDR      CCmsg_FRAME_INBOUND;
-outC_ARINC_INT_DCDR     CCmsg_DATA_INBOUND;
+// ARINC Decoders
+inC_ARINC_INT_DCDR      CCmsg_INT_FRAME_INBOUND;
+outC_ARINC_INT_DCDR     CCmsg_INT_DATA_INBOUND;
+inC_ARINC_FLT_DCDR      CCmsg_FLT_FRAME_INBOUND;
+outC_ARINC_FLT_DCDR     CCmsg_FLT_DATA_INBOUND;
 
 /* Comm defines */
 #define SPI_blocksize   2U
 
 /* Cross-channel Comm fn prototypes */
 void CrossChReceive(uint8_t *MsgLABEL, uint8_t *MsgSDI, int32_t *MsgDATA, uint8_t *MsgSSM, bool negValExp);
-void CrossChTransmit(uint8_t MsgLABEL, uint8_t MsgSDI, int32_t MsgDATA, uint8_t MsgSSM);
+void CrossChTransmitInt(ARINC_Frame_Mdata MsgMdata, int32_t MsgDATA);
 void CrossChTransmitandReceive(uint8_t *InLABEL, uint8_t *InSDI, int32_t *InDATA, uint8_t *InSSM, bool negValExp,
                                uint8_t OutLABEL, uint8_t OutSDI, int32_t OutDATA, uint8_t OutSSM);
 

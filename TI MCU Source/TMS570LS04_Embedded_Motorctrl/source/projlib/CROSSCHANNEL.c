@@ -17,52 +17,52 @@ spiDAT1_t CCSpiDataFmt =
 };
 
 /* Cross-channel Comm functions */
-void CrossChTransmit(uint8_t MsgLABEL, uint8_t MsgSDI, int32_t MsgDATA, uint8_t MsgSSM)
+void CrossChTransmitInt(ARINC_Frame_Mdata MsgMdata, int32_t MsgDATA)
 {
     // ARINC encode assigns
-    CCmsg_DATA_OUTBOUND.LABEL = MsgLABEL;
-    CCmsg_DATA_OUTBOUND.SDI = MsgSDI;
-    CCmsg_DATA_OUTBOUND.DATA = MsgDATA;
-    CCmsg_DATA_OUTBOUND.SSM = MsgSSM;
+    CCmsg_INT_DATA_OUTBOUND.LABEL = MsgMdata.LABEL;
+    CCmsg_INT_DATA_OUTBOUND.SDI = MsgMdata.SDI;
+    CCmsg_INT_DATA_OUTBOUND.SSM = MsgMdata.SSM;
+    CCmsg_INT_DATA_OUTBOUND.DATA = MsgDATA;
 
-    ARINC_INT_ENCDR(&CCmsg_DATA_OUTBOUND, &CCmsg_FRAME_OUTBOUND);                                           // Encode ARINC message
-    spiTransmitData(spiREG3, &CCSpiDataFmt, SPI_blocksize, (uint16_t *) &(CCmsg_FRAME_OUTBOUND.ARINCmsg));  // Send SPI data
+    ARINC_INT_ENCDR(&CCmsg_INT_DATA_OUTBOUND, &CCmsg_INT_FRAME_OUTBOUND);                                           // Encode ARINC message
+    spiTransmitData(spiREG3, &CCSpiDataFmt, SPI_blocksize, (uint16_t *) &(CCmsg_INT_FRAME_OUTBOUND.ARINCmsg));  // Send SPI data
 }
 
 void CrossChReceive(uint8_t *MsgLABEL, uint8_t *MsgSDI, int32_t *MsgDATA, uint8_t *MsgSSM, bool negValExp)
 {
-    CCmsg_FRAME_INBOUND.ExpBCD = negValExp;     // Is negative value expected?
+    CCmsg_INT_FRAME_INBOUND.ExpBCD = negValExp;     // Is negative value expected?
 
-    spiReceiveData(spiREG3, &CCSpiDataFmt, SPI_blocksize, (uint16_t *) &(CCmsg_FRAME_INBOUND.ARINCmsg));    // Get SPI data
-    ARINC_INT_DCDR(&CCmsg_FRAME_INBOUND, &CCmsg_DATA_INBOUND);                                              // Decode ARINC message
+    spiReceiveData(spiREG3, &CCSpiDataFmt, SPI_blocksize, (uint16_t *) &(CCmsg_INT_FRAME_INBOUND.ARINCmsg));    // Get SPI data
+    ARINC_INT_DCDR(&CCmsg_INT_FRAME_INBOUND, &CCmsg_INT_DATA_INBOUND);                                              // Decode ARINC message
 
     // ARINC decoded assigns
-    *MsgLABEL = CCmsg_DATA_INBOUND.LABEL;
-    *MsgSDI = CCmsg_DATA_INBOUND.SDI;
-    *MsgDATA = CCmsg_DATA_INBOUND.DATA;
-    *MsgSSM = CCmsg_DATA_INBOUND.SSM;
+    *MsgLABEL = CCmsg_INT_DATA_INBOUND.LABEL;
+    *MsgSDI = CCmsg_INT_DATA_INBOUND.SDI;
+    *MsgDATA = CCmsg_INT_DATA_INBOUND.DATA;
+    *MsgSSM = CCmsg_INT_DATA_INBOUND.SSM;
 }
 
 void CrossChTransmitandReceive(uint8_t *InLABEL, uint8_t *InSDI, int32_t *InDATA, uint8_t *InSSM, bool negValExp,
                                uint8_t OutLABEL, uint8_t OutSDI, int32_t OutDATA, uint8_t OutSSM)
 {
-    CCmsg_FRAME_INBOUND.ExpBCD = negValExp;     // Is negative value expected?
+    CCmsg_INT_FRAME_INBOUND.ExpBCD = negValExp;     // Is negative value expected?
 
     // ARINC encode assigns
-    CCmsg_DATA_OUTBOUND.LABEL = OutLABEL;
-    CCmsg_DATA_OUTBOUND.SDI = OutSDI;
-    CCmsg_DATA_OUTBOUND.DATA = OutDATA;
-    CCmsg_DATA_OUTBOUND.SSM = OutSSM;
+    CCmsg_INT_DATA_OUTBOUND.LABEL = OutLABEL;
+    CCmsg_INT_DATA_OUTBOUND.SDI = OutSDI;
+    CCmsg_INT_DATA_OUTBOUND.DATA = OutDATA;
+    CCmsg_INT_DATA_OUTBOUND.SSM = OutSSM;
 
-    ARINC_INT_ENCDR(&CCmsg_DATA_OUTBOUND, &CCmsg_FRAME_OUTBOUND);               // Encode ARINC message
+    ARINC_INT_ENCDR(&CCmsg_INT_DATA_OUTBOUND, &CCmsg_INT_FRAME_OUTBOUND);               // Encode ARINC message
     spiTransmitAndReceiveData(spiREG3, &CCSpiDataFmt, SPI_blocksize,            // Send & get SPI data
-                              (uint16_t *) &(CCmsg_FRAME_OUTBOUND.ARINCmsg),
-                              (uint16_t *) &(CCmsg_FRAME_INBOUND.ARINCmsg));
-    ARINC_INT_DCDR(&CCmsg_FRAME_INBOUND, &CCmsg_DATA_INBOUND);                  // Decode ARINC message
+                              (uint16_t *) &(CCmsg_INT_FRAME_OUTBOUND.ARINCmsg),
+                              (uint16_t *) &(CCmsg_INT_FRAME_INBOUND.ARINCmsg));
+    ARINC_INT_DCDR(&CCmsg_INT_FRAME_INBOUND, &CCmsg_INT_DATA_INBOUND);                  // Decode ARINC message
 
     // ARINC decoded assigns
-    *InLABEL = CCmsg_DATA_INBOUND.LABEL;
-    *InSDI = CCmsg_DATA_INBOUND.SDI;
-    *InDATA = CCmsg_DATA_INBOUND.DATA;
-    *InSSM = CCmsg_DATA_INBOUND.SSM;
+    *InLABEL = CCmsg_INT_DATA_INBOUND.LABEL;
+    *InSDI = CCmsg_INT_DATA_INBOUND.SDI;
+    *InDATA = CCmsg_INT_DATA_INBOUND.DATA;
+    *InSSM = CCmsg_INT_DATA_INBOUND.SSM;
 }

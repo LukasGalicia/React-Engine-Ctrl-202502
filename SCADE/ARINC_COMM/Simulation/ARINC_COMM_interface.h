@@ -3,12 +3,12 @@
 
 #include "kcg_sensors.h"
 #include "SmuProxy.h"
-#include "ARINC_INT_DCDR.h"
+#include "ARINC_FLT_ENCDR.h"
 
 /* context */
 
-extern inC_ARINC_INT_DCDR inputs_ctx;
-extern outC_ARINC_INT_DCDR outputs_ctx;
+extern inC_ARINC_FLT_ENCDR inputs_ctx;
+extern outC_ARINC_FLT_ENCDR outputs_ctx;
 
 #ifdef __cplusplus
 extern "C" {
