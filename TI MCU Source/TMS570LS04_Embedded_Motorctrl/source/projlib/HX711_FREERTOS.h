@@ -34,19 +34,7 @@
 
 /* Queue mgmt using FreeRTOS */
 QueueHandle_t xQueue_HX711_Raw;             // HX711 sensor Raw Data queue
-QueueHandle_t xQueue_HX711_Data;            // HX711 sensor Data queue
-QueueHandle_t xQueue_SrialComm_HX711;       // HX711 Telemetry Queue
-QueueHandle_t xQueue_CrossChComm_HX711;     // HX711 Telemetry Queue
-
-/* Telemetry communication */
-#define COMM_BUFFER_SIZE 20         // Comms. 2 Ctrl. Panel buffer size
-
-struct serialdata
-{
-    HX711Data_t HX711_localdata;
-    HX711Data_t HX711_CCdata;
-};
-typedef struct serialdata commCtrlData;
+QueueHandle_t xQueue_HX711_CtrlData;            // HX711 sensor Data queue
 
 /* HX711 Macros */
 #define DECODE_TWOS_COMPLEMENT( twos_comp_data ) (((twos_comp_data) & 0x800000) ? \

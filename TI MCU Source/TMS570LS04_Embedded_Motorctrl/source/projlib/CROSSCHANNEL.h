@@ -13,6 +13,7 @@
 /* Include files */
 // Project includes
 #include "../embedded_SCADE/SCADE_global_lib.h"
+#include "HX711_FREERTOS.h"
 
 // Driver includes
 #include "spi.h"
@@ -43,6 +44,8 @@ typedef struct ARINC_Msg_Frame_Format ARINC_Frame_Mdata;
 #define ARINC_LABEL_BackupHX711ready    0xB7U
 #define ARINC_LABEL_MainHX711_data      0xA6U
 #define ARINC_LABEL_BackupHX711_data    0xB6U
+#define ARINC_LABEL_MainCtrlRef         0xA1U
+#define ARINC_LABEL_BackupCtrlRef       0xB1U
 
 // SDI Formats
 #define ARINC_SDI_Backup    0x00U
@@ -73,10 +76,26 @@ outC_ARINC_FLT_DCDR     CCmsg_FLT_DATA_INBOUND;
 /* Comm defines */
 #define SPI_blocksize   2U
 
+/* Telemetry communication */
+#define COMM_BUFFER_SIZE 50         // Comms. 2 Ctrl. Panel buffer size
+
+struct serialdata
+{
+    HX711Data_t HX711_localdata;
+    HX711Data_t HX711_CCdata;
+    float32 CtrlRef_localdata;
+    float32 CtrlRef_CCdata;
+};
+typedef struct serialdata commCtrlData;
+
 /* Cross-channel Comm fn prototypes */
-void CrossChReceiveInt(ARINC_Frame_Mdata *MsgMdata, int32_t *MsgDATA, bool negValExp);
 void CrossChTransmitInt(ARINC_Frame_Mdata MsgMdata, int32_t MsgDATA);
+void CrossChTransmitFlt(ARINC_Frame_Mdata MsgMdata, float32 MsgDATA, float32 dataMIN, float32 dataMAX);
+void CrossChReceiveInt(ARINC_Frame_Mdata *MsgMdata, int32_t *MsgDATA, bool negValExp);
+void CrossChReceiveFlt(ARINC_Frame_Mdata *MsgMdata, float32 *MsgDATA, float32 dataMIN, float32 dataMAX);
 void CrossChTransmitandReceiveINT(ARINC_Frame_Mdata *inFrameData, int32_t *inDATA,
                                   ARINC_Frame_Mdata outFrameData, int32_t outDATA, bool negValExp);
+void CrossChTransmitandReceiveFLT(ARINC_Frame_Mdata *inFrameData, float32 *inDATA, ARINC_Frame_Mdata outFrameData, float32 outDATA,
+                                  float32 dataMIN, float32 dataMAX);
 
 #endif /* SOURCE_PROJLIB_CROSSCHANNEL_H_ */

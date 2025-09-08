@@ -6,10 +6,10 @@
 Building file: "../source/sys_main.c"
 Invoking: Arm Compiler
 "C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7R4 --code_state=32 --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl" --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl/source/embedded_SCADE" --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl/source/projlib" --include_path="C:/Users/lukas/Documents/Repo/202502_REACT_ENG_CTRL/TI MCU Source/TMS570LS04_Embedded_Motorctrl/include" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --enum_type=packed --abi=eabi --preproc_with_compile --preproc_dependency="source/sys_main.d_raw" --obj_directory="source"  "../source/sys_main.c"
-"../source/sys_main.c", line 164: warning #112-D: statement is unreachable
-"../source/sys_main.c", line 300: warning #179-D: variable "MotCtrlRef" was declared but never referenced
-"../source/sys_main.c", line 300: warning #179-D: variable "MotCtrlErr" was declared but never referenced
-"../source/sys_main.c", line 303: warning #179-D: variable "BLDC_PID" was declared but never referenced
+"../source/sys_main.c", line 179: warning #112-D: statement is unreachable
+"../source/sys_main.c", line 308: warning #179-D: variable "MotCtrlRef" was declared but never referenced
+"../source/sys_main.c", line 308: warning #179-D: variable "MotCtrlErr" was declared but never referenced
+"../source/sys_main.c", line 311: warning #179-D: variable "BLDC_PID" was declared but never referenced
 Finished building: "../source/sys_main.c"
  
 Building target: "TMS570LS04_Embedded_Motorctrl.out"

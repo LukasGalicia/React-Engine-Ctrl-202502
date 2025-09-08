@@ -138,9 +138,9 @@ typedef struct sci_config_reg
                                       |(uint32)((uint32)0U << 0U))
 
 #define SCILIN_FORMAT_CONFIGVALUE     (8U - 1U)
-#define SCILIN_BRS_CONFIGVALUE        (86U)
+#define SCILIN_BRS_CONFIGVALUE        (129U)
 #define SCILIN_PIO0_CONFIGVALUE       ((uint32)((uint32)1U << 2U) | (uint32)((uint32)1U << 1U))
-#define SCILIN_PIO1_CONFIGVALUE       ((uint32)((uint32)1U << 2U) | (uint32)((uint32)0U << 1U))
+#define SCILIN_PIO1_CONFIGVALUE       ((uint32)((uint32)0U << 2U) | (uint32)((uint32)0U << 1U))
 #define SCILIN_PIO6_CONFIGVALUE       ((uint32)((uint32)0U << 2U) | (uint32)((uint32)0U << 1U))
 #define SCILIN_PIO7_CONFIGVALUE       ((uint32)((uint32)0U << 2U) | (uint32)((uint32)0U << 1U))
 #define SCILIN_PIO8_CONFIGVALUE       ((uint32)((uint32)1U << 2U) | (uint32)((uint32)1U << 1U))

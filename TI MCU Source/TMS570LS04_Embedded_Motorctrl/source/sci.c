@@ -96,7 +96,7 @@ void sciInit(void)
                     | (uint32)((uint32)1U << 1U);  /* asynchronous timing mode */
                     
     /** - set baudrate */
-    scilinREG->BRS = 86U;  /* baudrate */
+    scilinREG->BRS = 129U;  /* baudrate */
 
     /** - transmission length */
     scilinREG->FORMAT = 8U - 1U;  /* length */
@@ -112,7 +112,7 @@ void sciInit(void)
 
 
     /** - set SCI pins output direction */
-    scilinREG->PIO1 = (uint32)((uint32)1U << 2U)  /* tx pin */
+    scilinREG->PIO1 = (uint32)((uint32)0U << 2U)  /* tx pin */
                     | (uint32)((uint32)0U << 1U); /* rx pin */
 
 
